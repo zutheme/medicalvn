@@ -343,6 +343,6 @@ add_filter('acf/settings/show_admin', '__return_false');
 include_once( get_stylesheet_directory() . '/inc/acf/acf.php' );
 
 require get_template_directory() . '/inc/customizer.php';
-require get_template_directory() . '/inc/customizer1.php';   
-add_filter('use_block_editor_for_post', '__return_false');
+//require get_template_directory() . '/inc/customizer1.php';   
+//add_filter('use_block_editor_for_post', '__return_false');
 //remove url category
