@@ -5249,6 +5249,13 @@ margin-bottom:0;}
     margin-right: auto;
     margin-left: auto;
   }
+  .gc_logo.logo_hidn img{
+      width: 100%;
+      height: auto;
+    }
+  .gc_logo.logo_hidn .img-logo {
+    max-width: 120px;
+  }
   .event_wrapper {
       float: left;
       width: 100%;

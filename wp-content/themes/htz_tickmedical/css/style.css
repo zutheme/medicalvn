@@ -6114,6 +6114,13 @@ h2.widget-title {
 	    margin-right: auto;
 	    margin-left: auto;
 	}
+	.gc_logo.logo_hidn img{
+      width: 100%;
+      height: auto;
+    }
+  .gc_logo.logo_hidn .img-logo {
+    max-width: 120px;
+  }
 	.rp_mobail_menu_main_wrapper .gc_logo .single {
 		max-width: 150px;
 		height: auto;
