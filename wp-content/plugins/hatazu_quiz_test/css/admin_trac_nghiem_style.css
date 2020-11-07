@@ -1,0 +1,22 @@
+#quiz-test textarea {
+	 display: block;
+    margin: 12px 0 0;
+    height: 4em;
+    width: 100%;
+}
+#quiz-test-show .list-question span.question {
+	width: 50px;
+    height: 50px;
+    background-color: #FFF;
+    border: 2px solid #F8AE90;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    border-radius: 50%;
+    font-weight: 600;
+    transition: all 0.5s;
+}
+.field-trac_nghiem-test .list-taxonomy ul.taxonomy ul {
+    padding-left: 15px;
+    position: relative;
+}
