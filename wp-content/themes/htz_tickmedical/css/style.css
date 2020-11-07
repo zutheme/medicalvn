@@ -215,7 +215,7 @@ table td img.alignnone {
   display: block;
   height: 100%;
   top: 0px;
-  left: -500px;
+  right: 500px;
   background-color: #ffffff;
   overflow: scroll;
   overflow-x: hidden;
