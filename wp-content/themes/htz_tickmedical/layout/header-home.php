@@ -98,7 +98,7 @@
                     <div class="row">
                         <div class="col-xs-12 center">
                             <div class="gc_logo logo_hidn">
-                                <a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo $logo_mobile['url']; ?>" class="img-responsive" alt="logo"></a>
+                                <a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo $logo_mobile['url']; ?>" class="img-logo" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-xs-6 hidden-xs"> 

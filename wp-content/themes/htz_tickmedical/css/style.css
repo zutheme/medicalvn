@@ -222,7 +222,13 @@ table td img.alignnone {
   overflow-x: hidden;
   z-index:1000;
 }
-
+#sidebar img {
+	width: 100%;
+	height: auto;
+}
+#sidebar .img-logo {
+	max-width: 150px;
+}
 #links {
   position: relative;
   float: left;
