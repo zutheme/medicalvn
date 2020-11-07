@@ -321,6 +321,7 @@
 	  /*--- Responsive Menu Start ----*/
 var _e_sidebar = document.getElementById("sidebar");
 var _width_sidebar = _e_sidebar.offsetWidth;
+console.log(_width_sidebar);
 _e_sidebar.style.right = _width_sidebar+'px';
 var _open_sidebar = false;
 $("#toggle").on("click", function(){
