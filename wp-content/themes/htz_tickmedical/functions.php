@@ -178,7 +178,7 @@ function htz_thienkhue_scripts() {
 		
 	//}
 	if ( is_front_page() ) {
-		wp_enqueue_style('style_2.css', get_template_directory_uri() . '/css/style_2.css',array(), '0.3.3.7', false);
+		wp_enqueue_style('style_2.css', get_template_directory_uri() . '/css/style_2.css',array(), '0.3.4.1', false);
 		//wp_enqueue_script( 'slide_menu_home.', get_template_directory_uri() . '/js/slide_menu_home.js', array(), '0.0.3.3', true );
 	}
 	 if ( !is_front_page() ) {
@@ -315,11 +315,11 @@ if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
 }
 add_action( 'pre_get_posts', 'wpsites_query' );
 
-add_filter( 'customtaxorder_exclude_taxonomies', 'add_taxonomy_to_customtaxorder_exclude_taxonomies' );
-function add_taxonomy_to_customtaxorder_exclude_taxonomies( $taxonomies ) {
-    $taxonomies[] = 'group_video'; // name of your tag taxonomy.
-    return $taxonomies;
-}
+// add_filter( 'customtaxorder_exclude_taxonomies', 'add_taxonomy_to_customtaxorder_exclude_taxonomies' );
+// function add_taxonomy_to_customtaxorder_exclude_taxonomies( $taxonomies ) {
+//     $taxonomies[] = 'group_video'; // name of your tag taxonomy.
+//     return $taxonomies;
+// }
 
 //  Include ACF   
 // 1. customize ACF path
@@ -343,6 +343,5 @@ add_filter('acf/settings/show_admin', '__return_false');
 include_once( get_stylesheet_directory() . '/inc/acf/acf.php' );
 
 require get_template_directory() . '/inc/customizer.php';
-require get_template_directory() . '/inc/customizer1.php';   
-add_filter('use_block_editor_for_post', '__return_false');
-//remove url category
+require get_template_directory() . '/inc/customizer1.php';  
+//add_filter('use_block_editor_for_post', '__return_false');

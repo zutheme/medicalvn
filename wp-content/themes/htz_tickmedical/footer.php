@@ -121,14 +121,14 @@
     <script src="<?php bloginfo('template_directory');?>/js/jquery_min.js"></script>
     <script src="<?php bloginfo('template_directory');?>/js/bootstrap.min.js"></script>
     <script src="<?php bloginfo('template_directory');?>/js/jquery.shuffle.min.js"></script>
-    <!-- <script src="<?php //bloginfo('template_directory');?>/js/jquery.inview.min.js"></script> -->
+    <script src="<?php bloginfo('template_directory');?>/js/jquery.inview.min.js"></script>
    <script src="<?php bloginfo('template_directory');?>/js/jquery.countTo.js"></script>
    <script src="<?php bloginfo('template_directory');?>/js/wow.min.js"></script> 
     <script src="<?php bloginfo('template_directory');?>/js/owl.carousel.js"></script>
    <script src="<?php bloginfo('template_directory');?>/js/jquery.magnific-popup.js?v=0.1.1"></script> 
-   <script src="<?php bloginfo('template_directory');?>/js/custom_2.js?v=0.7.9"></script>
-   <script src="<?php bloginfo('template_directory');?>/js/mutimenu.js?v=0.0.1"></script>
-   <script src="<?php bloginfo('template_directory');?>/js/slider-multi-item.js?v=0.0.0.2"></script>
+   <script src="<?php bloginfo('template_directory');?>/js/custom_2.js?v=1.1.2"></script>
+   <!-- <script src="<?php //bloginfo('template_directory');?>/js/mutimenu.js?v=0.0.1"></script> -->
+   <!-- <script src="<?php //bloginfo('template_directory');?>/js/slider-multi-item.js?v=0.0.0.2"></script> -->
     <!--js code-->
    <!--  <script src="<?php //bloginfo('template_directory');?>/js/custom.js"></script> -->
     <script>

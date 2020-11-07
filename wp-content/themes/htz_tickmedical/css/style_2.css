@@ -439,13 +439,17 @@ textarea:focus {
   display: block;
   height: 100%;
   top: 0px;
-  left: -500px;
+  right: 0px;
   background-color: #ffffff;
   overflow: scroll;
   overflow-x: hidden;
   z-index:999999;
 }
-
+/*@media (max-width: 768px) {
+  #sidebar {
+    position: absolute;
+  }
+}*/
 #links {
   position: relative;
   float: left;

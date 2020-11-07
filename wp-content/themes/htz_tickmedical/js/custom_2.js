@@ -319,45 +319,60 @@
             });
 	
 	  /*--- Responsive Menu Start ----*/
-
+var _e_sidebar = document.getElementById("sidebar");
+var _width_sidebar = _e_sidebar.offsetWidth;
+_e_sidebar.style.right = _width_sidebar+'px';
+var _open_sidebar = false;
 $("#toggle").on("click", function(){
+  var _right = 80;
   var w = $('#sidebar').width();
-  var pos = $('#sidebar').offset().left;
- 
-  if(pos == 0){
-  $("#sidebar").animate({"left": -w}, "slow");
+  //var pos = $('#sidebar').offset().left;
+  if(!_open_sidebar){
+    $("#sidebar").animate({"right": _right+"px"}, "slow");
+    $("#sidebar").css({width: w+"px"});
+    _open_sidebar = true;
   }
-  else
-  {
-  $("#sidebar").animate({"left": "0"}, "slow");
+  else{
+    $("#sidebar").animate({"right": w+_right+'px'}, "slow");
+    //_e_sidebar.style.left = -w+'px';
+    $("#sidebar").css({width: w+"px"});
+    _open_sidebar = false;
   }
   
 });
 
 $("#toggle_close").on("click", function(){
+   var _right = 80;
   var w = $('#sidebar').width();
-  var pos = $('#sidebar').offset().left;
- 
-  if(pos == 0){
-  $("#sidebar").animate({"left": -w}, "slow");
+  //var pos = $('#sidebar').offset().left;
+  if(!_open_sidebar){
+    $("#sidebar").animate({"right": _right+"px"}, "slow");
+    $("#sidebar").css({width: w+"px"});
+    _open_sidebar = true;
   }
-  else
-  {
-  $("#sidebar").animate({"left": "0"}, "slow");
+  else{
+    $("#sidebar").animate({"right": w+_right+'px'}, "slow");
+    //_e_sidebar.style.left = -w+'px';
+    $("#sidebar").css({width: w+"px"});
+    _open_sidebar = false;
   }
   
 });
 
 $("#toggle_mobile").on("click", function(){
+  var _right = 80;
   var w = $('#sidebar').width();
-  var pos = $('#sidebar').offset().left;
- 
-  if(pos == 0){
-  $("#sidebar").animate({"left": -w}, "slow");
+  //var pos = $('#sidebar').offset().left;
+  if(!_open_sidebar){
+    $("#sidebar").animate({"right": _right+"px"}, "slow");
+    $("#sidebar").css({width: w+"px"});
+    _open_sidebar = true;
   }
-  else
-  {
-  $("#sidebar").animate({"left": "0"}, "slow");
+  else{
+    $("#sidebar").animate({"right": w+_right+'px'}, "slow");
+    //_e_sidebar.style.left = -w+'px';
+    $("#sidebar").css({width: w+"px"});
+    _open_sidebar = false;
   }
   
 });

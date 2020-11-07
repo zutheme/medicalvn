@@ -15,11 +15,11 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <?php if ( is_front_page() || is_home() ) { ?>
-      <meta name="keywords" content="<?php echo get_field('keywords','customizer'); ?>">
-  <?php }?>
   <meta name="google-site-verification" content="izqZdZy0VITwqHUGnxebJZtyge2Dn_NYhUoscW1fQ14" />
   <meta name="facebook-domain-verification" content="2hkt24aepaqqb9dvwc809kyqmzoqfm">
+  <?php if ( is_front_page() || is_home() ) { ?>
+      <meta name="keywords" content="<?php echo get_field('keywords','customizer'); ?>">
+  <?php } ?>
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	 <!--start theme style -->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory');?>/css/animate.css">
