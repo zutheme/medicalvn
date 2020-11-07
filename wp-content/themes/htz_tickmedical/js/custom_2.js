@@ -319,10 +319,12 @@
             });
 	
 	  /*--- Responsive Menu Start ----*/
+var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+var _height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
 var _e_sidebar = document.getElementById("sidebar");
 var _width_sidebar = _e_sidebar.offsetWidth;
 console.log(_width_sidebar);
-_e_sidebar.style.right = _width_sidebar+'px';
+_e_sidebar.style.right = _width+'px';
 var _open_sidebar = false;
 $("#toggle").on("click", function(){
   var _right = 80;
