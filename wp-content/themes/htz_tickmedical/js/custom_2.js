@@ -328,8 +328,7 @@ var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var _open_sidebar = false;
 $("#toggle").on("click", function(){
   var _right = 80;
-  //var w = $('#sidebar').width();
-  var w = _width;
+  var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
     $("#sidebar").animate({"right": _right+"px"}, "slow");
@@ -347,8 +346,7 @@ $("#toggle").on("click", function(){
 
 $("#toggle_close").on("click", function(){
    var _right = 80;
-  //var w = $('#sidebar').width();
-  var w = _width;
+  var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
     $("#sidebar").animate({"right": _right+"px"}, "slow");
@@ -366,8 +364,7 @@ $("#toggle_close").on("click", function(){
 
 $("#toggle_mobile").on("click", function(){
   var _right = 80;
-  var w = _width;
-  //var w = $('#sidebar').width();
+  var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
     $("#sidebar").animate({"right": _right+"px"}, "slow");

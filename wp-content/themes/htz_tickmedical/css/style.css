@@ -211,6 +211,7 @@ table td img.alignnone {
 	width:100%;
 }
 #sidebar {
+  width: 500px;
   position: fixed;
   display: block;
   height: 100%;

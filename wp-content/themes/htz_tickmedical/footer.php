@@ -126,7 +126,7 @@
    <script src="<?php bloginfo('template_directory');?>/js/wow.min.js"></script> 
     <script src="<?php bloginfo('template_directory');?>/js/owl.carousel.js"></script>
    <script src="<?php bloginfo('template_directory');?>/js/jquery.magnific-popup.js?v=0.1.1"></script> 
-   <script src="<?php bloginfo('template_directory');?>/js/custom_2.js?v=1.1.8"></script>
+   <script src="<?php bloginfo('template_directory');?>/js/custom_2.js?v=1.1.9"></script>
    <!-- <script src="<?php //bloginfo('template_directory');?>/js/mutimenu.js?v=0.0.1"></script> -->
    <!-- <script src="<?php //bloginfo('template_directory');?>/js/slider-multi-item.js?v=0.0.0.2"></script> -->
     <!--js code-->
