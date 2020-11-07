@@ -319,7 +319,7 @@
             });
 	
 	  /*--- Responsive Menu Start ----*/
-// var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 // var _height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
 // var _e_sidebar = document.getElementById("sidebar");
 // var _width_sidebar = _e_sidebar.offsetWidth;
@@ -328,7 +328,8 @@
 var _open_sidebar = false;
 $("#toggle").on("click", function(){
   var _right = 80;
-  var w = $('#sidebar').width();
+  //var w = $('#sidebar').width();
+  var w = _width;
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
     $("#sidebar").animate({"right": _right+"px"}, "slow");
@@ -346,7 +347,8 @@ $("#toggle").on("click", function(){
 
 $("#toggle_close").on("click", function(){
    var _right = 80;
-  var w = $('#sidebar').width();
+  //var w = $('#sidebar').width();
+  var w = _width;
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
     $("#sidebar").animate({"right": _right+"px"}, "slow");
@@ -364,7 +366,8 @@ $("#toggle_close").on("click", function(){
 
 $("#toggle_mobile").on("click", function(){
   var _right = 80;
-  var w = $('#sidebar').width();
+  var w = _width;
+  //var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
     $("#sidebar").animate({"right": _right+"px"}, "slow");
