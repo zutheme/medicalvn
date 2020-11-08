@@ -435,19 +435,24 @@ textarea:focus {
 	width:100%;
 }
 #sidebar {
+  width: 300px;
   position: fixed;
   display: block;
   height: 100%;
   top: 0px;
-  right: 500px;
+  left: -300px;
   background-color: #ffffff;
   overflow: scroll;
   overflow-x: hidden;
   z-index:999999;
+  text-align: center;
 }
 #sidebar img {
   width: 100%;
   height: auto;
+}
+#sidebar .home-logo {
+  width: 150px;
 }
 
 #links {
@@ -511,6 +516,7 @@ textarea:focus {
   width: 300px;
   color: #ffffff;
   text-transform:capitalize;
+  text-align: left;
 }
 #cssmenu ul ul {
   display: none;
@@ -560,21 +566,7 @@ textarea:focus {
 	top:0 !important;
 	z-index: 1000;
 }*/
-#sidebar h1 {
-	font-size:20px;
-	color:#145f91 !important;
-	padding-left: 20px;
-	font-weight:bold;
-	text-transform:uppercase;
-	padding-bottom: 15px;
-    margin-top: 15px;
-}
-#sidebar h1 span{
-	margin:0;
-	color:black;
-	font-size:20px;
-	background:#f9f9f9;
-}
+
 /**************---------menu wrapper--------**************/
 
 

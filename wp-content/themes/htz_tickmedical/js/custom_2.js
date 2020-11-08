@@ -331,32 +331,32 @@ $("#toggle").on("click", function(){
   var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
-    $("#sidebar").animate({"right": _right+"px"}, "slow");
-    $("#sidebar").css({width: w+"px"});
+    $("#sidebar").animate({"left": "0px"}, "slow");
+    $("#sidebar").css({width: "300px"});
     _open_sidebar = true;
   }
   else{
-    $("#sidebar").animate({"right": w+_right+'px'}, "slow");
+    $("#sidebar").animate({"left":'-300px'}, "slow");
     //_e_sidebar.style.left = -w+'px';
-    $("#sidebar").css({width: w+"px"});
+    $("#sidebar").css({width: "300px"});
     _open_sidebar = false;
   }
   
 });
 
 $("#toggle_close").on("click", function(){
-   var _right = 80;
+  var _right = 80;
   var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
-    $("#sidebar").animate({"right": _right+"px"}, "slow");
-    $("#sidebar").css({width: w+"px"});
+    $("#sidebar").animate({"left": "0px"}, "slow");
+    $("#sidebar").css({width: "300px"});
     _open_sidebar = true;
   }
   else{
-    $("#sidebar").animate({"right": w+_right+'px'}, "slow");
+    $("#sidebar").animate({"left":'-300px'}, "slow");
     //_e_sidebar.style.left = -w+'px';
-    $("#sidebar").css({width: w+"px"});
+    $("#sidebar").css({width: "300px"});
     _open_sidebar = false;
   }
   
@@ -367,14 +367,14 @@ $("#toggle_mobile").on("click", function(){
   var w = $('#sidebar').width();
   //var pos = $('#sidebar').offset().left;
   if(!_open_sidebar){
-    $("#sidebar").animate({"right": _right+"px"}, "slow");
-    $("#sidebar").css({width: w+"px"});
+    $("#sidebar").animate({"left": "0px"}, "slow");
+    $("#sidebar").css({width: "300px"});
     _open_sidebar = true;
   }
   else{
-    $("#sidebar").animate({"right": w+_right+'px'}, "slow");
+    $("#sidebar").animate({"left":'-300px'}, "slow");
     //_e_sidebar.style.left = -w+'px';
-    $("#sidebar").css({width: w+"px"});
+    $("#sidebar").css({width: "300px"});
     _open_sidebar = false;
   }
   
