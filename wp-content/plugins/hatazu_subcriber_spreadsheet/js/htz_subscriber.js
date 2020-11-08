@@ -402,7 +402,6 @@ window.addEventListener("scroll", quick_top_menu,false);
 var _width_device = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var e_top = document.getElementsByClassName('cat-box')[0];
-console.log(e_top);
 var tooggle_menu = false;
 function quick_top_menu(){ 
    var top = window.pageYOffset; 

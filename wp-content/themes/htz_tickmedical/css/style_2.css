@@ -192,8 +192,12 @@ textarea:focus {
 	float:left; width:100%;
 }
 .top_header_section{
-	float:left; width:100%;
-	background-color:#1a1a1a;
+	float: left;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #f1f1f1;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .left_top_nav{
 	float:left;
@@ -202,7 +206,6 @@ textarea:focus {
 .top_header_add{
 	float:left;
 	width:auto;
-	line-height:60px;
 }
 .top_header_add ul{
 	margin:0px;
@@ -215,12 +218,13 @@ textarea:focus {
 	list-style:none;
 	color:#145f91;
 	margin-right: 30px;
+  padding-top: 5px;
 }
 .top_header_add ul li a{
 	color:#145f91;
 }
 .top_header_add ul li i{
-	color:#145f91;
+	color:#07a0f3;
 	margin-right:0px;
   font-size: 18px;
 }
@@ -230,12 +234,12 @@ textarea:focus {
 }
 .md_right_side_warpper{
 	float:right;
-  padding-top: 17px;
+  padding-top: 0px;
 }
 .md_right_side_warpper .block-search {
   max-height: 50px;
-  margin-top: -5px;
-  padding:0px 5px;
+  margin-top: 0px;
+  padding:0px 0px;
 }
 .md_right_side_warpper .block-search .bt-search {
   padding: 5px 5px;
@@ -273,11 +277,11 @@ textarea:focus {
 	font-size:16px;
 	margin-left:15px;
 }
-.top_header_section {
+/*.top_header_section {
     float: left;
     width: 100%;
     background-color: #d9f1fd;
-}
+}*/
 .md_right_side_warpper li i{
 	color:white;
 	/*line-height:60px;*/
@@ -291,7 +295,7 @@ textarea:focus {
 	margin-right:0;
 }
 .md_right_side_warpper ul li i {
-  color: #145f91;
+  color: #07a0f3;
 }
 .md_right_side_warpper ul li i:hover{
 	color:#00a3ef;
@@ -4688,7 +4692,7 @@ margin-bottom:0;}
   background-size:cover;
   background-repeat:no-repeat;*/
   position:relative;
-  padding-top:100px;
+  padding-top:50px;
   padding-bottom:0px;
   background: #fff;
 }
@@ -5302,6 +5306,35 @@ margin-bottom:0;}
   float: left;
   text-align: center;
   padding: 5px 5px;
+}
+.search-block {
+    float: left;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .search-block {
+      display: none;
+  }
+}
+@media (max-width: 768px){
+   .search-block .block-search {
+      width: 100%;
+      padding: 0px 5px;
+  }
+  .search-block .block-search input {
+    width: 89%;
+    border: 1px solid rgba(133, 133, 133);
+  }
+  .search-block .block-search .bt-search {
+    width: 9%;
+  }
 }
 .pickup {
     position: relative;

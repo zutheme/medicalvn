@@ -24,12 +24,6 @@
                                     </form>
                                 </div></li>
                             </ul>
-                            <!-- <div class="block-search">
-                                <form class="frm-search" role="search" method="get" action="<?php //echo esc_url( home_url( '/' ) ); ?>">
-                                        <input type="text" value="<?php //echo get_search_query(); ?>" name="s" id="s" placeholder="Từ khóa"/>
-                                        <button class="bt-search" type="submit"> <i class="fa fa-search"></i></button>
-                                </form>
-                            </div> -->
                         </div>
                         
                     </div>
@@ -90,7 +84,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!--Start of menu-->
                 <?php //get_template_part('layout/navbar-menu-1'); ?>
                 <?php get_template_part('layout/navbar-menu-2'); ?>
                 <?php //echo do_shortcode('[multilevel_navigation_menu]'); ?>
@@ -135,15 +128,11 @@
                                   'walker'            => new wp_bootstrap_navwalker_mobile(),
                                   'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>'
 
-                              ) );
-                          ?>
-                         
+                              ) ); ?>
                             </div>
-                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--header wrapper end-->

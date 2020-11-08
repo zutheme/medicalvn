@@ -16,6 +16,7 @@ get_header(); ?>
 <?php 
 get_template_part('layout/slider-tick');
 get_template_part('layout/work-time');
+get_template_part('layout/search-block');
 get_template_part('layout/about');
 get_template_part('layout/our-services');
 //get_template_part('layout/portfolio-video');
