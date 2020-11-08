@@ -36,7 +36,7 @@ add_action('admin_init', 'video_menu_settings');
 function hatazu_video_custom() {
     global $post;
     wp_enqueue_style( 'hatazu_video_style', plugin_dir_url(__FILE__) . 'css/style_video.css',array(), '0.0.1.6', false);
-    wp_enqueue_script('youtubeid.js', plugin_dir_url(__FILE__) .'js/youtubeid.js', array(), '0.3.9.0', true);
+    wp_enqueue_script('youtubeid.js', plugin_dir_url(__FILE__) .'js/youtubeid.js', array(), '0.3.9.1', true);
     	$data = array(
 	                'idvideo' => esc_attr( get_option('idyoutube') ),
                     'idvideo2' => esc_attr( get_option('idyoutube2') ),

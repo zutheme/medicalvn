@@ -102,6 +102,7 @@ if(_width < 768){
       maxHeightvideo5 = 640;
   }
 }
+console.log(playlist5);
 //2. This code loads the IFrame Player API code asynchronously.
 function inityoutube(){
       var tag = document.createElement('script');

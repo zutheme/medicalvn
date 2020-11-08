@@ -39,7 +39,7 @@
                                $idyoutbe = get_post_meta( $id, 'opt-video-id', true);
                                 //$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail', false );
                                 $fullpath = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full', false );
-                                $the_content = get_the_excerpt_max(100);
+                                //$the_content = get_the_excerpt_max(100);
                                 //$the_content = apply_filters('the_content', get_the_content()); ?>
                                 <div class="item <?php echo $count; ?>">
                                     <div class="img_section">
