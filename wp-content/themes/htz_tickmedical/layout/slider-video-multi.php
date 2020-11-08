@@ -21,6 +21,7 @@
                              $args = array(
                                     'post_type' => 'videos',
                                     'posts_per_page' => 8,
+                                    'order' => 'desc',
                                     // 'tax_query' => array(
                                     //     array(          
                                     //         'taxonomy' => 'category',
