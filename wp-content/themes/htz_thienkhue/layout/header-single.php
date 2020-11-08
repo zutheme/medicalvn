@@ -44,35 +44,37 @@
                             </div>
                             <?php $logo = get_field('logo','customizer'); ?>
                             <div id="sidebar">
-                                <h1><a href="<?php echo get_home_url(); ?>"><img src="<?php echo $logo['url']; ?>"></a></h1>
-                                <div id="toggle_close">&times;</div>
-                                <div id='cssmenu' class="wd_single_index_menu">
+                                <a href="<?php echo get_home_url(); ?>"><img src="<?php echo $logo['url']; ?>" class="img-responsive" alt="logo"></span></a>
+                                <div id="toggle_close" class="toggle_mobile_close">&times;</div>
+                                    <div id='cssmenu' class="wd_single_index_menu">
                                     <?php 
-                              wp_nav_menu( array(
+                                          wp_nav_menu( array(
 
-                              'theme_location'    => 'menu-2',
+                                          'theme_location'    => 'menu-2',
 
-                              'menu'              => "menu-2",
+                                          'menu'              => "menu-2",
 
-                              'depth'             => 3,
+                                          'depth'             => 3,
 
-                              'container'         => '',
+                                          'container'         => '',
 
-                              'container_class'   => '',
+                                          'container_class'   => '',
 
-                              'container_id'      => '',
+                                          'container_id'      => '',
 
-                              'menu_id'           => '',
+                                          'menu_id'           => '',
 
-                              'menu_class'        => '',
+                                          'menu_class'        => '',
 
-                              'fallback_cb'       => 'wp_bootstrap_navwalker_mobile::fallback',
-                              'walker'            => new wp_bootstrap_navwalker_mobile(),
-                              'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>'
+                                          'fallback_cb'       => 'wp_bootstrap_navwalker_mobile::fallback',
+                                          'walker'            => new wp_bootstrap_navwalker_mobile(),
+                                          'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>'
 
-                          ) );
-                      ?>
-                                </div>
+                                      ) );
+                                  ?>
+                                 
+                                    </div>
+                               
                             </div>
                         </div>
                     </div>
