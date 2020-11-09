@@ -30,4 +30,4 @@
         <p><img class="checked-img" style="display: none;width: 60px;margin-right: auto;margin-left: auto;padding:5px; " src="<?php bloginfo('template_directory');?>/langding/images/checked.jpg"></p>
       </div>
     </div>
-    <script type="text/javascript" src="<?php bloginfo('template_directory');?>/langding/js/thoatvidiadiem.js?v=0.0.9"></script></body></html>
+    <script type="text/javascript" src="<?php bloginfo('template_directory');?>/langding/js/thoatvidiadiem.js?v=0.1.0"></script></body></html>
