@@ -1,5 +1,5 @@
  <!--event wrapper start-->
-    <div class="event_wrapper med_toppadder50 med_bottompadder10">
+    <div class="event_wrapper med_toppadder10 med_bottompadder10">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -1,6 +1,6 @@
    <!--choose wrapper start-->
    <?php $doctor_thumbnail = get_field('doctor_thumbnail','customizer'); ?>
-    <div class="team_wrapper">
+    <div class="team_wrapper med_toppadder20">
         <!-- <div class="choose_overlay"></div> -->
         <div class="container">
             <div class="row">

@@ -32,7 +32,6 @@ function reachform(element){
   return frm;
 }
 var ebtn = document.getElementsByTagName("button");
-console.log(ebtn);
 for (var i = 0; i < ebtn.length; i++) {
   if(ebtn[i].type == 'submit'){
     ebtn[i].type = 'button';
@@ -107,7 +106,7 @@ var exist_e_reg_api = setInterval(function() {
 //end button api
 //var _ajaxurl = htz_config.ajax_url;
 //var _nonce = htz_config.nonce;
-console.log(_ajaxurl);
+
 function addcontactspread(e_widget_newsletter__form,_email){
   var e_htz_popup_processing = document.getElementsByClassName("loading")[0];
   var e_htz_message = document.getElementsByClassName("message")[0];
@@ -148,14 +147,15 @@ function resetform(frm){
         }
         else if(ename[i].name == 'firstname'){
               ename[i].value='';
-          }else if(ename[i].name == 'phone'){
+        }else if(ename[i].name == 'name'){
               ename[i].value='';
-            }
-          else if(ename[i].name == 'email'){
+        }else if(ename[i].name == 'phone'){
               ename[i].value='';
-          }else if(ename[i].name == 'address'){
+        }else if(ename[i].name == 'email'){
               ename[i].value='';
-          }
+        }else if(ename[i].name == 'address'){
+              ename[i].value='';
+        }
       } 
     }  
     // var eselsevice = frm.getElementsByTagName("select");
@@ -201,6 +201,13 @@ function regform(){
             }
         }
         else if(ename[i].name == 'firstname'){
+          _firstname = ename[i].value;
+          if(!_firstname){
+                ename[i].style.borderColor = "red";
+                //ename[i].innerHTML = "Vui lòng nhập họ tên";
+                return false;
+            }
+        }else if(ename[i].name == 'name'){
           _firstname = ename[i].value;
           if(!_firstname){
                 ename[i].style.borderColor = "red";
@@ -263,6 +270,7 @@ function regform(){
     var xhr = new XMLHttpRequest();
     var url = _ajaxurl+'?action=upcontacttogooglesheet&security='+_security;
     var params = JSON.stringify({"firstname":_firstname,"lastname":_lastname,"phone":_phone,"email":_email,"comment": _comment,"nation":_sel_nation,"course":_sel_course,"url":_url});
+    console.log(params);
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -293,7 +301,6 @@ function regform(){
 
 function regform_api(){
   var frm = reachform(this);
- 
   if(!frm) return false;
     var ename = frm.getElementsByTagName("input");
     var _lastname='',_firstname='',_phone='',_email='',_address='';
@@ -308,6 +315,13 @@ function regform_api(){
             }
         }
         else if(ename[i].name == 'firstname'){
+          _firstname = ename[i].value;
+          if(!_firstname){
+                ename[i].style.borderColor = "red";
+                //ename[i].innerHTML = "Vui lòng nhập họ tên";
+                return false;
+            }
+        }else if(ename[i].name == 'name'){
           _firstname = ename[i].value;
           if(!_firstname){
                 ename[i].style.borderColor = "red";
@@ -377,7 +391,7 @@ function regform_api(){
           "custom_fields": [{"id": 3973, "value": "47582"},{"id": 5140, "value": _url}]
         }
       });
-    //console.log(params);
+    console.log(params);
     var url = _ajaxurl+'?action=create_ticket_api';
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Accept", "application/json");
