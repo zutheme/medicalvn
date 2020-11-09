@@ -69,6 +69,8 @@ function create_ticket_api(){
             'custom_fields'  => $_ticket['custom_fields']
             ]
     ]);
+     echo json_encode($json);
+     wp_die();
     $mgs = esc_attr( get_option('textmessage') );
     $count = null;
     $returnValue = preg_replace('#_ten_khach#', $_username,  $mgs , -1, $count);
