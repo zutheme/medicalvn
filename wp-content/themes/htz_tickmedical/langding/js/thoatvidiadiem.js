@@ -372,7 +372,7 @@ function regform_api(){
       }
     }
     _url = document.URL;
-    var _host = extractHostname(_url);
+    var _host = extractHostname(_url)+' - '+_firstname;
     var e_popup_processing = document.getElementsByClassName('htz-popup-processing')[0];
     e_popup_processing.style.display ='block';
     e_popup_processing.style.zIndex = "99999999999";

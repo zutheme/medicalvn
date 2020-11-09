@@ -53,8 +53,8 @@ function sendsmsbrandnameopt($arrMessage)
 }   
 function create_ticket_api(){
     wp_verify_nonce('media-form', 'security');
-     $input = json_decode(file_get_contents('php://input'),true);
-     $_ticket = $input['ticket'];
+    $input = json_decode(file_get_contents('php://input'),true);
+    $_ticket = $input['ticket'];
     $_phone = $_ticket['phone'];
     $_username = $_ticket['username'];
     $json = json_encode([
@@ -69,8 +69,6 @@ function create_ticket_api(){
             'custom_fields'  => $_ticket['custom_fields']
             ]
     ]);
-     echo json_encode($json);
-     wp_die();
     $mgs = esc_attr( get_option('textmessage') );
     $count = null;
     $returnValue = preg_replace('#_ten_khach#', $_username,  $mgs , -1, $count);
