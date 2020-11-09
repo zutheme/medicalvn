@@ -178,7 +178,7 @@ function htz_thienkhue_scripts() {
 		
 	//}
 	if ( is_front_page() ) {
-		wp_enqueue_style('style_2.css', get_template_directory_uri() . '/css/style_2.css',array(), '0.3.7.8', false);
+		wp_enqueue_style('style_2.css', get_template_directory_uri() . '/css/style_2.css',array(), '0.3.7.9', false);
 		//wp_enqueue_script( 'slide_menu_home.', get_template_directory_uri() . '/js/slide_menu_home.js', array(), '0.0.3.3', true );
 	}
 	 if ( !is_front_page() ) {

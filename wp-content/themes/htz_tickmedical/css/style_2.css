@@ -3830,8 +3830,8 @@ filter li a:last-child{
     color: white;
     text-align: center;
     font-size: 1.0em;
-    margin: 10px auto;
-    margin-left: 12px;
+    margin: 11px auto;
+    margin-left: 14px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
