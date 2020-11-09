@@ -1,6 +1,6 @@
  <!--event wrapper start-->
  <script>var playlist5 = [];</script>
-<div id="container-video5" class="event_wrapper med_toppadder50 med_bottompadder70 container-video5">
+<div id="container-video5" class="event_wrapper med_bottompadder10 container-video5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
