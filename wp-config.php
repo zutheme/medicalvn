@@ -20,13 +20,13 @@
 
 // ** Thiết lập MySQL - Bạn có thể lấy các thông tin này từ host/server ** //
 /** Tên database MySQL */
-define( 'DB_NAME', "medicalvn_medicalapp");
-define( 'DB_USER', "medicalvn_medicalapp");
-define( 'DB_PASSWORD', "medicalvn_medicalapp");
+// define( 'DB_NAME', "medicalvn_medicalapp");
+// define( 'DB_USER', "medicalvn_medicalapp");
+// define( 'DB_PASSWORD', "medicalvn_medicalapp");
 
-/*define( 'DB_NAME', "medicalvn_db");
+define( 'DB_NAME', "medicalvn_db");
 define( 'DB_USER', "medicalvn_db");
-define( 'DB_PASSWORD', "medic@lvn");*/
+define( 'DB_PASSWORD', "medic@lvn");
 
 define( 'DB_HOST', '45.117.168.156' );
 
