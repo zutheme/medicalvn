@@ -59,7 +59,6 @@ function listpostbyidcate(_idcate){
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
             var myArr = JSON.parse(this.responseText);
-            //console.log(myArr);
             var str_rs = '';
              e_load.style.display = "none";
             var e_ul = e_result_load.getElementsByClassName('list-post')[0];
@@ -92,7 +91,6 @@ function listpostbyidcate(_idcate){
     }
     http.send(params);
 }
-//select id post
 function choose(element) {
     var e_ul = e_result_load.getElementsByClassName('list-post')[0];
     var _input = e_ul.getElementsByClassName("list-check");
@@ -114,4 +112,43 @@ function check_equal( _value, _listsubject){
         }
     }
     return false;
+}
+
+//add question
+var e_add_question = document.getElementById("add-question");
+var e_add_more = getElementsByClassName("add-more")[0];
+var e_list_question = document.getElementById("list-question");
+var e_ul_question = e_list_question.getElementsByClassName("list-question")[0];
+function addquestion(){
+    var http = new XMLHttpRequest();
+    var url = meta_image.ajaxurl+"?action=addquestion";
+    var params = JSON.stringify({"title_question_more":_title_question_more});
+    http.open("POST", url, true);
+    //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
+    http.setRequestHeader("Accept", "application/json");
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    e_load.style.display = "block";
+    http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+            var myArr = JSON.parse(this.responseText);
+            console.log(myArr);
+             e_load.style.display = "none";
+            while (e_ul_question.firstChild) {
+                e_ul_question.removeChild(e_ul_question.firstChild);
+            }
+           
+            var _listsubject = e_listsubject.value;
+            for (var i = 0; i < myArr.length; i++) {
+                eli = document.createElement("li");
+                e_ahref = document.createElement("a");
+                e_ahref.setAttribute("href", "#");
+                e_ahref.innerHTML = myArr[i].title;
+                //e_ahref.setAttribute("onclick", "choose(this)");
+                eli.appendChild(e_ahref);
+                e_ul_question.appendChild(eli);
+            }
+            
+        }
+    }
+    http.send(params);
 }

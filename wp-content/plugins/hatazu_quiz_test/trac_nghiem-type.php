@@ -222,6 +222,18 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
         <input type="text" name="answer-correct" id="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" />
     </p>
     </td></tr>
+    <tr id="list-question"><td>
+        <p>list câu hỏi</p>
+        <ul class="list-question">
+        </ul>
+    </td></tr>
+    <tr id="add-question">
+        <td>
+            <p><label class="prfx-row-title"><?php _e( 'Câu hỏi', 'prfx-textdomain' )?></label></p>
+            <p><textarea class="question-more" name="question-more" rows="5" cols="100"></textarea></p>
+            <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
+        </td>
+    </tr>
     <tr id="list-taxonomy" class="list-taxonomy">
         <td>
             <h2><?php _e( 'Chọn category', 'textdomain' ); ?></h2>

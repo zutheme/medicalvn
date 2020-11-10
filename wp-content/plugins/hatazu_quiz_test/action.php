@@ -142,4 +142,16 @@ function listcheckcat(){
 }
 add_action( 'wp_ajax_listcheckcat', 'listcheckcat' );
 add_action( 'wp_ajax_nopriv_listcheckcat', 'listcheckcat');
+//add question
+function addquestion(){
+    wp_verify_nonce( 'my-special-string', 'security' );
+    $input = json_decode(file_get_contents('php://input'),true);
+    $title = $input['title_question_more'];  
+    //date_default_timezone_set('Asia/Ho_Chi_Minh');
+    
+    echo json_encode(array('idpost'=>'','title'=>''));
+    die();        
+}
+add_action( 'wp_ajax_addquestion', 'addquestion' );
+add_action( 'wp_ajax_nopriv_addquestion', 'addquestion');
 ?>

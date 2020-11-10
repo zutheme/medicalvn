@@ -37,7 +37,7 @@ get_header();
     <div class="container">
         <div class="row">
             <div class="blog_category_main_wrapper">
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 content-page">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-page">
                     <div class="row">
 					<?php
 					while ( have_posts() ) :
@@ -51,25 +51,25 @@ get_header();
 					?>
 					</div>
 				</div>
-            	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="row">
-                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="contect_form_blog">
-                            <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                            <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="Từ khóa"/>
-                            <button type="submit"> <i class="fa fa-search"></i></button>
-                            </form>
+            	<!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"> -->
+                    <!-- <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="contect_form_blog">
+                                <form role="search" method="get" action="<?php //echo esc_url( home_url( '/' ) ); ?>">
+                                <input type="text" value="<?php //echo get_search_query(); ?>" name="s" id="s" placeholder="Từ khóa"/>
+                                <button type="submit"> <i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <?php //if ( is_active_sidebar( 'sidebar-single' ) ) : 
-                        //dynamic_sidebar( 'sidebar-single' ); 
-                    //endif; ?>
-                   <?php get_template_part( 'layout/cate-dieutri' ); ?>
-                   <?php //get_template_part( 'layout/latest-blog'); ?>
-                   <?php get_template_part( 'layout/connect-facebook'); ?>
-                   <?php get_template_part( 'layout/care-blog'); ?>
-                   <?php get_template_part( 'layout/tags'); ?>
-                </div>
+                        <?php //if ( is_active_sidebar( 'sidebar-single' ) ) : 
+                            //dynamic_sidebar( 'sidebar-single' ); 
+                        //endif; ?>
+                       <?php //get_template_part( 'layout/cate-dieutri' ); ?>
+                       <?php //get_template_part( 'layout/latest-blog'); ?>
+                       <?php //get_template_part( 'layout/connect-facebook'); ?>
+                       <?php //get_template_part( 'layout/care-blog'); ?>
+                       <?php //get_template_part( 'layout/tags'); ?>
+                    </div> -->
             </div>
         </div>
     </div>
