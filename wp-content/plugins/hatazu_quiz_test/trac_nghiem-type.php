@@ -11,12 +11,14 @@ function create_trac_nghiem_post_type() {
 			'public' => true,
 			'menu_icon' => 'dashicons-id-alt',
 			'has_archive' => true,
-			'rewrite' => array('slug' => 'trac_nghiem'),
+			'rewrite' => array('slug' => 'trac-nghiem'),
 		)
 	);
 }
 // Hooking up our function to theme setup
 add_action( 'init', 'create_trac_nghiem_post_type' );
+
+
 
 /*
 * Creating a function to create our CPT
@@ -172,8 +174,35 @@ add_action( 'add_meta_boxes', 'prfx_field_meta_trac_nghiem_meta');
 
 function prfx_field_meta_trac_nghiem_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'prfx_nonce' );
-    $prfx_stored_meta = get_post_meta( $post->ID ); ?>
+    $prfx_stored_meta = get_post_meta( $post->ID ); 
+    $id = $post->ID;
+    ?>
     <table id="trac_nghiem-test" class="field-trac_nghiem-test">
+    
+    <?php if(!isset($post->post_parent) || $post->post_parent == 0) { ?>
+    <tr id="list-question"><td>
+        <p>list câu hỏi</p>
+        <ul class="list-question">
+        </ul>
+    </td></tr>
+    <tr id="add-question">
+        <td>
+            <input class="idparent" type="hidden" value="<?php echo $post->ID; ?>">
+            <p><label class="prfx-row-title"><?php _e( 'Câu hỏi', 'prfx-textdomain' )?></label></p>
+            <p><textarea class="question-more" name="question-more" rows="5" cols="100"></textarea></p>
+            <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
+        </td>
+    </tr>
+    
+    <tr id="result-load">
+        <td>
+            <p><img class="load" style="display: none;" src="<?php echo plugin_dir_url(__FILE__) . 'images/loader1.gif'; ?>"></p>
+        </td>
+    </tr>
+    <?php }else { 
+        $idparent = $post->post_parent;
+    ?>
+<p>Thuộc chủ đề: <a href="<?php echo get_edit_post_link($idparent,''); ?>"><?php echo get_the_title($idparent); ?></a></p>
     <tr><td>
     <p>
         <label class="prfx-row-title"><?php _e( 'question-a', 'prfx-textdomain' )?></label>
@@ -222,56 +251,7 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
         <input type="text" name="answer-correct" id="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" />
     </p>
     </td></tr>
-    <tr id="list-question"><td>
-        <p>list câu hỏi</p>
-        <ul class="list-question">
-        </ul>
-    </td></tr>
-    <tr id="add-question">
-        <td>
-            <input class="idparent" type="hidden" value="<?php echo $post->ID; ?>">
-            <p><label class="prfx-row-title"><?php _e( 'Câu hỏi', 'prfx-textdomain' )?></label></p>
-            <p><textarea class="question-more" name="question-more" rows="5" cols="100"></textarea></p>
-            <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
-        </td>
-    </tr>
-    <tr id="list-taxonomy" class="list-taxonomy">
-        <td>
-            <h2><?php _e( 'Chọn category', 'textdomain' ); ?></h2>
-        <?php
-           $taxonomies = get_terms( array(
-                'taxonomy' => 'depart_trac_nghiem',
-                'hide_empty' => false
-            ) );
- 
-           if ( !empty($taxonomies) ) :
-                $output = '<ul class="taxonomy">';
-                foreach( $taxonomies as $category ) {
-                    if( $category->parent == 0 ) {
-                        $output.= '<li><input class="check-cat" type="radio" name="cat[]" value="'. esc_attr( $category->term_id ) .'"><label>'.esc_html( $category->name ).'</label></li>';
-                        $output.= '<ul style="padding-left:15px">';
-                        foreach( $taxonomies as $subcategory ) {
-                            if($subcategory->parent == $category->term_id) {
-                            $output.= '<li><input class="check-cat" type="radio" name="cat[]" value="'. esc_attr( $subcategory->term_id ) .'"><label>'.esc_html( $subcategory->name ).'</label></li>';
-                            }
-                        }
-                        $output.='</ul>';
-                    }
-                }
-                $output.='</ul>';
-                echo $output;
-            endif;
-            
-         ?>
-        </td>
-    </tr>
-    <tr id="result-load">
-        <td>
-            <p><img class="load" style="display: none;" src="<?php echo plugin_dir_url(__FILE__) . 'images/loader1.gif'; ?>"></p>
-            <ul class="list-post"></ul>
-            <p><input class="listsubject" type="text" name="listsubject" value="<?php if ( isset ( $prfx_stored_meta['listsubject'] ) ) echo $prfx_stored_meta['listsubject'][0]; ?>"></p>
-        </td>
-    </tr>
+    <?php } ?>
 </table>
     <?php
 }

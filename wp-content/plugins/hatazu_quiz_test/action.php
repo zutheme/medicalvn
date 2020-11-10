@@ -161,8 +161,10 @@ function addquestion(){
     //$permalink = get_permalink($post_id);
      $args = array(
         'post_type' => 'trac_nghiem',
-        //'posts_per_page' => 10,
-        'post_parent' => $idparent
+        'posts_per_page'  => -1,
+        'post_parent__in' => array($idparent),  
+        'order' => 'asc',
+        //'post_parent' => $idparent
     );
     $list = array();
     $team_query = new WP_Query($args); 
@@ -171,7 +173,8 @@ function addquestion(){
             $team_query->the_post();  
                 $id = get_the_ID();
                 $title = get_the_title($idpost);
-                $link = get_permalink($idpost);
+                //$link = get_permalink($idpost);
+                $link = get_edit_post_link($id,'');
                 //$listsubject = get_post_meta( $id, 'listsubject', true );
                 $list[] = array('idpost'=>$id,'title'=>$title,'link'=>$link);
             }
@@ -190,8 +193,10 @@ function loadquestion(){
     $idparent = $input['idparent'];   
     $args = array(
         'post_type' => 'trac_nghiem',
-        //'posts_per_page' => 10,
-        'post_parent' => $idparent
+        'posts_per_page'  => -1,
+        'post_parent__in' => array($idparent),  
+        'order' => 'asc',
+        //'post_parent' => $idparent
     );
     $list = array();
     $team_query = new WP_Query($args); 
@@ -199,8 +204,9 @@ function loadquestion(){
           while ($team_query->have_posts()) {
             $team_query->the_post();  
                 $id = get_the_ID();
-                $title = get_the_title($idpost);
-                $link = get_permalink($idpost);
+                $title = get_the_title($id);
+                //$link = get_permalink($id);
+                $link = get_edit_post_link($id,'');
                 //$listsubject = get_post_meta( $id, 'listsubject', true );
                 $list[] = array('idpost'=>$id,'title'=>$title,'link'=>$link);
             }
@@ -208,7 +214,7 @@ function loadquestion(){
           echo json_encode($list);
             die();   
     }
-    echo json_encode(array('idpost'=>'','title'=>''));
+    echo json_encode(array('idpost'=>$idparent,'title'=>''));
     die();           
 }
 add_action( 'wp_ajax_loadquestion', 'loadquestion' );

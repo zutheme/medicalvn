@@ -343,5 +343,36 @@ add_filter('acf/settings/show_admin', '__return_false');
 include_once( get_stylesheet_directory() . '/inc/acf/acf.php' );
 
 require get_template_directory() . '/inc/customizer.php';
-require get_template_directory() . '/inc/customizer1.php';  
+//require get_template_directory() . '/inc/customizer1.php';  
 //add_filter('use_block_editor_for_post', '__return_false');
+// Register Custom Post Status
+// function register_custom_post_status(){
+//     register_post_status( 'In Writing', array(
+//         'label'                     => _x( 'In Writing', 'post' ),
+//         'public'                    => true,
+//         'exclude_from_search'       => false,
+//         'show_in_admin_all_list'    => true,
+//         'show_in_admin_status_list' => true,
+//         'label_count'               => _n_noop( 'In Writing <span class="count">(%s)</span>', 'In Writing <span class="count">(%s)</span>' ),
+//     ) );
+// }
+// add_action( 'init', 'register_custom_post_status' );
+// // Display Custom Post Status Option in Post Edit
+// function display_custom_post_status_option(){
+//     global $post;
+//     $complete = '';
+//     $label = '';
+//     if($post->post_type == 'post'){
+//         if($post->post_status == 'in-writing'){
+//             $selected = 'selected';
+//         }
+// echo '<script>
+// $(document).ready(function(){
+// $("select#post_status").append("<option value=\"in-writing\" '.$selected.'>In Writing</option>");
+// $(".misc-pub-section label").append("<span id=\"post-status-display\"> In Writing</span>");
+// });
+// </script>
+// ';
+//     }
+// }
+// add_action('admin_footer', 'display_custom_post_status_option');

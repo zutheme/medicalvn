@@ -222,13 +222,63 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
         <input type="text" name="answer-correct" id="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" />
     </p>
     </td></tr>
+    <tr id="list-question"><td>
+        <p>list câu hỏi</p>
+        <ul class="list-question">
+        </ul>
+    </td></tr>
+    <tr id="add-question">
+        <td>
+            <input class="idparent" type="hidden" value="<?php echo $post->ID; ?>">
+            <p><label class="prfx-row-title"><?php _e( 'Câu hỏi', 'prfx-textdomain' )?></label></p>
+            <p><textarea class="question-more" name="question-more" rows="5" cols="100"></textarea></p>
+            <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
+        </td>
+    </tr>
+    <tr id="list-taxonomy" class="list-taxonomy">
+        <td>
+            <h2><?php _e( 'Chọn category', 'textdomain' ); ?></h2>
+        <?php
+           $taxonomies = get_terms( array(
+                'taxonomy' => 'depart_trac_nghiem',
+                'hide_empty' => false
+            ) );
+ 
+           if ( !empty($taxonomies) ) :
+                $output = '<ul class="taxonomy">';
+                foreach( $taxonomies as $category ) {
+                    if( $category->parent == 0 ) {
+                        $output.= '<li><input class="check-cat" type="radio" name="cat[]" value="'. esc_attr( $category->term_id ) .'"><label>'.esc_html( $category->name ).'</label></li>';
+                        $output.= '<ul style="padding-left:15px">';
+                        foreach( $taxonomies as $subcategory ) {
+                            if($subcategory->parent == $category->term_id) {
+                            $output.= '<li><input class="check-cat" type="radio" name="cat[]" value="'. esc_attr( $subcategory->term_id ) .'"><label>'.esc_html( $subcategory->name ).'</label></li>';
+                            }
+                        }
+                        $output.='</ul>';
+                    }
+                }
+                $output.='</ul>';
+                echo $output;
+            endif;
+            
+         ?>
+        </td>
+    </tr>
+    <tr id="result-load">
+        <td>
+            <p><img class="load" style="display: none;" src="<?php echo plugin_dir_url(__FILE__) . 'images/loader1.gif'; ?>"></p>
+            <ul class="list-post"></ul>
+            <p><input class="listsubject" type="text" name="listsubject" value="<?php if ( isset ( $prfx_stored_meta['listsubject'] ) ) echo $prfx_stored_meta['listsubject'][0]; ?>"></p>
+        </td>
+    </tr>
 </table>
     <?php
 }
 /*
  * Saves the custom meta input
  */
-function prfx_field_meta_trac_nghiem_save( $post_id ) {
+function prfx_field_meta_trac_nghiem_save($post_id) {
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
@@ -263,228 +313,9 @@ function prfx_field_meta_trac_nghiem_save( $post_id ) {
     }
     if( isset( $_POST['answer-correct'] ) ) {
         update_post_meta( $post_id, 'answer-correct', $_POST[ 'answer-correct' ] );    
-    }      
-}
-add_action( 'save_post', 'prfx_field_meta_trac_nghiem_save' );
-
-// A callback function to add a custom field to our "depart_trac_nghiem" taxonomy
-function depart_trac_nghiem_taxonomy_custom_fields($tag) {
-   // Check for existing taxonomy meta for the term you're editing
-    $t_id = $tag->term_id; // Get the ID of the term you're editing
-    $term_meta = get_option( "taxonomy_term_$t_id" ); // Do the check
-?>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <label for="depart_trac_nghiem_a"><?php _e('Giới thiệu chủ đề'); ?></label>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_title]" id="term_meta[depart_trac_nghiem_title]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_title'] ? $term_meta['depart_trac_nghiem_title'] : ''; ?></textarea><br />
-    </td>
-</tr>
-<!-- Result A -->
-<tr><td>--------Begin option A-------</td></tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <label for="depart_trac_nghiem_head_result"><?php _e('Tiêu đề kết quả'); ?></label>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_head_a]" id="term_meta[depart_trac_nghiem_head_a]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_head_a'] ? $term_meta['depart_trac_nghiem_head_a'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <label for="depart_trac_nghiem_content_a"><?php _e('Nội dung kết quả'); ?></label>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_content_a]" id="term_meta[depart_trac_nghiem_content_a]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_content_a'] ? $term_meta['depart_trac_nghiem_content_a'] : ''; ?></textarea><br />
-        <!-- <span class="description"><?php //_e('Nội dung kết quả'); ?></span> -->
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <label for="depart_trac_nghiem_read_more_a"><?php _e('Link tìm hiểu'); ?></label>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_read_more_a]" id="term_meta[depart_trac_nghiem_read_more_a]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_read_more_a'] ? $term_meta['depart_trac_nghiem_read_more_a'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr><td>-------End option A-------</td></tr>
-<!--Result A -->
-<!-- Result a -->
-<tr><td>--------Begin option B-------</td></tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_head_b"><?php _e('Tiêu đề kết quả'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_head_b]" id="term_meta[depart_trac_nghiem_head_b]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_head_b'] ? $term_meta['depart_trac_nghiem_head_b'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_content_b"><?php _e('Nội dung kết quả'); ?></laael>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_content_b]" id="term_meta[depart_trac_nghiem_content_b]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_content_b'] ? $term_meta['depart_trac_nghiem_content_b'] : ''; ?></textarea><ar />
-        <!-- <span class="description"><?php //_e('Nội dung kết quả'); ?></span> -->
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_read_more_b"><?php _e('Link tìm hiểu'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_read_more_b]" id="term_meta[depart_trac_nghiem_read_more_b]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_read_more_b'] ? $term_meta['depart_trac_nghiem_read_more_b'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr><td>-------End option B-------</td></tr>
-<!--Result a -->
-<!-- Result C -->
-<tr><td>--------Begin option C-------</td></tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_head_c"><?php _e('Tiêu đề kết quả'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_head_c]" id="term_meta[depart_trac_nghiem_head_c]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_head_c'] ? $term_meta['depart_trac_nghiem_head_c'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_content_c"><?php _e('Nội dung kết quả'); ?></laael>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_content_c]" id="term_meta[depart_trac_nghiem_content_c]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_content_c'] ? $term_meta['depart_trac_nghiem_content_c'] : ''; ?></textarea><ar />
-        <!-- <span class="description"><?php //_e('Nội dung kết quả'); ?></span> -->
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_read_more_c"><?php _e('Link tìm hiểu'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_read_more_c]" id="term_meta[depart_trac_nghiem_read_more_c]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_read_more_c'] ? $term_meta['depart_trac_nghiem_read_more_c'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr><td>-------End option C-------</td></tr>
-<!--Result C-->
-<!-- Result D -->
-<tr><td>--------Begin option D-------</td></tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_head_d"><?php _e('Tiêu đề kết quả'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_head_d]" id="term_meta[depart_trac_nghiem_head_d]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_head_d'] ? $term_meta['depart_trac_nghiem_head_d'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_content_d"><?php _e('Nội dung kết quả'); ?></laael>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_content_d]" id="term_meta[depart_trac_nghiem_content_d]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_content_d'] ? $term_meta['depart_trac_nghiem_content_d'] : ''; ?></textarea><ar />
-        <!-- <span class="description"><?php //_e('Nội dung kết quả'); ?></span> -->
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_read_more_d"><?php _e('Link tìm hiểu'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_read_more_d]" id="term_meta[depart_trac_nghiem_read_more_d]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_read_more_d'] ? $term_meta['depart_trac_nghiem_read_more_d'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr><td>-------End option D-------</td></tr>
-<!--Result D-->
-<!-- Result D -->
-<tr><td>--------Begin option E-------</td></tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_head_e"><?php _e('Tiêu đề kết quả'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_head_e]" id="term_meta[depart_trac_nghiem_head_e]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_head_e'] ? $term_meta['depart_trac_nghiem_head_e'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_content_e"><?php _e('Nội dung kết quả'); ?></laael>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_content_e]" id="term_meta[depart_trac_nghiem_content_e]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_content_e'] ? $term_meta['depart_trac_nghiem_content_e'] : ''; ?></textarea><ar />
-        <!-- <span class="description"><?php //_e('Nội dung kết quả'); ?></span> -->
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_read_more_e"><?php _e('Link tìm hiểu'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_read_more_e]" id="term_meta[depart_trac_nghiem_read_more_e]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_read_more_e'] ? $term_meta['depart_trac_nghiem_read_more_e'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr><td>-------End option E-------</td></tr>
-<!--Result D-->
-<!-- Result D -->
-<tr><td>--------Begin option F-------</td></tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_head_f"><?php _e('Tiêu đề kết quả'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_head_f]" id="term_meta[depart_trac_nghiem_head_f]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_head_f'] ? $term_meta['depart_trac_nghiem_head_f'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_content_f"><?php _e('Nội dung kết quả'); ?></laael>
-    </th>
-    <td>
-        <textarea name="term_meta[depart_trac_nghiem_content_f]" id="term_meta[depart_trac_nghiem_content_f]" rows="5" cols="50" class="large-text"><?php echo $term_meta['depart_trac_nghiem_content_f'] ? $term_meta['depart_trac_nghiem_content_f'] : ''; ?></textarea><ar />
-        <!-- <span class="description"><?php //_e('Nội dung kết quả'); ?></span> -->
-    </td>
-</tr>
-<tr class="form-field">
-    <th scope="row" valign="top">
-        <laael for="depart_trac_nghiem_read_more_f"><?php _e('Link tìm hiểu'); ?></laael>
-    </th>
-    <td>
-        <input name="term_meta[depart_trac_nghiem_read_more_f]" id="term_meta[depart_trac_nghiem_read_more_f]" type="text" value="<?php echo $term_meta['depart_trac_nghiem_read_more_f'] ? $term_meta['depart_trac_nghiem_read_more_f'] : ''; ?>" size="40" aria-required="true">
-            
-    </td>
-</tr>
-<tr><td>-------End option F-------</td></tr>
-<!--Result D-->
-<?php
-}
-// Add the fields to the "depart_trac_nghiem" taxonomy, using our callback function
-add_action( 'depart_trac_nghiem_edit_form_fields', 'depart_trac_nghiem_taxonomy_custom_fields', 10, 2 );
-
-function save_taxonomy_custom_fields( $term_id ) {
-    if ( isset( $_POST['term_meta'] ) ) {
-        $t_id = $term_id;
-        $term_meta = get_option( "taxonomy_term_$t_id" );
-        $cat_keys = array_keys( $_POST['term_meta'] );
-            foreach ( $cat_keys as $key ){
-            if ( isset( $_POST['term_meta'][$key] ) ){
-                $term_meta[$key] = $_POST['term_meta'][$key];
-            }
-        }
-        //save the option array
-        update_option( "taxonomy_term_$t_id", $term_meta );
     }
+    if( isset( $_POST['listsubject'] ) ) {
+        update_post_meta( $post_id, 'listsubject', $_POST[ 'listsubject' ] );    
+    }       
 }
-// Save the changes made on the "depart_trac_nghiem" taxonomy, using our callback function
-add_action( 'edited_depart_trac_nghiem', 'save_taxonomy_custom_fields', 10, 2 ); 
+add_action('save_post', 'prfx_field_meta_trac_nghiem_save');
