@@ -27,7 +27,7 @@ function hatazu_images_trac_nghiem_test_enqueue() {
         $post_type = get_post_type();
         if($post_type!='trac_nghiem') return false;
         wp_enqueue_media();
-        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.0.8.0', true );
+        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.0.9.4', true );
         wp_localize_script( 'hatazu_images_trac_nghiem_test', 'meta_image',
             array(
                 'title' => __( 'Choose or Upload an Image', 'prfx-textdomain' ),

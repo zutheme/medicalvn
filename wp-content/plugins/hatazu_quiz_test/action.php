@@ -146,12 +146,71 @@ add_action( 'wp_ajax_nopriv_listcheckcat', 'listcheckcat');
 function addquestion(){
     wp_verify_nonce( 'my-special-string', 'security' );
     $input = json_decode(file_get_contents('php://input'),true);
-    $title = $input['title_question_more'];  
+    $title = $input['title_question_more'];
+    $idparent = $input['idparent'];   
     //date_default_timezone_set('Asia/Ho_Chi_Minh');
-    
+    $post_data = array(
+        'post_title' => $title,
+        'post_content' => '',
+        'post_author'  => get_current_user_id(),
+        'post_type' => 'trac_nghiem',
+        'post_status'  => 'private',
+        'post_parent'  => $idparent,
+    );
+    $post_id = wp_insert_post( $post_data );
+    //$permalink = get_permalink($post_id);
+     $args = array(
+        'post_type' => 'trac_nghiem',
+        //'posts_per_page' => 10,
+        'post_parent' => $idparent
+    );
+    $list = array();
+    $team_query = new WP_Query($args); 
+    if ($team_query->have_posts()) {
+          while ($team_query->have_posts()) {
+            $team_query->the_post();  
+                $id = get_the_ID();
+                $title = get_the_title($idpost);
+                $link = get_permalink($idpost);
+                //$listsubject = get_post_meta( $id, 'listsubject', true );
+                $list[] = array('idpost'=>$id,'title'=>$title,'link'=>$link);
+            }
+          wp_reset_postdata();
+          echo json_encode($list);
+            die();   
+    }
     echo json_encode(array('idpost'=>'','title'=>''));
-    die();        
+    die();           
 }
 add_action( 'wp_ajax_addquestion', 'addquestion' );
 add_action( 'wp_ajax_nopriv_addquestion', 'addquestion');
+//load post by idparent
+function loadquestion(){
+    $input = json_decode(file_get_contents('php://input'),true);
+    $idparent = $input['idparent'];   
+    $args = array(
+        'post_type' => 'trac_nghiem',
+        //'posts_per_page' => 10,
+        'post_parent' => $idparent
+    );
+    $list = array();
+    $team_query = new WP_Query($args); 
+    if ($team_query->have_posts()) {
+          while ($team_query->have_posts()) {
+            $team_query->the_post();  
+                $id = get_the_ID();
+                $title = get_the_title($idpost);
+                $link = get_permalink($idpost);
+                //$listsubject = get_post_meta( $id, 'listsubject', true );
+                $list[] = array('idpost'=>$id,'title'=>$title,'link'=>$link);
+            }
+          wp_reset_postdata();
+          echo json_encode($list);
+            die();   
+    }
+    echo json_encode(array('idpost'=>'','title'=>''));
+    die();           
+}
+add_action( 'wp_ajax_loadquestion', 'loadquestion' );
+add_action( 'wp_ajax_nopriv_loadquestion', 'loadquestion');
 ?>

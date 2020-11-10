@@ -116,13 +116,17 @@ function check_equal( _value, _listsubject){
 
 //add question
 var e_add_question = document.getElementById("add-question");
-var e_add_more = getElementsByClassName("add-more")[0];
+var e_add_more = e_add_question.getElementsByClassName("add-more")[0];
+e_add_more.addEventListener("click",addquestion);
 var e_list_question = document.getElementById("list-question");
 var e_ul_question = e_list_question.getElementsByClassName("list-question")[0];
 function addquestion(){
+    var _e_parent = this.parentElement.parentElement;
+    var _idparent =  _e_parent.getElementsByClassName("idparent")[0].value;
+    var _title_question_more = _e_parent.getElementsByClassName("question-more")[0].value;
     var http = new XMLHttpRequest();
     var url = meta_image.ajaxurl+"?action=addquestion";
-    var params = JSON.stringify({"title_question_more":_title_question_more});
+    var params = JSON.stringify({"idparent":_idparent, "title_question_more":_title_question_more});
     http.open("POST", url, true);
     //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
     http.setRequestHeader("Accept", "application/json");
@@ -136,19 +140,56 @@ function addquestion(){
             while (e_ul_question.firstChild) {
                 e_ul_question.removeChild(e_ul_question.firstChild);
             }
-           
-            var _listsubject = e_listsubject.value;
-            for (var i = 0; i < myArr.length; i++) {
-                eli = document.createElement("li");
-                e_ahref = document.createElement("a");
-                e_ahref.setAttribute("href", "#");
-                e_ahref.innerHTML = myArr[i].title;
-                //e_ahref.setAttribute("onclick", "choose(this)");
-                eli.appendChild(e_ahref);
-                e_ul_question.appendChild(eli);
+           if(myArr.idpost!=''){
+            // var _listsubject = e_listsubject.value;
+            // for (var i = 0; i < myArr.length; i++) {
+            //     eli = document.createElement("li");
+            //     e_ahref = document.createElement("a");
+            //     e_ahref.setAttribute("href", "#");
+            //     e_ahref.innerHTML = myArr[i].title;
+            //     //e_ahref.setAttribute("onclick", "choose(this)");
+            //     eli.appendChild(e_ahref);
+            //     e_ul_question.appendChild(eli);
+            // }
             }
             
         }
     }
     http.send(params);
 }
+function loadlistpost(){
+    var _idparent = e_add_question.getElementsByClassName("idparent")[0].value;
+    var http = new XMLHttpRequest();
+    var url = meta_image.ajaxurl+"?action=loadquestion";
+    //var params = JSON.stringify({"idparent":_idparent, "title_question_more":_title_question_more});
+    http.open("POST", url, true);
+    //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
+    http.setRequestHeader("Accept", "application/json");
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    e_load.style.display = "block";
+    var params = JSON.stringify({"idparent":_idparent});
+    http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+            var myArr = JSON.parse(this.responseText);
+            console.log(myArr);
+             e_load.style.display = "none";
+            while (e_ul_question.firstChild) {
+                e_ul_question.removeChild(e_ul_question.firstChild);
+            }
+            if(myArr.idpost!=''){
+            for (var i = 0; i < myArr.length; i++) {
+                eli = document.createElement("li");
+                e_ahref = document.createElement("a");
+                e_ahref.setAttribute("href", myArr[i].link);
+                e_ahref.innerHTML = myArr[i].title;
+                //e_ahref.setAttribute("onclick", "choose(this)");
+                eli.appendChild(e_ahref);
+                e_ul_question.appendChild(eli);
+            }
+            }
+            
+        }
+    }
+    http.send(params);
+}
+loadlistpost();

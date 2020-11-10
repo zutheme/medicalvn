@@ -229,6 +229,7 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
     </td></tr>
     <tr id="add-question">
         <td>
+            <input class="idparent" type="hidden" value="<?php echo $post->ID; ?>">
             <p><label class="prfx-row-title"><?php _e( 'Câu hỏi', 'prfx-textdomain' )?></label></p>
             <p><textarea class="question-more" name="question-more" rows="5" cols="100"></textarea></p>
             <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
