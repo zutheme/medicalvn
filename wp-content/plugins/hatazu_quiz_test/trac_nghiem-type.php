@@ -193,65 +193,36 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
             <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
         </td>
     </tr>
-    
+    <?php }else { 
+        $idparent = $post->post_parent;
+    ?>
+    <p>Thuộc chủ đề: <a href="<?php echo get_edit_post_link($idparent,''); ?>"><?php echo get_the_title($idparent); ?></a></p>
+    <tr class="ask-question">
+        <tr>
+            <td>
+                <p>Câu trắc nghiệm</p>
+                <ul class="list-ask-question"></ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" class="hiddenlistquiz" name="hiddenlistquiz" value="<?php if ( isset ( $prfx_stored_meta['ask-question'] ) ) echo $prfx_stored_meta['ask-question'][0]; ?>">
+                <input type="hidden" class="hiddenidpost" name="hiddenidpost" value="<?php echo $id; ?>">
+                <p><label class="prfx-row-title"><?php _e( 'question-a', 'prfx-textdomain' )?></label></p>
+                <p><textarea name="ask-question" class="ask-question" rows="5" cols="100"></textarea></p>
+                <p><input type="button" class="add-quizabc" name="addmorequiz" value="Thêm trắc nghiệm"></p>
+            </td>
+        </tr>
+        <tr><td>
+        <p><label class="prfx-row-title"><?php _e( 'answer-correct', 'prfx-textdomain' )?></label></p>
+        <p><input type="text" name="answer-correct" class="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" /></p></td></tr>
+    </tr>
+    <?php } ?>
     <tr id="result-load">
         <td>
             <p><img class="load" style="display: none;" src="<?php echo plugin_dir_url(__FILE__) . 'images/loader1.gif'; ?>"></p>
         </td>
     </tr>
-    <?php }else { 
-        $idparent = $post->post_parent;
-    ?>
-<p>Thuộc chủ đề: <a href="<?php echo get_edit_post_link($idparent,''); ?>"><?php echo get_the_title($idparent); ?></a></p>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-a', 'prfx-textdomain' )?></label>
-        <textarea name="question-a" id="question-a" class="trac_nghiem-test" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-a'] ) ) echo $prfx_stored_meta['question-a'][0]; ?></textarea>
-    </p>
-    </td>
-    <td><p><label for="images_option" class="prfx-row-title"><?php _e( 'File Upload', 'prfx-textdomain' )?></label>
-    <input class="images_option form-control" type="text" name="question-image-a" value="<?php if ( isset ( $prfx_stored_meta['question-image-a'] ) ) echo $prfx_stored_meta['question-image-a'][0]; ?>" />
-
-    <input type="button" name="images_option-button" class="button images_option-button" value="<?php _e( 'Choose or Upload an Image', 'prfx-textdomain' )?>" /></p>
-    <p><img class="img_set" style="max-height: 100px; min-width: auto" src="<?php if ( isset ( $prfx_stored_meta['question-image-a'] ) ) echo $prfx_stored_meta['question-image-a'][0]; ?>"></p></td>
-    </tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-b', 'prfx-textdomain' )?></label>
-        <textarea name="question-b" id="question-b" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-b'] ) ) echo $prfx_stored_meta['question-b'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-c', 'prfx-textdomain' )?></label>
-        <textarea name="question-c" id="question-c" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-c'] ) ) echo $prfx_stored_meta['question-c'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-d', 'prfx-textdomain' )?></label>
-        <textarea name="question-d" id="question-d" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-d'] ) ) echo $prfx_stored_meta['question-d'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label  class="prfx-row-title"><?php _e( 'question-e', 'prfx-textdomain' )?></label>
-        <textarea name="question-e" id="question-e" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-e'] ) ) echo $prfx_stored_meta['question-e'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-f', 'prfx-textdomain' )?></label>
-        <textarea name="question-f" id="question-f" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-f'] ) ) echo $prfx_stored_meta['question-f'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'answer-correct', 'prfx-textdomain' )?></label>
-        <input type="text" name="answer-correct" id="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" />
-    </p>
-    </td></tr>
-    <?php } ?>
 </table>
     <?php
 }
@@ -270,32 +241,57 @@ function prfx_field_meta_trac_nghiem_save($post_id) {
     // Checks for input and sanitizes/saves if needed 
     $post_type = get_post_type($post_id);
     if ( "trac_nghiem" != $post_type ) return;   
-    if( isset( $_POST['question-a'] ) ) {
-        update_post_meta( $post_id, 'question-a', $_POST[ 'question-a' ] );    
+    if( isset( $_POST['ask-question'] ) ) {
+        update_post_meta( $post_id, 'ask-question', $_POST[ 'ask-question' ] );    
     } 
-    if( isset( $_POST['question-image-a'] ) ) {
-        update_post_meta( $post_id, 'question-image-a', $_POST[ 'question-image-a' ] );    
-    }  
-    if( isset( $_POST['question-b'] ) ) {
-        update_post_meta( $post_id, 'question-b', $_POST[ 'question-b' ] );    
-    }
-    if( isset( $_POST['question-c'] ) ) {
-        update_post_meta( $post_id, 'question-c', $_POST[ 'question-c' ] );    
-    }
-    if( isset( $_POST['question-d'] ) ) {
-        update_post_meta( $post_id, 'question-d', $_POST[ 'question-d' ] );    
-    }
-    if( isset( $_POST['question-e'] ) ) {
-        update_post_meta( $post_id, 'question-e', $_POST[ 'question-e' ] );    
-    }
-    if( isset( $_POST['question-f'] ) ) {
-        update_post_meta( $post_id, 'question-f', $_POST[ 'question-f' ] );    
-    }
     if( isset( $_POST['answer-correct'] ) ) {
         update_post_meta( $post_id, 'answer-correct', $_POST[ 'answer-correct' ] );    
     }
     if( isset( $_POST['listsubject'] ) ) {
         update_post_meta( $post_id, 'listsubject', $_POST[ 'listsubject' ] );    
-    }       
+    }
+    // $post_parent = wp_get_post_parent_id($post_id);
+    // if(!isset($post_parent) || $post_parent > 0) { 
+    //       $my_post = array(
+    //           'ID'           => $post_id,
+    //           'post_status'  => 'rejected',
+    //       );
+    //       wp_update_post( $my_post );
+    //   }       
 }
 add_action('save_post', 'prfx_field_meta_trac_nghiem_save');
+// Register Custom Post Status
+// Registering custom post status
+function wpb_custom_post_status(){
+    register_post_status('rejected', array(
+        'label'                     => _x( 'Rejected', 'trac_nghiem' ),
+        'public'                    => false,
+        'exclude_from_search'       => false,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop( 'Rejected <span class="count">(%s)</span>', 'Rejected <span class="count">(%s)</span>' ),
+    ) );
+}
+add_action( 'init', 'wpb_custom_post_status' );
+ 
+// Using jQuery to add it to post status dropdown
+add_action('admin_footer-post.php', 'wpb_append_post_status_list');
+function wpb_append_post_status_list(){
+global $post;
+$complete = '';
+$label = '';
+if($post->post_type == 'trac-nghiem'){
+if($post->post_status == 'rejected'){
+$complete = ' selected="selected"';
+$label = '<span id="post-status-display"> Rejected</span>';
+}
+echo '
+<script>
+jQuery(document).ready(function($){
+$("select#post_status").append("<option value=\"rejected\" '.$complete.'>Rejected</option>");
+$(".misc-pub-section label").append("'.$label.'");
+});
+</script>
+';
+}
+}

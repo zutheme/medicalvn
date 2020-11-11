@@ -113,7 +113,6 @@ function renderdata(data){
                     e_chkbx.setAttribute("type", "checkbox");
                     e_chkbx.setAttribute("class", "list-check");
                     e_chkbx.setAttribute("name", "lstchk[]");
-
                     e_hdidpost = document.createElement("input");
                     e_hdidpost.setAttribute("type", "hidden");
                     e_hdidpost.setAttribute("class", "hidden_idpost");
@@ -163,9 +162,10 @@ function plusclass(element,name) {
 }
 //console.log(_term_id);
 function MakeOutResult(_strjson,callback){
+    var _idpost = 0;
     var http = new XMLHttpRequest();
     var url = MyAjax.ajaxurl+"?action=outresult";
-    var params = JSON.stringify({"data":_strjson,"term_id":_term_id});
+    var params = JSON.stringify({"data":_strjson,"_idpost":_idpost});
     http.open("POST", url, true);
     //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
     http.setRequestHeader("Accept", "application/json");

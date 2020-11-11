@@ -68,7 +68,7 @@ function outresult(){
     wp_verify_nonce('my-special-string', 'security');
     $input = json_decode(file_get_contents('php://input'),true);
     $jsonstring = $input["data"];
-    $term_id = $input["term_id"];
+    $term_id = $input["idpost"];
     $str_char = array('A','B','C','D','E','F');
     $boardresult = array(0,0,0,0,0,0);    
     $listresult = json_decode($jsonstring, true);
@@ -162,6 +162,7 @@ function addquestion(){
      $args = array(
         'post_type' => 'trac_nghiem',
         'posts_per_page'  => -1,
+        'post_status'  => 'private',
         'post_parent__in' => array($idparent),  
         'order' => 'asc',
         //'post_parent' => $idparent
@@ -194,6 +195,7 @@ function loadquestion(){
     $args = array(
         'post_type' => 'trac_nghiem',
         'posts_per_page'  => -1,
+        'post_status'  => 'private',
         'post_parent__in' => array($idparent),  
         'order' => 'asc',
         //'post_parent' => $idparent
@@ -219,4 +221,17 @@ function loadquestion(){
 }
 add_action( 'wp_ajax_loadquestion', 'loadquestion' );
 add_action( 'wp_ajax_nopriv_loadquestion', 'loadquestion');
+//add quiz abc
+function addquizabc(){
+    wp_verify_nonce( 'my-special-string', 'security' );
+    $input = json_decode(file_get_contents('php://input'),true);
+    $post_id = $input['hiddenidpost'];
+    $ask_question = $input['ask_question'];
+    update_post_meta( $post_id, 'ask-question', $ask_question );    
+    //$list = array();
+    echo json_encode(array('hiddenidpost'=>$hiddenidpost,'ask_question'=>$ask_question));
+    die();           
+}
+add_action( 'wp_ajax_addquizabc', 'addquizabc' );
+add_action( 'wp_ajax_nopriv_addquizabc', 'addquizabc');
 ?>
