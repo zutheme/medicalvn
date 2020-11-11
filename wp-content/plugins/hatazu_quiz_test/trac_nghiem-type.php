@@ -201,16 +201,31 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
         <tr>
             <td>
                 <p>Câu trắc nghiệm</p>
-                <ul class="list-ask-question"></ul>
+                <ul class="list-ask-question form-row form-row-full"> 
+                <?php
+                     $list_quiz = get_post_meta( $id, 'list_quiz', true );
+                    if( $list_quiz ){
+                        $arr_data = json_decode($list_quiz, true);
+                        if($arr_data){
+                             foreach ($arr_data as $key => $value) { 
+                                  ?>
+                                   <li class="image page_item"><textarea><?php echo $value; ?></textarea><ul class="actions"><li><a href="javascript:void(0);" onclick="delete_gallery_variation_product(this)" class="delete">delete</a></li></ul></li>
+                                    <?php
+                             }
+                        }
+                     }
+                    ?> 
+                    <div class="droppable-helper"></div>
+                </ul>
             </td>
         </tr>
         <tr>
             <td>
-                <input type="hidden" class="hiddenlistquiz" name="hiddenlistquiz" value="<?php if ( isset ( $prfx_stored_meta['ask-question'] ) ) echo $prfx_stored_meta['ask-question'][0]; ?>">
                 <input type="hidden" class="hiddenidpost" name="hiddenidpost" value="<?php echo $id; ?>">
-                <p><label class="prfx-row-title"><?php _e( 'question-a', 'prfx-textdomain' )?></label></p>
+                <p><label class="prfx-row-title"><?php _e( 'quiz', 'prfx-textdomain' )?></label></p>
                 <p><textarea name="ask-question" class="ask-question" rows="5" cols="100"></textarea></p>
-                <p><input type="button" class="add-quizabc" name="addmorequiz" value="Thêm trắc nghiệm"></p>
+                <p><input type="button" onclick="addmorequizelement(this)" class="more-quizabc" name="addmorequiz" value="Thêm"></p>
+                <input type="button" onclick="save_gallery_variation_product(this);" name="btn_save_variation" class="button" value="<?php _e( 'Save change', 'prfx-textdomain' )?>" />
             </td>
         </tr>
         <tr><td>

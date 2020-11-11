@@ -36,6 +36,7 @@ function hatazu_images_trac_nghiem_test_enqueue() {
             )
         );
         wp_enqueue_script('hatazu_images_trac_nghiem_test');
+         wp_enqueue_script('drop-drag-admin-script', plugin_dir_url(__FILE__) . 'js/admin-related-pages-scripts.js', array('jquery','jquery-ui-droppable','jquery-ui-draggable', 'jquery-ui-sortable'),'0.0.5.4', true);
 }
 add_action( 'admin_enqueue_scripts', 'hatazu_images_trac_nghiem_test_enqueue');
 function ajax_scripts() {
@@ -65,6 +66,7 @@ add_action( 'wp_enqueue_scripts', 'ajax_scripts' );
 function wpdocs_selectively_enqueue_admin_script( $hook ) {
     //wp_enqueue_script( 'check-cat.js', plugin_dir_url( __FILE__ ) . 'check-cat.js', array(), '0.0.1' );
     wp_enqueue_style('admin_trac_nghiem_style.css', plugin_dir_url(__FILE__) . 'css/admin_trac_nghiem_style.css',array(), '0.1.2.4', true);
+   
 }
 add_action( 'admin_enqueue_scripts', 'wpdocs_selectively_enqueue_admin_script' );
 

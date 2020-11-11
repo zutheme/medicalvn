@@ -226,11 +226,13 @@ function addquizabc(){
     wp_verify_nonce( 'my-special-string', 'security' );
     $input = json_decode(file_get_contents('php://input'),true);
     $post_id = $input['hiddenidpost'];
-    $ask_question = $input['ask_question'];
-    update_post_meta( $post_id, 'ask-question', $ask_question );    
+    $list_quiz = $input['list_quiz'];
+    //update_post_meta( $post_id, 'list_quiz', $list_quiz );    
     //$list = array();
-    echo json_encode(array('hiddenidpost'=>$hiddenidpost,'ask_question'=>$ask_question));
-    die();           
+     //echo $list_image;
+     //wp_die();
+    echo json_encode(array('hiddenidpost'=>$post_id, 'list_quiz'=>$list_quiz));
+    wp_die();          
 }
 add_action( 'wp_ajax_addquizabc', 'addquizabc' );
 add_action( 'wp_ajax_nopriv_addquizabc', 'addquizabc');
