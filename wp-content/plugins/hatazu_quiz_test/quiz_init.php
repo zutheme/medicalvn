@@ -27,7 +27,7 @@ function hatazu_images_trac_nghiem_test_enqueue() {
         $post_type = get_post_type();
         if($post_type!='trac_nghiem') return false;
         wp_enqueue_media();
-        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.1.0.8', true );
+        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.1.2.6', true );
         wp_localize_script( 'hatazu_images_trac_nghiem_test', 'meta_image',
             array(
                 'title' => __( 'Choose or Upload an Image', 'prfx-textdomain' ),
@@ -43,9 +43,9 @@ function ajax_scripts() {
   //css
   $post_type = get_post_type();
   if($post_type!='trac_nghiem') return false;
-  wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.0.0', false);
+  wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.0.5', false);
   //jquery
-  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.2.6.7', true );
+  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.2.8.1', true );
   wp_localize_script( 'script-name', 'MyAjax', array(
     // URL to wp-admin/admin-ajax.php to process data
     'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -143,3 +143,27 @@ function loadpopup(){ ?>
     </div>
 <?php }
 add_action( 'wp_footer', 'loadpopup' );
+if (function_exists('get_the_excerpt_max'))  
+{ 
+    function get_the_excerpt_max($charlength) {
+      $excerpt = get_the_content();
+       $cleanText = filter_var($excerpt, FILTER_SANITIZE_STRING);
+        $introCleanText = strip_tags($cleanText);
+      $charlength++;
+
+      if ( mb_strlen( $introCleanText ) > $charlength ) {
+        $subex = mb_substr( $introCleanText, 0, $charlength - 5 );
+        $exwords = explode( ' ', $subex );
+        $excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+        if ( $excut < 0 ) {
+          return mb_substr( $subex, 0, $excut );
+        } else {
+          return $subex;
+        }
+        return '...';
+      } else {
+        return $introCleanText;
+      }
+      return $introCleanText;
+  }
+}

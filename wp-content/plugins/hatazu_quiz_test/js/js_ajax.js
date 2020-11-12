@@ -8,27 +8,30 @@ var e_popup_processing = document.getElementsByClassName('htz-popup-processing')
 var _e_desc_begin = _e_quiz_test.getElementsByClassName("desc-begin")[0];
 _e_btn_next.addEventListener("click",nextquest);
 var _idpost = 0,order = 1;
-var answ = [];
-var str_answ = '';
+var str_answ = [];
 //var summary = [0,0,0,0,0,0];
 //var board_result = ['A','B','C','D','E','F'];   
 function nextquest(){
-    //console.log(start);
 	if(start==0){
 		_e_desc_begin.style.display = 'none';
         _e_btn_next.innerHTML = 'Kế tiếp';
 	}else{
+         let ans = [];
 		 var elstchk = _e_quiz_test.getElementsByClassName("list-question")[0].getElementsByClassName('list-check');
-		 var ans = '', hd_id_post = 0, char_ans='';
+         var _content_answer = '';
+		 var hd_id_post = 0, char_ans='';
+         var _title = _e_quiz_test.getElementsByClassName("question-title")[0].innerText;
 		 for (var i = 0; i < elstchk.length; i++) {
 		 	if(elstchk[i].checked == true){
                 char_ans = elstchk[i].parentElement.getElementsByClassName('question')[0].innerText;
-		 		ans += char_ans +',';
+                _content_answer = elstchk[i].parentElement.getElementsByClassName('content-answer')[0].innerText;
+                let _arr_char_ans = {"user_ans":char_ans , "quiz_content":_content_answer}
+                ans.push(_arr_char_ans);
                 hd_id_post = elstchk[i].parentElement.getElementsByClassName('hidden_idpost')[0].value;
 		 	}
 		 }
-		 ans = ans.substring(0, ans.length - 1);
-		 str_answ += '{"numquest":"'+start+'","idpost":"'+hd_id_post+'","ans":"'+ans+'"},';
+         let obj = {"numquest":start, "title":_title ,"idpost":hd_id_post,"ans":ans};
+         str_answ.push(obj);
 	}
     if(list_question.length > 0){
         _idpost = list_question[0];
@@ -36,12 +39,8 @@ function nextquest(){
         list_question.shift();
         start++;
     }else{
-        str_answ = str_answ.substring(0, str_answ.length - 1);
-        str_answ = '['+str_answ+']';
-        //console.log(str_answ);
-        //var str_json = '[{"user_id":"11","check_id":"38"},{"user_id":"11","check_id":"38"}]'
-        //var data = JSON.stringify(str_answ);
-        MakeOutResult(str_answ,RenderResult);
+        var data = JSON.stringify(str_answ);
+        MakeOutResult(data,RenderResult);
         
         var e_ul = _e_quiz_test.getElementsByClassName('list-question')[0];
         while (e_ul.firstChild) {
@@ -52,7 +51,7 @@ function nextquest(){
     	return false;
     }
 }
-function makeAJAXCall(_order,callback){
+function makeAJAXCall(_idpost,callback){
     var http = new XMLHttpRequest();
     var url = MyAjax.ajaxurl+"?action=request_question";
     var params = JSON.stringify({"idpost":_idpost});
@@ -73,14 +72,13 @@ function makeAJAXCall(_order,callback){
 function renderdata(data){
  	if(data){
  		var myArr = JSON.parse(data);
- 		//console.log(myArr);
         var hdidpost = 0;
         Object.keys(myArr).forEach(function(key) {
           if(key==='idpost'){
-                hdidpost = myArr[key];;
+                hdidpost = myArr[key];
           }
           if(key==='title'){
-          		_e_quiz_test.getElementsByClassName('question-title')[0].innerHTML = order;
+          		_e_quiz_test.getElementsByClassName('question-title')[0].innerHTML = myArr[key];
           }
           if(key==='content'){
                 _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = myArr[key];
@@ -96,11 +94,19 @@ function renderdata(data){
                 if(_width < 768){
                 	_with_li = '50%';
                 }else{
-                	_with_li = (100/li_len)+'%';
+                    if (li_len == 1) {
+                	   _with_li = '100%';
+                    }else if(li_len == 2){
+                        _with_li = '50%';
+                    }else if (li_len == 3){
+                        _with_li = '33.33%';
+                    }else {
+                        _with_li = '25%';
+                    }
                 }
                 
                 var e_li,e_span,e_p,e_chkbx;
-                var lst_char = ['A','B','C','D','E','F'];
+                var lst_char = ['A','B','C','D','E','F','G','H','I','K'];
                 for (var i = 0; i < li_len; i++) {
                     //console.log(myArr[key][i]);
                     eli = document.createElement("li");
@@ -161,11 +167,10 @@ function plusclass(element,name) {
   }
 }
 //console.log(_term_id);
-function MakeOutResult(_strjson,callback){
-    var _idpost = 0;
+function MakeOutResult(_idpost,_strjson,callback){
     var http = new XMLHttpRequest();
     var url = MyAjax.ajaxurl+"?action=outresult";
-    var params = JSON.stringify({"data":_strjson,"_idpost":_idpost});
+    var params = JSON.stringify({"data":_strjson,"idpost":_idpost});
     http.open("POST", url, true);
     //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
     http.setRequestHeader("Accept", "application/json");
@@ -187,7 +192,7 @@ _e_close.addEventListener('click',function(){
 function RenderResult(data){
     if(data){
        var myArr = JSON.parse(data);
-        //console.log(myArr);
+        console.log(myArr);
         _e_quiz_test.getElementsByClassName('question-title')[0].innerHTML = '';
         _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = '';
         Object.keys(myArr).forEach(function(key) {

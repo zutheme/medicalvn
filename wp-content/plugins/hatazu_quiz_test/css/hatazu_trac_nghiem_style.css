@@ -51,7 +51,8 @@
     padding: 3px;
     align-items: center;
     font-size: 16px;
-    height: 120px;
+    height: 100%;
+    margin-top: 15px;
 }
 #quiz-test-show .list-question li.checked .question {
 	background:#F8AE90; 
@@ -75,21 +76,30 @@
 #quiz-test-show .tip-content {
 	text-align: center;
 }
-#quiz-test-show h1.question-content {
-	font-size: 25px;
+#quiz-test-show .tip-title .question-title {
+    font-size: 18px;
     font-weight: 600;
     margin: 15px 0 25px 0;
     padding: 0 15px;
 }
+#quiz-test-show p.question-content {
+	font-size: 16px;
+    font-weight: 400;
+    margin: 15px 0 25px 0;
+    padding: 0 15px;
+}
 #quiz-test-show .btn-area {
-    position: inherit;
+    position: absolute;
     text-align: center;
-    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    top: 50%;
+    padding-top: 25px;
     z-index: 0;
 }
 #quiz-test-show .btn-area .btn-next {
     position: relative;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 #quiz-test-show .desc-begin {
     max-width: 991px;

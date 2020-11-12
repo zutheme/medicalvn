@@ -15,33 +15,19 @@ function request_question(){
                 $team_query->the_post();  
                     $id = get_the_ID();
                     $title = get_the_title($idpost);
-                    $content = apply_filters('the_content', get_post_field('post_content', $idpost));
+                    //$content = apply_filters('the_content', get_post_field('post_content', $idpost));
+                    $content = get_the_excerpt_max(300);
                     //$content = get_the_content($id);
-                    $question_a = get_post_meta( $idpost, 'question-a', true );
-                    $question_b = get_post_meta( $idpost, 'question-b', true );
-                    $question_c = get_post_meta( $idpost, 'question-c', true );
-                    $question_d = get_post_meta( $idpost, 'question-d', true );
-                    $question_e = get_post_meta( $idpost, 'question-e', true );
-                    $question_f = get_post_meta( $idpost, 'question-f', true );
                     $lst_quest = array();
-                    if(!empty($question_a)){
-                      $lst_quest[] = $question_a;
-                    }
-                    if(!empty($question_b)){
-                      $lst_quest[] = $question_b;
-                    }
-                    if(!empty($question_c)){
-                      $lst_quest[] = $question_c;
-                    }
-                    if(!empty($question_d)){
-                      $lst_quest[] = $question_d;
-                    } 
-                    if(!empty($question_e)){
-                      $lst_quest[] = $question_e;
-                    }
-                    if(!empty($question_f)){
-                      $lst_quest[] = $question_f;
-                    }           
+                    $list_quiz = get_post_meta( $id, 'list_quiz', true );
+                    if( $list_quiz ){
+                        $arr_data = json_decode($list_quiz, true);
+                        if($arr_data){
+                             foreach ($arr_data as $key => $value) {
+                                $lst_quest[] = $value;
+                             }
+                        }
+                     }  
                 }
               wp_reset_postdata();
               echo json_encode(array('error'=>'','idpost'=>$idpost,'title'=>$title,'content'=>$content,'list-quest'=>$lst_quest));
@@ -68,36 +54,8 @@ function outresult(){
     wp_verify_nonce('my-special-string', 'security');
     $input = json_decode(file_get_contents('php://input'),true);
     $jsonstring = $input["data"];
-    $term_id = $input["idpost"];
-    $str_char = array('A','B','C','D','E','F');
-    $boardresult = array(0,0,0,0,0,0);    
-    $listresult = json_decode($jsonstring, true);
-    foreach ($listresult as $item) {
-       $string = $item["ans"];
-       $char_answer = explode (",", $string);
-       foreach ($char_answer as $char) {
-          foreach ($str_char as $key => $value) {
-              if(strcmp($value,$char)==0){
-                  $boardresult[$key] += 1;
-              }
-          }
-       }
-    }
-    $max = 0;$max_i = 0;
-     for ($i=0; $i < count($boardresult); $i++) { 
-        if($boardresult[$i] > $max) {
-          $max = $boardresult[$i];
-          $max_i = $i;
-        }
-     }
-    $rschar = strtolower($str_char[$max_i]);
-    $head ='';$content='';$link = '';
-    $term_custom_fields = get_option("taxonomy_term_$term_id");
-    if($term_custom_fields){
-      $head = $term_custom_fields["depart_quiz_head_$rschar"];
-      $content = $term_custom_fields["depart_quiz_content_$rschar"];
-      $link = $term_custom_fields["depart_quiz_read_more_$rschar"];
-    }
+    $idpost = $input["idpost"];
+    
     echo json_encode(array('head'=>$head,'content'=>$content,'link'=>$link));
     die();      
 }
@@ -227,7 +185,7 @@ function addquizabc(){
     $input = json_decode(file_get_contents('php://input'),true);
     $post_id = $input['hiddenidpost'];
     $list_quiz = $input['list_quiz'];
-    //update_post_meta( $post_id, 'list_quiz', $list_quiz );    
+    update_post_meta( $post_id, 'list_quiz', $list_quiz );    
     //$list = array();
      //echo $list_image;
      //wp_die();

@@ -45,9 +45,9 @@ if ( is_singular() ) :
 
     <div id="quiz-test-show" class="quiz-test-show">
         <div class="tip-title"><span class="question-title"></span></div>
-        <div class="tip-content"><h1 class="question-content"></h1></div>
+        <div class="tip-content"><p class="question-content"></p></div>
         <div class="result">
-            <h2 class="head"></h2>
+            <p class="head"></p>
             <p class="content"></p>
             <ul class="link-explore">
                 <!-- <li><a href="#" class="link-icon btn-readmore">Tìm hiểu</a></li> -->
@@ -56,7 +56,7 @@ if ( is_singular() ) :
         <ul class="list-question">
         </ul>
         <div class="desc-begin">
-                <h1><?php the_title(); ?></h1> 
+                <h3><?php echo get_the_title($id_post); ?></h3> 
                 <p><?php echo $excerpt; ?></p>
         </div>
         <div class="btn-area">           

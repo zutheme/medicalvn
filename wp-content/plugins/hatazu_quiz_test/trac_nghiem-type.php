@@ -201,7 +201,7 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
         <tr>
             <td>
                 <p>Câu trắc nghiệm</p>
-                <ul class="list-ask-question form-row form-row-full"> 
+                <ul id="quiz-ask" class="list-ask-question"> 
                 <?php
                      $list_quiz = get_post_meta( $id, 'list_quiz', true );
                     if( $list_quiz ){
@@ -209,7 +209,7 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
                         if($arr_data){
                              foreach ($arr_data as $key => $value) { 
                                   ?>
-                                   <li class="image page_item"><textarea><?php echo $value; ?></textarea><ul class="actions"><li><a href="javascript:void(0);" onclick="delete_gallery_variation_product(this)" class="delete">delete</a></li></ul></li>
+                                   <li class="img page_item"><textarea class="txt_quiz" rows="5" cols="100"><?php echo $value; ?></textarea><ul class="actions"><li><a href="javascript:void(0);" onclick="delete_quiz(this)" class="delete">delete</a></li></ul></li>
                                     <?php
                              }
                         }
@@ -225,7 +225,7 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
                 <p><label class="prfx-row-title"><?php _e( 'quiz', 'prfx-textdomain' )?></label></p>
                 <p><textarea name="ask-question" class="ask-question" rows="5" cols="100"></textarea></p>
                 <p><input type="button" onclick="addmorequizelement(this)" class="more-quizabc" name="addmorequiz" value="Thêm"></p>
-                <input type="button" onclick="save_gallery_variation_product(this);" name="btn_save_variation" class="button" value="<?php _e( 'Save change', 'prfx-textdomain' )?>" />
+                <input type="button" onclick="save_list_quiz(this);" name="btn_save_variation" class="button" value="<?php _e( 'Save change', 'prfx-textdomain' )?>" />
             </td>
         </tr>
         <tr><td>

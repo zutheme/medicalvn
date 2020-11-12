@@ -49,10 +49,11 @@ if(e_add_question){
 function addquestion(){
     var _e_parent = this.parentElement.parentElement;
     var _idparent =  _e_parent.getElementsByClassName("idparent")[0].value;
-    var _title_question_more = _e_parent.getElementsByClassName("question-more")[0].value;
+    var _e_title_question = _e_parent.getElementsByClassName("question-more")[0];
+    var _title_question = _e_title_question.value;
     var http = new XMLHttpRequest();
     var url = meta_image.ajaxurl+"?action=addquestion";
-    var params = JSON.stringify({"idparent":_idparent, "title_question_more":_title_question_more});
+    var params = JSON.stringify({"idparent":_idparent, "title_question_more":_title_question});
     http.open("POST", url, true);
     //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
     http.setRequestHeader("Accept", "application/json");
@@ -61,24 +62,23 @@ function addquestion(){
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
             var myArr = JSON.parse(this.responseText);
-            console.log(myArr);
              e_load.style.display = "none";
             while (e_ul_question.firstChild) {
                 e_ul_question.removeChild(e_ul_question.firstChild);
             }
            if(myArr[0].idpost!=''){
             for (var i = 0; i < myArr.length; i++) {
-                eli = document.createElement("li");
-                e_ahref = document.createElement("a");
-                e_ahref.setAttribute("href", myArr[i].link);
-                //e_ahref.setAttribute("target", '_blank');
-                e_ahref.innerHTML = myArr[i].title;
-                //e_ahref.setAttribute("onclick", "choose(this)");
-                eli.appendChild(e_ahref);
-                e_ul_question.appendChild(eli);
+                    eli = document.createElement("li");
+                    e_ahref = document.createElement("a");
+                    e_ahref.setAttribute("href", myArr[i].link);
+                    //e_ahref.setAttribute("target", '_blank');
+                    e_ahref.innerHTML = myArr[i].title;
+                    //e_ahref.setAttribute("onclick", "choose(this)");
+                    eli.appendChild(e_ahref);
+                    e_ul_question.appendChild(eli);
+                }
             }
-            }
-            
+            _e_title_question.value = "";
         }
     }
     http.send(params);
@@ -134,6 +134,7 @@ function addmorequizelement(element){
     e_li.setAttribute("class", "image page_item");
     var e_img = document.createElement("textarea");
     e_img.value = _txt_quiz;
+    e_img.setAttribute("class", "txt_quiz");
     e_img.setAttribute("rows", "5");
     e_img.setAttribute("cols", "100");
     e_li.appendChild(e_img);
@@ -151,33 +152,34 @@ function addmorequizelement(element){
     e_sub_ul.appendChild(e_sub_li);
     e_li.appendChild(e_sub_ul);
     _e_gallery.appendChild(e_li);
+    _e_text_question.value = "";
     //init_sort();  
 }
 function save_list_quiz(element) {
-    var load = document.getElementsByClassName("htz-popup-processing")[0];
     //var result = load.getElementsByClassName("result")[0];
-    load.style.display = "block";
+    e_load.style.display = "block";
     var _e_parent = element.parentElement.parentElement;
-    var _variation_id = _e_parent.getElementsByClassName("hidden_variation_id")[0].value;
-    var _e_ul_gallery = _e_parent.getElementsByClassName("ul-gallery")[0];
-    var _e_image = _e_ul_gallery.getElementsByTagName("img");
-    var _lst_src = [];
-    for (var i = 0; i < _e_image.length; i++) {
-        _lst_src.push(_e_image[i].src);
+    var _hiddenidpost = _e_parent.getElementsByClassName("hiddenidpost")[0].value;
+    //var _e_ul_gallery = document.getElementsByClassName('list-ask-question')[0];
+    var _e_list_ask_question = document.getElementById('quiz-ask');
+    var _e_quiz = _e_list_ask_question.getElementsByClassName("txt_quiz");
+    var list_quiz = [];
+    for (var i = 0; i < _e_quiz.length; i++) {
+        list_quiz.push(_e_quiz[i].value);
     }
-    _lst_src = JSON.stringify(_lst_src);
+    _list_quiz = JSON.stringify(list_quiz);
     var http = new XMLHttpRequest();
-    var url = ajax_object.ajax_url+"?action=update_gallery";
-    var _security = ajax_object.security;
-    var params = JSON.stringify({variation_id:_variation_id, list_image:_lst_src});
+    var url = meta_image.ajaxurl+"?action=addquizabc";
+    //var _security = ajax_object.security;
+    var params = JSON.stringify({hiddenidpost:_hiddenidpost, list_quiz:_list_quiz});
     http.open("POST", url, true);
     http.setRequestHeader("Accept", "application/json");
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
             var myArr = JSON.parse(this.responseText);
-            //console.log(myArr);
-            load.style.display = "none";
+            console.log(myArr);
+            e_load.style.display = "none";
         }
     }
     http.send(params);
