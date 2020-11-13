@@ -13,10 +13,10 @@ function trac_nghiem_test_menu() {
     add_menu_page('trac_nghiem_test Settings', 'trac_nghiem_test', 'administrator', 'trac_nghiem_test-settings', 'trac_nghiem_test_menu_settings_page', 'dashicons-admin-generic');
 }
 function trac_nghiem_test_menu_settings_page() {
-    //include('trac_nghiem_test_admin.php');
+    include('quiz_admin.php');
 }
 function trac_nghiem_test_menu_settings() {
-    register_setting( 'trac_nghiem-settings-group', 'option');
+    register_setting( 'trac_nghiem-settings-group', 'sms_text');
 }
 add_action( 'admin_init', 'trac_nghiem_test_menu_settings');
 
@@ -27,7 +27,7 @@ function hatazu_images_trac_nghiem_test_enqueue() {
         $post_type = get_post_type();
         if($post_type!='trac_nghiem') return false;
         wp_enqueue_media();
-        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.1.2.6', true );
+        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.1.2.7', true );
         wp_localize_script( 'hatazu_images_trac_nghiem_test', 'meta_image',
             array(
                 'title' => __( 'Choose or Upload an Image', 'prfx-textdomain' ),
@@ -45,14 +45,14 @@ function ajax_scripts() {
   if($post_type!='trac_nghiem') return false;
   wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.0.5', false);
   //jquery
-  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.2.8.1', true );
+  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.3.0.2', true );
   wp_localize_script( 'script-name', 'MyAjax', array(
     // URL to wp-admin/admin-ajax.php to process data
     'ajaxurl' => admin_url( 'admin-ajax.php' ),
     // Creates a random string to test against for security purposes
     'security' => wp_create_nonce( 'my-special-string' )
   ));
-  wp_enqueue_script('register_form', plugin_dir_url(__FILE__) .'js/register_form.js', array(), '0.0.5', true );
+  wp_enqueue_script('register_form', plugin_dir_url(__FILE__) .'js/register_form.js', array(), '0.1.0.9', true );
 }
 add_action( 'wp_enqueue_scripts', 'ajax_scripts' );
 
@@ -112,58 +112,5 @@ function tsm_convert_id_to_term_in_query($query) {
     $q_vars[$taxonomy] = $term->slug;
   }
 }
-// function that runs when shortcode is called
-function loadpopup(){ ?>
-  <div class="htz-popup-processing" style="display: none; position: fixed; z-index: 990;left: 0;top: 0%;width: 100%; height: 100%; overflow: auto;background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); ">
-            <div class="processing" style="position:relative;background-color: rgba(255,255,255,0.1);width: 250px;height: 250px;margin-top:15%; margin-left: auto;margin-right: auto;text-align: center;">
-                <p><img class="loadings" style="position: absolute;top: 11%;left: 11%;display: block;width: 200px; height: 200px;margin-left: auto;margin-right: auto;z-index: 1000;" src="<?php bloginfo('template_directory');?>/images/loader.gif"></p>
-                <p class="result"></p>
-            </div>
-    </div>
-    <div id="form-quiz" class="form-quiz">
-        <div class="modal-form">
-            <span class="close">x</span>
-            <form class="frm-reg">
-                <div class="head"><h6 class="reg-sum">Chúc mừng bạn đã hoàn thành khảo sát</h6>
-                    <p>Vui lòng nhập thông tin để nhận kết quả bác sĩ</p>
-                </div>
-                <input type="text" name="name" class="control" value="" placeholder="Họ và tên">
-                <input type="text" name="phone" class="control" value="" placeholder="Điện thoại">
-                <select name="sel-local" class="control">
-                    <option value="0">Chọn khu vực</option>
-                    <option value="1">TP Hồ Chí Minh</option>
-                    <option value="2">Bình Dương</option>
-                    <option value="3">Đồng Nai</option>
-                </select>
-                <div class="bottom">
-                     <button type="button" class="bnt btn-register">Xác nhận</button>
-                </div>
-            </form>
-        </div>
-    </div>
-<?php }
+include('quiz_box.php');
 add_action( 'wp_footer', 'loadpopup' );
-if (function_exists('get_the_excerpt_max'))  
-{ 
-    function get_the_excerpt_max($charlength) {
-      $excerpt = get_the_content();
-       $cleanText = filter_var($excerpt, FILTER_SANITIZE_STRING);
-        $introCleanText = strip_tags($cleanText);
-      $charlength++;
-
-      if ( mb_strlen( $introCleanText ) > $charlength ) {
-        $subex = mb_substr( $introCleanText, 0, $charlength - 5 );
-        $exwords = explode( ' ', $subex );
-        $excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
-        if ( $excut < 0 ) {
-          return mb_substr( $subex, 0, $excut );
-        } else {
-          return $subex;
-        }
-        return '...';
-      } else {
-        return $introCleanText;
-      }
-      return $introCleanText;
-  }
-}

@@ -56,7 +56,8 @@ if ( is_singular() ) :
         <ul class="list-question">
         </ul>
         <div class="desc-begin">
-                <h3><?php echo get_the_title($id_post); ?></h3> 
+                <input class="idtopic" type="hidden" name="idtopic" value="<?php echo $id_post; ?>">
+                <h3 class="topic"><?php echo get_the_title($id_post); ?></h3> 
                 <p><?php echo $excerpt; ?></p>
         </div>
         <div class="btn-area">           

@@ -1867,7 +1867,7 @@ color: #777777;
     display:block;
     margin:0;
     overflow:hidden;
-    height: 230px;
+    height: 170px;
   }
   .content-page .renderer {
     margin: 0 0 4px 0;
@@ -2624,8 +2624,8 @@ svg:not(:root) {
 
   .blog_category_main_wrapper figure {
       width: 100%;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin-top: 0px;
+      margin-bottom: 0px;
       margin-left: auto;
       margin-right: auto;
       text-align: center;

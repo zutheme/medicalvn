@@ -9,8 +9,13 @@ var _e_desc_begin = _e_quiz_test.getElementsByClassName("desc-begin")[0];
 _e_btn_next.addEventListener("click",nextquest);
 var _idpost = 0,order = 1;
 var str_answ = [];
-//var summary = [0,0,0,0,0,0];
-//var board_result = ['A','B','C','D','E','F'];   
+var e_form_quiz = document.getElementById('form-quiz');
+var _e_close = e_form_quiz.getElementsByClassName('close')[0];
+_e_close.addEventListener('click',function(){
+    e_form_quiz.style.display = "none";
+    var _e_body = document.getElementsByTagName('body')[0];
+    _e_body.style.display = "block";
+});
 function nextquest(){
 	if(start==0){
 		_e_desc_begin.style.display = 'none';
@@ -39,14 +44,19 @@ function nextquest(){
         list_question.shift();
         start++;
     }else{
-        var data = JSON.stringify(str_answ);
-        MakeOutResult(data,RenderResult);
-        
+        //var data = JSON.stringify(str_answ);
+        var e_desc = _e_quiz_test.getElementsByClassName('desc-begin')[0];
+        var _idpost = e_desc.getElementsByClassName("idtopic")[0].value;
+        //MakeOutResult(_idpost,data,RenderResult);   
         var e_ul = _e_quiz_test.getElementsByClassName('list-question')[0];
         while (e_ul.firstChild) {
             e_ul.removeChild(e_ul.firstChild);
         }
         //console.log(summary);
+        _e_quiz_test.style.paddingTop = '20%';
+        _e_quiz_test.getElementsByClassName('question-title')[0].innerHTML = 'Cảm ơn bạn đã tham gia khảo sát';
+        _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = 'Hệ thống đã tiếp nhận thông tin và phản hồi trong thời gian sớm nhất có thể';
+        e_form_quiz.style.display = "block"; 
         _e_btn_next.style.display = "none";
     	return false;
     }
@@ -84,7 +94,6 @@ function renderdata(data){
                 _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = myArr[key];
           }
           if(key==='list-quest'){
-                //console.log(myArr[key].length);
                 var e_ul = _e_quiz_test.getElementsByClassName('list-question')[0];
                 while (e_ul.firstChild) {
                     e_ul.removeChild(e_ul.firstChild);
@@ -104,11 +113,9 @@ function renderdata(data){
                         _with_li = '25%';
                     }
                 }
-                
                 var e_li,e_span,e_p,e_chkbx;
                 var lst_char = ['A','B','C','D','E','F','G','H','I','K'];
                 for (var i = 0; i < li_len; i++) {
-                    //console.log(myArr[key][i]);
                     eli = document.createElement("li");
                     eli.style.cssText = "width:"+_with_li;
                     e_span = document.createElement("span");
@@ -162,56 +169,35 @@ function plusclass(element,name) {
     element.className += " " + name;
   }else{
   	//var rpclass = "/"+name+"/g";
-  	//console.log(rpclass);
   	element.className = element.className.replace(/\bchecked\b/g, "");
   }
 }
 //console.log(_term_id);
-function MakeOutResult(_idpost,_strjson,callback){
+function MakeOutResult( _idpost, _strjson, callback){
     var http = new XMLHttpRequest();
     var url = MyAjax.ajaxurl+"?action=outresult";
-    var params = JSON.stringify({"data":_strjson,"idpost":_idpost});
+    var params = JSON.stringify({"idpost":_idpost,"data":_strjson});
     http.open("POST", url, true);
-    //http.setRequestHeader("X-CSRF-TOKEN", _csrf_token);
     http.setRequestHeader("Accept", "application/json");
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     e_popup_processing.style.display = "block";
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
-            callback(this.responseText);     
+            callback(this.responseText);
+             e_popup_processing.style.display = "none";     
         }
     }
     http.send(params);
-    //console.log("request sent to the server");
  }
-var e_form_quiz = document.getElementsByClassName('form-quiz')[0];
-var _e_close = e_form_quiz.getElementsByClassName('close')[0];
-_e_close.addEventListener('click',function(){
-    e_form_quiz.style.display = "none";
-});
+
 function RenderResult(data){
     if(data){
        var myArr = JSON.parse(data);
-        console.log(myArr);
-        _e_quiz_test.getElementsByClassName('question-title')[0].innerHTML = '';
-        _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = '';
-        Object.keys(myArr).forEach(function(key) {
-        if(key==='head'){
-            _e_quiz_test.getElementsByClassName('head')[0].innerHTML = myArr[key];
-         }
-        if(key==='content')
-        _e_quiz_test.getElementsByClassName('content')[0].innerHTML = myArr[key];
-         if(key==='link'){
-            //var str_link = '<li><a href="'+myArr[key]+'">Tìm hiểu</a></li>';
-            //_e_quiz_test.getElementsByClassName('link-explore')[0].innerHTML = str_link;
-         }
-        setTimeout(function(){ 
-            _e_quiz_test.getElementsByClassName('head')[0].innerHTML = '';
-            _e_quiz_test.getElementsByClassName('content')[0].innerHTML = '';
-            e_form_quiz.style.display = "block"; 
-            }, 3000);
-        });
-        e_popup_processing.style.display = "none";
+        _e_quiz_test.getElementsByClassName('question-title')[0].innerHTML = 'Cảm ơn bạn đã tham gia khảo sát';
+        _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = 'Hệ thống đã tiếp nhận thông tin và phản hồi trong thời gian sớm nhất có thể';
+        e_form_quiz.style.display = "block"; 
+        //Object.keys(myArr).forEach(function(key) {
+        //e_popup_processing.style.display = "none";
+    //});
     }
-
- }
+}

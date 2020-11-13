@@ -49,18 +49,102 @@ if(!function_exists('get_curent_slug_custom_taxonomy')){
     return $term->slug; 
   }
 }
-
+function create_ticket_api_quiz(){
+    wp_verify_nonce('media-form', 'security');
+    $input = json_decode(file_get_contents('php://input'),true);
+    $jsonstring = $input["data"];
+    $arr_data = json_decode($jsonstring, true);
+    $str_asw = '';
+    if($arr_data){
+         foreach ($arr_data as $value) { 
+            $str_asw .= '<p>'.$value['numquest'].'). '.$value['title'].'<p>';
+            if(isset($value['ans'])){
+                foreach ($value['ans'] as $item) {
+                    $str_asw .= '<p>-'.$item['quiz_content'].'-('.$item['user_ans'].')</p>';
+                }
+            }
+         }
+    }
+    $_ticket = $input['ticket'];
+    $_phone = $_ticket['phone'];
+    $_username = $_ticket['username'];
+    $_ticket_cmt = $_ticket['ticket_comment'];
+    $_ticket_cmt .= $str_asw;
+    $json = json_encode([
+        'ticket'  => [
+            'ticket_subject' => $_ticket['ticket_subject'],
+            'ticket_comment'    => $_ticket_cmt,
+            'email' => $_ticket['email'],
+            'phone'  =>  $_phone,
+            'group_id'  => $_ticket['group_id'],
+            'username'  => $_username,
+            'ticket_priority'  => $_ticket['ticket_priority'],
+            'custom_fields'  => $_ticket['custom_fields']
+            ]
+    ]);
+    $mgs = esc_attr( get_option('sms_text') );
+    $count = null;
+    //$returnValue = preg_replace('#_ten_khach#', $_username,  $mgs , -1, $count);
+    $arrMessage = array(
+        'Phone'      => $_phone,
+        'BrandName'  => 'TICKMEDICAL',
+        'Message'    => $mgs
+    );
+     $result = curlapi($json);
+     $result_curl = json_decode($result,true);
+     if($result_curl['code']=='ok'){
+        $sms = sendsmsbrandnameopt($arrMessage);
+        echo json_encode($sms);
+        wp_die();
+     }
+     echo json_encode($result);
+     wp_die();
+}
+add_action('wp_ajax_create_ticket_api_quiz', 'create_ticket_api_quiz');
+add_action('wp_ajax_nopriv_create_ticket_api_quiz', 'create_ticket_api_quiz');
+function curlapiquiz($data){
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.caresoft.vn/tickfulllife/api/v1/tickets",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS =>$data,
+      CURLOPT_HTTPHEADER => array(
+        "Authorization: Bearer 6Ai6qoJoE10l3nU",
+        "Content-Type: application/json"
+      ),
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
+} 
 function outresult(){
     wp_verify_nonce('my-special-string', 'security');
     $input = json_decode(file_get_contents('php://input'),true);
     $jsonstring = $input["data"];
     $idpost = $input["idpost"];
-    
-    echo json_encode(array('head'=>$head,'content'=>$content,'link'=>$link));
+    $arr_data = json_decode($jsonstring, true);
+    $str_asw = '';
+    if($arr_data){
+         foreach ($arr_data as $value) { 
+            $str_asw .= '<p>+'.$value['title'].'<p>';
+            if(isset($value['ans'])){
+                foreach ($value['ans'] as $item) {
+                    $str_asw .= '<p> -('.$item['user_ans'].') '.$item['quiz_content'].'</p>';
+                }
+            }
+         }
+    }
+    echo json_encode($str_asw);
     die();      
 }
-add_action( 'wp_ajax_request_post_idcat', 'request_post_idcat' );
-add_action( 'wp_ajax_nopriv_request_post_idcat', 'request_post_idcat');
+add_action( 'wp_ajax_outresult', 'outresult' );
+add_action( 'wp_ajax_nopriv_outresult', 'outresult');
 //request id post by category 
 function listcheckcat(){
     wp_verify_nonce( 'my-special-string', 'security' );
