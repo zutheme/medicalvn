@@ -90,7 +90,6 @@ function create_ticket_api(){
 add_action('wp_ajax_create_ticket_api', 'create_ticket_api');
 add_action('wp_ajax_nopriv_create_ticket_api', 'create_ticket_api');
 function curlapi($data){
-
     $curl = curl_init();
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.caresoft.vn/tickfulllife/api/v1/tickets",
@@ -107,7 +106,6 @@ function curlapi($data){
         "Content-Type: application/json"
       ),
     ));
-
     $response = curl_exec($curl);
     curl_close($curl);
     return $response;

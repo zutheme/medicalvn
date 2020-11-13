@@ -15,33 +15,19 @@ function request_question(){
                 $team_query->the_post();  
                     $id = get_the_ID();
                     $title = get_the_title($idpost);
-                    $content = apply_filters('the_content', get_post_field('post_content', $idpost));
+                    //$content = apply_filters('the_content', get_post_field('post_content', $idpost));
+                    $content = get_the_excerpt_max(300);
                     //$content = get_the_content($id);
-                    $question_a = get_post_meta( $idpost, 'question-a', true );
-                    $question_b = get_post_meta( $idpost, 'question-b', true );
-                    $question_c = get_post_meta( $idpost, 'question-c', true );
-                    $question_d = get_post_meta( $idpost, 'question-d', true );
-                    $question_e = get_post_meta( $idpost, 'question-e', true );
-                    $question_f = get_post_meta( $idpost, 'question-f', true );
                     $lst_quest = array();
-                    if(!empty($question_a)){
-                      $lst_quest[] = $question_a;
-                    }
-                    if(!empty($question_b)){
-                      $lst_quest[] = $question_b;
-                    }
-                    if(!empty($question_c)){
-                      $lst_quest[] = $question_c;
-                    }
-                    if(!empty($question_d)){
-                      $lst_quest[] = $question_d;
-                    } 
-                    if(!empty($question_e)){
-                      $lst_quest[] = $question_e;
-                    }
-                    if(!empty($question_f)){
-                      $lst_quest[] = $question_f;
-                    }           
+                    $list_quiz = get_post_meta( $id, 'list_quiz', true );
+                    if( $list_quiz ){
+                        $arr_data = json_decode($list_quiz, true);
+                        if($arr_data){
+                             foreach ($arr_data as $key => $value) {
+                                $lst_quest[] = $value;
+                             }
+                        }
+                     }  
                 }
               wp_reset_postdata();
               echo json_encode(array('error'=>'','idpost'=>$idpost,'title'=>$title,'content'=>$content,'list-quest'=>$lst_quest));
@@ -63,46 +49,102 @@ if(!function_exists('get_curent_slug_custom_taxonomy')){
     return $term->slug; 
   }
 }
-
+function create_ticket_api_quiz(){
+    wp_verify_nonce('media-form', 'security');
+    $input = json_decode(file_get_contents('php://input'),true);
+    $jsonstring = $input["data"];
+    $arr_data = json_decode($jsonstring, true);
+    $str_asw = '';
+    if($arr_data){
+         foreach ($arr_data as $value) { 
+            $str_asw .= '<p>'.$value['numquest'].'). '.$value['title'].'<p>';
+            if(isset($value['ans'])){
+                foreach ($value['ans'] as $item) {
+                    $str_asw .= '<p>-'.$item['quiz_content'].'-('.$item['user_ans'].')</p>';
+                }
+            }
+         }
+    }
+    $_ticket = $input['ticket'];
+    $_phone = $_ticket['phone'];
+    $_username = $_ticket['username'];
+    $_ticket_cmt = $_ticket['ticket_comment'];
+    $_ticket_cmt .= $str_asw;
+    $json = json_encode([
+        'ticket'  => [
+            'ticket_subject' => $_ticket['ticket_subject'],
+            'ticket_comment'    => $_ticket_cmt,
+            'email' => $_ticket['email'],
+            'phone'  =>  $_phone,
+            'group_id'  => $_ticket['group_id'],
+            'username'  => $_username,
+            'ticket_priority'  => $_ticket['ticket_priority'],
+            'custom_fields'  => $_ticket['custom_fields']
+            ]
+    ]);
+    $mgs = esc_attr( get_option('sms_text') );
+    $count = null;
+    //$returnValue = preg_replace('#_ten_khach#', $_username,  $mgs , -1, $count);
+    $arrMessage = array(
+        'Phone'      => $_phone,
+        'BrandName'  => 'TICKMEDICAL',
+        'Message'    => $mgs
+    );
+     $result = curlapi($json);
+     $result_curl = json_decode($result,true);
+     if($result_curl['code']=='ok'){
+        $sms = sendsmsbrandnameopt($arrMessage);
+        echo json_encode($sms);
+        wp_die();
+     }
+     echo json_encode($result);
+     wp_die();
+}
+add_action('wp_ajax_create_ticket_api_quiz', 'create_ticket_api_quiz');
+add_action('wp_ajax_nopriv_create_ticket_api_quiz', 'create_ticket_api_quiz');
+function curlapiquiz($data){
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.caresoft.vn/tickfulllife/api/v1/tickets",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS =>$data,
+      CURLOPT_HTTPHEADER => array(
+        "Authorization: Bearer 6Ai6qoJoE10l3nU",
+        "Content-Type: application/json"
+      ),
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
+} 
 function outresult(){
     wp_verify_nonce('my-special-string', 'security');
     $input = json_decode(file_get_contents('php://input'),true);
     $jsonstring = $input["data"];
-    $term_id = $input["term_id"];
-    $str_char = array('A','B','C','D','E','F');
-    $boardresult = array(0,0,0,0,0,0);    
-    $listresult = json_decode($jsonstring, true);
-    foreach ($listresult as $item) {
-       $string = $item["ans"];
-       $char_answer = explode (",", $string);
-       foreach ($char_answer as $char) {
-          foreach ($str_char as $key => $value) {
-              if(strcmp($value,$char)==0){
-                  $boardresult[$key] += 1;
-              }
-          }
-       }
+    $idpost = $input["idpost"];
+    $arr_data = json_decode($jsonstring, true);
+    $str_asw = '';
+    if($arr_data){
+         foreach ($arr_data as $value) { 
+            $str_asw .= '<p>+'.$value['title'].'<p>';
+            if(isset($value['ans'])){
+                foreach ($value['ans'] as $item) {
+                    $str_asw .= '<p> -('.$item['user_ans'].') '.$item['quiz_content'].'</p>';
+                }
+            }
+         }
     }
-    $max = 0;$max_i = 0;
-     for ($i=0; $i < count($boardresult); $i++) { 
-        if($boardresult[$i] > $max) {
-          $max = $boardresult[$i];
-          $max_i = $i;
-        }
-     }
-    $rschar = strtolower($str_char[$max_i]);
-    $head ='';$content='';$link = '';
-    $term_custom_fields = get_option("taxonomy_term_$term_id");
-    if($term_custom_fields){
-      $head = $term_custom_fields["depart_quiz_head_$rschar"];
-      $content = $term_custom_fields["depart_quiz_content_$rschar"];
-      $link = $term_custom_fields["depart_quiz_read_more_$rschar"];
-    }
-    echo json_encode(array('head'=>$head,'content'=>$content,'link'=>$link));
+    echo json_encode($str_asw);
     die();      
 }
-add_action( 'wp_ajax_request_post_idcat', 'request_post_idcat' );
-add_action( 'wp_ajax_nopriv_request_post_idcat', 'request_post_idcat');
+add_action( 'wp_ajax_outresult', 'outresult' );
+add_action( 'wp_ajax_nopriv_outresult', 'outresult');
 //request id post by category 
 function listcheckcat(){
     wp_verify_nonce( 'my-special-string', 'security' );
@@ -161,8 +203,11 @@ function addquestion(){
     //$permalink = get_permalink($post_id);
      $args = array(
         'post_type' => 'trac_nghiem',
-        //'posts_per_page' => 10,
-        'post_parent' => $idparent
+        'posts_per_page'  => -1,
+        'post_status'  => 'private',
+        'post_parent__in' => array($idparent),  
+        'order' => 'asc',
+        //'post_parent' => $idparent
     );
     $list = array();
     $team_query = new WP_Query($args); 
@@ -171,7 +216,8 @@ function addquestion(){
             $team_query->the_post();  
                 $id = get_the_ID();
                 $title = get_the_title($idpost);
-                $link = get_permalink($idpost);
+                //$link = get_permalink($idpost);
+                $link = get_edit_post_link($id,'');
                 //$listsubject = get_post_meta( $id, 'listsubject', true );
                 $list[] = array('idpost'=>$id,'title'=>$title,'link'=>$link);
             }
@@ -190,8 +236,11 @@ function loadquestion(){
     $idparent = $input['idparent'];   
     $args = array(
         'post_type' => 'trac_nghiem',
-        //'posts_per_page' => 10,
-        'post_parent' => $idparent
+        'posts_per_page'  => -1,
+        'post_status'  => 'private',
+        'post_parent__in' => array($idparent),  
+        'order' => 'asc',
+        //'post_parent' => $idparent
     );
     $list = array();
     $team_query = new WP_Query($args); 
@@ -199,8 +248,9 @@ function loadquestion(){
           while ($team_query->have_posts()) {
             $team_query->the_post();  
                 $id = get_the_ID();
-                $title = get_the_title($idpost);
-                $link = get_permalink($idpost);
+                $title = get_the_title($id);
+                //$link = get_permalink($id);
+                $link = get_edit_post_link($id,'');
                 //$listsubject = get_post_meta( $id, 'listsubject', true );
                 $list[] = array('idpost'=>$id,'title'=>$title,'link'=>$link);
             }
@@ -208,9 +258,24 @@ function loadquestion(){
           echo json_encode($list);
             die();   
     }
-    echo json_encode(array('idpost'=>'','title'=>''));
+    echo json_encode(array('idpost'=>$idparent,'title'=>''));
     die();           
 }
 add_action( 'wp_ajax_loadquestion', 'loadquestion' );
 add_action( 'wp_ajax_nopriv_loadquestion', 'loadquestion');
+//add quiz abc
+function addquizabc(){
+    wp_verify_nonce( 'my-special-string', 'security' );
+    $input = json_decode(file_get_contents('php://input'),true);
+    $post_id = $input['hiddenidpost'];
+    $list_quiz = $input['list_quiz'];
+    update_post_meta( $post_id, 'list_quiz', $list_quiz );    
+    //$list = array();
+     //echo $list_image;
+     //wp_die();
+    echo json_encode(array('hiddenidpost'=>$post_id, 'list_quiz'=>$list_quiz));
+    wp_die();          
+}
+add_action( 'wp_ajax_addquizabc', 'addquizabc' );
+add_action( 'wp_ajax_nopriv_addquizabc', 'addquizabc');
 ?>

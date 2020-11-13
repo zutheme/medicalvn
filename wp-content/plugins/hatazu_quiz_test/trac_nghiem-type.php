@@ -11,12 +11,14 @@ function create_trac_nghiem_post_type() {
 			'public' => true,
 			'menu_icon' => 'dashicons-id-alt',
 			'has_archive' => true,
-			'rewrite' => array('slug' => 'trac_nghiem'),
+			'rewrite' => array('slug' => 'trac-nghiem'),
 		)
 	);
 }
 // Hooking up our function to theme setup
 add_action( 'init', 'create_trac_nghiem_post_type' );
+
+
 
 /*
 * Creating a function to create our CPT
@@ -172,56 +174,12 @@ add_action( 'add_meta_boxes', 'prfx_field_meta_trac_nghiem_meta');
 
 function prfx_field_meta_trac_nghiem_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'prfx_nonce' );
-    $prfx_stored_meta = get_post_meta( $post->ID ); ?>
+    $prfx_stored_meta = get_post_meta( $post->ID ); 
+    $id = $post->ID;
+    ?>
     <table id="trac_nghiem-test" class="field-trac_nghiem-test">
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-a', 'prfx-textdomain' )?></label>
-        <textarea name="question-a" id="question-a" class="trac_nghiem-test" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-a'] ) ) echo $prfx_stored_meta['question-a'][0]; ?></textarea>
-    </p>
-    </td>
-    <td><p><label for="images_option" class="prfx-row-title"><?php _e( 'File Upload', 'prfx-textdomain' )?></label>
-    <input class="images_option form-control" type="text" name="question-image-a" value="<?php if ( isset ( $prfx_stored_meta['question-image-a'] ) ) echo $prfx_stored_meta['question-image-a'][0]; ?>" />
-
-    <input type="button" name="images_option-button" class="button images_option-button" value="<?php _e( 'Choose or Upload an Image', 'prfx-textdomain' )?>" /></p>
-    <p><img class="img_set" style="max-height: 100px; min-width: auto" src="<?php if ( isset ( $prfx_stored_meta['question-image-a'] ) ) echo $prfx_stored_meta['question-image-a'][0]; ?>"></p></td>
-    </tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-b', 'prfx-textdomain' )?></label>
-        <textarea name="question-b" id="question-b" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-b'] ) ) echo $prfx_stored_meta['question-b'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-c', 'prfx-textdomain' )?></label>
-        <textarea name="question-c" id="question-c" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-c'] ) ) echo $prfx_stored_meta['question-c'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-d', 'prfx-textdomain' )?></label>
-        <textarea name="question-d" id="question-d" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-d'] ) ) echo $prfx_stored_meta['question-d'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label  class="prfx-row-title"><?php _e( 'question-e', 'prfx-textdomain' )?></label>
-        <textarea name="question-e" id="question-e" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-e'] ) ) echo $prfx_stored_meta['question-e'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'question-f', 'prfx-textdomain' )?></label>
-        <textarea name="question-f" id="question-f" rows="5" cols="100"><?php if ( isset ( $prfx_stored_meta['question-f'] ) ) echo $prfx_stored_meta['question-f'][0]; ?></textarea>
-    </p>
-    </td></tr>
-    <tr><td>
-    <p>
-        <label class="prfx-row-title"><?php _e( 'answer-correct', 'prfx-textdomain' )?></label>
-        <input type="text" name="answer-correct" id="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" />
-    </p>
-    </td></tr>
+    
+    <?php if(!isset($post->post_parent) || $post->post_parent == 0) { ?>
     <tr id="list-question"><td>
         <p>list câu hỏi</p>
         <ul class="list-question">
@@ -235,41 +193,49 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
             <p><input type="button" name="button" class="button add-more" value="Thêm" /></p>
         </td>
     </tr>
-    <tr id="list-taxonomy" class="list-taxonomy">
-        <td>
-            <h2><?php _e( 'Chọn category', 'textdomain' ); ?></h2>
-        <?php
-           $taxonomies = get_terms( array(
-                'taxonomy' => 'depart_trac_nghiem',
-                'hide_empty' => false
-            ) );
- 
-           if ( !empty($taxonomies) ) :
-                $output = '<ul class="taxonomy">';
-                foreach( $taxonomies as $category ) {
-                    if( $category->parent == 0 ) {
-                        $output.= '<li><input class="check-cat" type="radio" name="cat[]" value="'. esc_attr( $category->term_id ) .'"><label>'.esc_html( $category->name ).'</label></li>';
-                        $output.= '<ul style="padding-left:15px">';
-                        foreach( $taxonomies as $subcategory ) {
-                            if($subcategory->parent == $category->term_id) {
-                            $output.= '<li><input class="check-cat" type="radio" name="cat[]" value="'. esc_attr( $subcategory->term_id ) .'"><label>'.esc_html( $subcategory->name ).'</label></li>';
-                            }
+    <?php }else { 
+        $idparent = $post->post_parent;
+    ?>
+    <p>Thuộc chủ đề: <a href="<?php echo get_edit_post_link($idparent,''); ?>"><?php echo get_the_title($idparent); ?></a></p>
+    <tr class="ask-question">
+        <tr>
+            <td>
+                <p>Câu trắc nghiệm</p>
+                <ul id="quiz-ask" class="list-ask-question"> 
+                <?php
+                     $list_quiz = get_post_meta( $id, 'list_quiz', true );
+                    if( $list_quiz ){
+                        $arr_data = json_decode($list_quiz, true);
+                        if($arr_data){
+                             foreach ($arr_data as $key => $value) { 
+                                  ?>
+                                   <li class="img page_item"><textarea class="txt_quiz" rows="5" cols="100"><?php echo $value; ?></textarea><ul class="actions"><li><a href="javascript:void(0);" onclick="delete_quiz(this)" class="delete">delete</a></li></ul></li>
+                                    <?php
+                             }
                         }
-                        $output.='</ul>';
-                    }
-                }
-                $output.='</ul>';
-                echo $output;
-            endif;
-            
-         ?>
-        </td>
+                     }
+                    ?> 
+                    <div class="droppable-helper"></div>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" class="hiddenidpost" name="hiddenidpost" value="<?php echo $id; ?>">
+                <p><label class="prfx-row-title"><?php _e( 'quiz', 'prfx-textdomain' )?></label></p>
+                <p><textarea name="ask-question" class="ask-question" rows="5" cols="100"></textarea></p>
+                <p><input type="button" onclick="addmorequizelement(this)" class="more-quizabc" name="addmorequiz" value="Thêm"></p>
+                <input type="button" onclick="save_list_quiz(this);" name="btn_save_variation" class="button" value="<?php _e( 'Save change', 'prfx-textdomain' )?>" />
+            </td>
+        </tr>
+        <tr><td>
+        <p><label class="prfx-row-title"><?php _e( 'answer-correct', 'prfx-textdomain' )?></label></p>
+        <p><input type="text" name="answer-correct" class="answer-correct" value="<?php if ( isset ( $prfx_stored_meta['answer-correct'] ) ) echo $prfx_stored_meta['answer-correct'][0]; ?>" /></p></td></tr>
     </tr>
+    <?php } ?>
     <tr id="result-load">
         <td>
             <p><img class="load" style="display: none;" src="<?php echo plugin_dir_url(__FILE__) . 'images/loader1.gif'; ?>"></p>
-            <ul class="list-post"></ul>
-            <p><input class="listsubject" type="text" name="listsubject" value="<?php if ( isset ( $prfx_stored_meta['listsubject'] ) ) echo $prfx_stored_meta['listsubject'][0]; ?>"></p>
         </td>
     </tr>
 </table>
@@ -290,32 +256,57 @@ function prfx_field_meta_trac_nghiem_save($post_id) {
     // Checks for input and sanitizes/saves if needed 
     $post_type = get_post_type($post_id);
     if ( "trac_nghiem" != $post_type ) return;   
-    if( isset( $_POST['question-a'] ) ) {
-        update_post_meta( $post_id, 'question-a', $_POST[ 'question-a' ] );    
+    if( isset( $_POST['ask-question'] ) ) {
+        update_post_meta( $post_id, 'ask-question', $_POST[ 'ask-question' ] );    
     } 
-    if( isset( $_POST['question-image-a'] ) ) {
-        update_post_meta( $post_id, 'question-image-a', $_POST[ 'question-image-a' ] );    
-    }  
-    if( isset( $_POST['question-b'] ) ) {
-        update_post_meta( $post_id, 'question-b', $_POST[ 'question-b' ] );    
-    }
-    if( isset( $_POST['question-c'] ) ) {
-        update_post_meta( $post_id, 'question-c', $_POST[ 'question-c' ] );    
-    }
-    if( isset( $_POST['question-d'] ) ) {
-        update_post_meta( $post_id, 'question-d', $_POST[ 'question-d' ] );    
-    }
-    if( isset( $_POST['question-e'] ) ) {
-        update_post_meta( $post_id, 'question-e', $_POST[ 'question-e' ] );    
-    }
-    if( isset( $_POST['question-f'] ) ) {
-        update_post_meta( $post_id, 'question-f', $_POST[ 'question-f' ] );    
-    }
     if( isset( $_POST['answer-correct'] ) ) {
         update_post_meta( $post_id, 'answer-correct', $_POST[ 'answer-correct' ] );    
     }
     if( isset( $_POST['listsubject'] ) ) {
         update_post_meta( $post_id, 'listsubject', $_POST[ 'listsubject' ] );    
-    }       
+    }
+    // $post_parent = wp_get_post_parent_id($post_id);
+    // if(!isset($post_parent) || $post_parent > 0) { 
+    //       $my_post = array(
+    //           'ID'           => $post_id,
+    //           'post_status'  => 'rejected',
+    //       );
+    //       wp_update_post( $my_post );
+    //   }       
 }
 add_action('save_post', 'prfx_field_meta_trac_nghiem_save');
+// Register Custom Post Status
+// Registering custom post status
+function wpb_custom_post_status(){
+    register_post_status('rejected', array(
+        'label'                     => _x( 'Rejected', 'trac_nghiem' ),
+        'public'                    => false,
+        'exclude_from_search'       => false,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop( 'Rejected <span class="count">(%s)</span>', 'Rejected <span class="count">(%s)</span>' ),
+    ) );
+}
+add_action( 'init', 'wpb_custom_post_status' );
+ 
+// Using jQuery to add it to post status dropdown
+add_action('admin_footer-post.php', 'wpb_append_post_status_list');
+function wpb_append_post_status_list(){
+global $post;
+$complete = '';
+$label = '';
+if($post->post_type == 'trac-nghiem'){
+if($post->post_status == 'rejected'){
+$complete = ' selected="selected"';
+$label = '<span id="post-status-display"> Rejected</span>';
+}
+echo '
+<script>
+jQuery(document).ready(function($){
+$("select#post_status").append("<option value=\"rejected\" '.$complete.'>Rejected</option>");
+$(".misc-pub-section label").append("'.$label.'");
+});
+</script>
+';
+}
+}
