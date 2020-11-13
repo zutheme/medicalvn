@@ -24,27 +24,27 @@ function loadpopup(){ ?>
     </div>
 <?php }
 
-if (!function_exists('get_the_excerpt_max'))  
-{ 
-    function get_the_excerpt_max($charlength) {
-      $excerpt = get_the_content();
-       $cleanText = filter_var($excerpt, FILTER_SANITIZE_STRING);
-        $introCleanText = strip_tags($cleanText);
-      $charlength++;
+// if (!function_exists('get_the_excerpt_max'))  
+// { 
+//     function get_the_excerpt_max($charlength) {
+//       $excerpt = get_the_content();
+//        $cleanText = filter_var($excerpt, FILTER_SANITIZE_STRING);
+//         $introCleanText = strip_tags($cleanText);
+//       $charlength++;
 
-      if ( mb_strlen( $introCleanText ) > $charlength ) {
-        $subex = mb_substr( $introCleanText, 0, $charlength - 5 );
-        $exwords = explode( ' ', $subex );
-        $excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
-        if ( $excut < 0 ) {
-          return mb_substr( $subex, 0, $excut );
-        } else {
-          return $subex;
-        }
-        return '...';
-      } else {
-        return $introCleanText;
-      }
-      return $introCleanText;
-  }
-}
+//       if ( mb_strlen( $introCleanText ) > $charlength ) {
+//         $subex = mb_substr( $introCleanText, 0, $charlength - 5 );
+//         $exwords = explode( ' ', $subex );
+//         $excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+//         if ( $excut < 0 ) {
+//           return mb_substr( $subex, 0, $excut );
+//         } else {
+//           return $subex;
+//         }
+//         return '...';
+//       } else {
+//         return $introCleanText;
+//       }
+//       return $introCleanText;
+//   }
+// }
