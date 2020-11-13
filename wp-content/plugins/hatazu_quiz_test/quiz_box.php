@@ -24,7 +24,7 @@ function loadpopup(){ ?>
     </div>
 <?php }
 
-if (function_exists('get_the_excerpt_max'))  
+if (!function_exists('get_the_excerpt_max'))  
 { 
     function get_the_excerpt_max($charlength) {
       $excerpt = get_the_content();
