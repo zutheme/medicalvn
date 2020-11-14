@@ -7,7 +7,7 @@ function loadpopup(){ ?>
                 <p class="result"></p>
             </div>
     </div> -->
-    <div id="form-quiz" class="form-quiz">
+    <div id="form-quiz" class="form-quiz" style="display: none;">
         <div class="modal-form">
             <span class="close">x</span>
             <form class="frm-reg">
