@@ -31,6 +31,7 @@
 }
 .comments-container ul {
     list-style-type: none;
+    padding-left: 0px;
 }
 
 .comments-container {

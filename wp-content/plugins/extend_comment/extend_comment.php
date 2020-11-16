@@ -222,7 +222,7 @@ add_filter('comment_form_default_fields', 'my_remove_email_field_from_comment_fo
 function hatazu_extend_comment_script() {
   global $post;
   if(!is_front_page()) {
-    wp_enqueue_style('comment-css', plugin_dir_url(__FILE__) . 'css/comment.css',array(), '1.1.4', false);
+    wp_enqueue_style('comment-css', plugin_dir_url(__FILE__) . 'css/comment.css',array(), '1.1.5', false);
     wp_enqueue_script('upload-avatar', plugin_dir_url(__FILE__) .'js/hatazu_upload_avartar_comment.js', array(), '0.1.5', true );
     wp_enqueue_script('extend-comment-js', plugin_dir_url(__FILE__) .'js/comment.js', array(), '1.2.4', true );
     wp_localize_script( 'extend-comment-js', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php')));
