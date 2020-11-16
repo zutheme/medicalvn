@@ -11,7 +11,7 @@ var exist_zalo_btn = setInterval(function() {
           x.style.paddingTop = "0px !important";
           x.style.position = "absolute";
           x.style.display = "inline-block";
-          x.style.marginLeft = "25px";
+          x.style.marginLeft = "30px";
           x.style.marginTop = '0px';
           x.style.width = "120px";
       } 
@@ -24,6 +24,7 @@ var exist_fb_btn = setInterval(function() {
           e_fb.setAttribute('data-href', url);
           e_fb.style.display = "inline-block";
           var ef = e_fb.getElementsByTagName('iframe')[0];
+          ef.style.width = "145px";
           if(ef){
               let i = 0
               while(i < 1000){
