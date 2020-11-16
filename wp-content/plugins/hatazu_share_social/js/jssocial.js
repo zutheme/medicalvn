@@ -23,9 +23,11 @@ var exist_fb_btn = setInterval(function() {
           e_fb.style.display = "none";
           e_fb.setAttribute('data-href', url);
           e_fb.style.display = "inline-block";
-          console.log(e_fb);
           var ef = e_fb.getElementsByTagName('iframe')[0];
-          console.log(ef);
+          if(ef){
+              console.log(ef);
+              clearInterval(exist_fb_btn);
+          }
       } 
-      clearInterval(exist_fb_btn);
-   }, 100);
+      //clearInterval(exist_fb_btn);
+   }, 1000);
