@@ -202,7 +202,7 @@
             // create the maps 10.789308, 106.720466, 10.776763, 106.679007
             var latLng1 = new google.maps.LatLng(10.789308, 106.720466);
             var latLng2 = new google.maps.LatLng(10.776763,106.679007);
-            var latLng3 = new google.maps.LatLng(10.957196, 106.845001);
+            //var latLng3 = new google.maps.LatLng(10.957196, 106.845001);
             var myOptions1 = {
                 zoom: 14,
                 center: new google.maps.LatLng(10.788438, 106.678147),
@@ -213,11 +213,11 @@
                 center: new google.maps.LatLng(10.9765342,106.6699557),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
-             var myOptions3 = {
-                zoom: 17,
-                center: new google.maps.LatLng(10.957196, 106.845001),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
+            //  var myOptions3 = {
+            //     zoom: 17,
+            //     center: new google.maps.LatLng(10.957196, 106.845001),
+            //     mapTypeId: google.maps.MapTypeId.ROADMAP
+            // }
             
             var map1 = new google.maps.Map(document.getElementById("map1"), myOptions1);
             var marker1 = new google.maps.Marker({
@@ -233,32 +233,33 @@
                 icon: url_icon,
                 title: "Phòng khám xương khớp Tickmedical"
             });
-            // To add the marker to the map, call setMap();
             marker2.setMap(map2);
-            var map3 = new google.maps.Map(document.getElementById("map3"), myOptions3);
-             var marker3 = new google.maps.Marker({
-                position: latLng3,
-                icon: url_icon,
-               title: "Phòng khám xương khớp Tickmedical"
-            });
             // To add the marker to the map, call setMap();
-            marker3.setMap(map3);
-             var contentString = '<div id="content">'+
-                  '<div id="siteNotice">'+
-                  '</div>'+
-                  '<h1 id="firstHeading" class="firstHeading">Phòng khám xương khớp Tickmedical</h1>'+
-                  '<div id="bodyContent">'+
-                  '<p><b>Phòng khám xương khớp Tickmedical</b></p>'+
-                  '<p>Phải đặt được lợi ích của khách hàng lên ngang với lợi ích của chúng ta, khi đó chúng ta mới bắt đầu phát triển</p>'+
-                  '</div>'+
-                  '</div>';
+            // marker3.setMap(map3);
+            // var map3 = new google.maps.Map(document.getElementById("map3"), myOptions3);
+            //  var marker3 = new google.maps.Marker({
+            //     position: latLng3,
+            //     icon: url_icon,
+            //    title: "Phòng khám xương khớp Tickmedical"
+            // });
+            // To add the marker to the map, call setMap();
+            // marker3.setMap(map3);
+            //  var contentString = '<div id="content">'+
+            //       '<div id="siteNotice">'+
+            //       '</div>'+
+            //       '<h1 id="firstHeading" class="firstHeading">Phòng khám xương khớp Tickmedical</h1>'+
+            //       '<div id="bodyContent">'+
+            //       '<p><b>Phòng khám xương khớp Tickmedical</b></p>'+
+            //       '<p>Phải đặt được lợi ích của khách hàng lên ngang với lợi ích của chúng ta, khi đó chúng ta mới bắt đầu phát triển</p>'+
+            //       '</div>'+
+            //       '</div>';
 
-              var infowindow = new google.maps.InfoWindow({
-                content: contentString
-              });
-               marker1.addListener('click', function() {
-                infowindow.open(map1, marker1);
-              });
+            //   var infowindow = new google.maps.InfoWindow({
+            //     content: contentString
+            //   });
+            //    marker1.addListener('click', function() {
+            //     infowindow.open(map1, marker1);
+            //   });
         }
     </script>
     <!--Load the API from the specified URL
