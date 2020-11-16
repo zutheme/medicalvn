@@ -183,7 +183,7 @@
     <!-- dc category section end-->
     
     <script type="text/javascript">
-        var url_icon = '<?php bloginfo('template_directory');?>/images/map-03.png';
+        var url_icon = '<?php bloginfo('template_directory');?>/images/map-tickmedical.png';
     </script>
     <script>
          
