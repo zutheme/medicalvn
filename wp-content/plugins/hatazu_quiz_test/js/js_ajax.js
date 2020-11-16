@@ -141,7 +141,7 @@ function renderdata(data){
                     e_div.appendChild(e_chkbx);
                     e_div.appendChild(e_p);
                     e_div.appendChild(e_hdidpost);
-                    e_div.appendChild(e_div);
+                    //e_div.appendChild(e_div);
                     eli.appendChild(e_div);
                     e_ul.appendChild(eli);
                 }
