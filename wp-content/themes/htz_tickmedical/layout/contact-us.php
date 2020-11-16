@@ -192,8 +192,7 @@
           // The location of Uluru,, 10.788438, 106.678147
           var uluru = {lat: 10.788438, lng: 106.678147};
           // The map, centered at Uluru
-          var map1 = new google.maps.Map(
-              document.getElementById('map1'), {zoom: 14, center: uluru});
+          var map1 = new google.maps.Map(document.getElementById('map1'), {zoom: 14, center: uluru});
           // The marker, positioned at Uluru
           var marker1 = new google.maps.Marker({position: uluru, map: map1});
         }
@@ -209,7 +208,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
             var myOptions2 = {
-                zoom: 17,
+                zoom: 14,
                 center: new google.maps.LatLng(10.9765342,106.6699557),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
@@ -227,13 +226,17 @@
             });
             // To add the marker to the map, call setMap();
             marker1.setMap(map1);
-            var map2 = new google.maps.Map(document.getElementById("map2"), myOptions2);
-             var marker2 = new google.maps.Marker({
-                position: latLng2,
-                icon: url_icon,
-                title: "Phòng khám xương khớp Tickmedical"
-            });
-            marker2.setMap(map2);
+            // var map2 = new google.maps.Map(document.getElementById("map2"), myOptions2);
+            //  var marker2 = new google.maps.Marker({
+            //     position: latLng2,
+            //     icon: url_icon,
+            //     title: "Phòng khám xương khớp Tickmedical"
+            // });
+            // marker2.setMap(map2);
+            var uluru2 = {lat: 10.788438, lng: 106.678147};
+            var map2 = new google.maps.Map(document.getElementById('map2'), {zoom: 14, center: uluru2});
+            // The marker, positioned at Uluru
+            var marker2 = new google.maps.Marker({position: uluru2, map: map2});
             // To add the marker to the map, call setMap();
             // marker3.setMap(map3);
             // var map3 = new google.maps.Map(document.getElementById("map3"), myOptions3);
