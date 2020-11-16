@@ -137,12 +137,12 @@ function renderdata(data){
                     e_p = document.createElement("p");
                     e_p.setAttribute("class", "content-answer");
                     e_p.innerHTML = myArr[key][i];
+                    e_div.appendChild(e_span);
+                    e_div.appendChild(e_chkbx);
+                    e_div.appendChild(e_p);
+                    e_div.appendChild(e_hdidpost);
+                    e_div.appendChild(e_div);
                     eli.appendChild(e_div);
-                    eli.appendChild(e_span);
-                    eli.appendChild(e_chkbx);
-                    eli.appendChild(e_p);
-                    eli.appendChild(e_hdidpost);
-
                     e_ul.appendChild(eli);
                 }
           }
