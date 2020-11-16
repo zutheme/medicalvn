@@ -7,6 +7,7 @@ var url = document.URL;
 var exist_zalo_btn = setInterval(function() {
   var x = document.getElementsByClassName("zalo-share-button")[0];
    if (x) {
+          console.log(x);
           x.style.display = "none";
           x.style.paddingTop = "0px !important";
           x.style.position = "absolute";
