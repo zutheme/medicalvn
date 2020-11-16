@@ -11,8 +11,8 @@ var exist_zalo_btn = setInterval(function() {
           x.style.paddingTop = "0px !important";
           x.style.position = "absolute";
           x.style.display = "inline-block";
-          x.style.paddingLeft = "3px";
-          x.style.marginTop = '3px';
+          x.style.marginLeft = "25px";
+          x.style.marginTop = '0px';
           x.style.width = "120px";
       } 
       clearInterval(exist_zalo_btn);
@@ -25,11 +25,9 @@ var exist_fb_btn = setInterval(function() {
           e_fb.style.display = "inline-block";
           var ef = e_fb.getElementsByTagName('iframe')[0];
           if(ef){
-              console.log(ef);
               let i = 0
               while(i < 1000){
-                ef.style.width = "145px !important";
-                ef.setAttribute("width", "145px");
+                ef.style.width = "145px";
                 i++;
               }
               clearInterval(exist_fb_btn);
