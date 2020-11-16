@@ -43,7 +43,7 @@ function ajax_scripts() {
   //css
   $post_type = get_post_type();
   if($post_type!='trac_nghiem') return false;
-  wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.0.8', false);
+  wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.0.9', false);
   //jquery
   wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.3.0.8', true );
   wp_localize_script( 'script-name', 'MyAjax', array(
