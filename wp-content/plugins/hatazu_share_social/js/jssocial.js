@@ -31,7 +31,10 @@ var exist_fb_btn = setInterval(function() {
                 ef.style.width = "145px";
                 i++;
               }
-              clearInterval(exist_fb_btn);
+              if(i > 999) {
+                console.log(i);
+                clearInterval(exist_fb_btn);
+              }
           }
       } 
       //clearInterval(exist_fb_btn);
