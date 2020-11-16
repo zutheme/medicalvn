@@ -14,19 +14,18 @@ var exist_zalo_btn = setInterval(function() {
           x.style.paddingLeft = "3px";
           x.style.marginTop = '3px';
           x.style.width = "120px";
-          console.log(x);
-          var ef = x.getElementsByTagName('iframe')[0];
-          console.log(ef);
       } 
       clearInterval(exist_zalo_btn);
    }, 100); 
 var exist_fb_btn = setInterval(function() {
   var e_fb =  document.getElementsByClassName("fb-like")[0];
    if (e_fb) {
-          console.log(url);
           e_fb.style.display = "none";
           e_fb.setAttribute('data-href', url);
           e_fb.style.display = "inline-block";
+          console.log(e_fb);
+          var ef = e_fb.getElementsByTagName('iframe')[0];
+          console.log(ef);
       } 
       clearInterval(exist_fb_btn);
    }, 100);
