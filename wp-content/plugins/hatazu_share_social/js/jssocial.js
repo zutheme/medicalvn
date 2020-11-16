@@ -31,7 +31,6 @@ var exist_fb_btn = setInterval(function() {
                 i++;
               }
               if(i > 999) {
-                console.log(i);
                 ef.style.width = "145px";
                 clearInterval(exist_fb_btn);
               }

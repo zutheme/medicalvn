@@ -27,7 +27,7 @@ function hatazu_images_trac_nghiem_test_enqueue() {
         $post_type = get_post_type();
         if($post_type!='trac_nghiem') return false;
         wp_enqueue_media();
-        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.1.2.7', true );
+        wp_register_script( 'hatazu_images_trac_nghiem_test', plugin_dir_url( __FILE__ ) . 'js/hatazu_images_trac_nghiem_test.js', array(), '0.1.2.9', true );
         wp_localize_script( 'hatazu_images_trac_nghiem_test', 'meta_image',
             array(
                 'title' => __( 'Choose or Upload an Image', 'prfx-textdomain' ),
@@ -45,7 +45,7 @@ function ajax_scripts() {
   if($post_type!='trac_nghiem') return false;
   wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.0.6', false);
   //jquery
-  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.3.0.2', true );
+  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.3.0.4', true );
   wp_localize_script( 'script-name', 'MyAjax', array(
     // URL to wp-admin/admin-ajax.php to process data
     'ajaxurl' => admin_url( 'admin-ajax.php' ),

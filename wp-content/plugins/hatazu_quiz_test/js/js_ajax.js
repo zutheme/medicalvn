@@ -100,19 +100,20 @@ function renderdata(data){
                 }
                 var li_len = myArr[key].length;
                 var _with_li = 0;
-                if(_width < 768){
-                	_with_li = '50%';
-                }else{
-                    if (li_len == 1) {
-                	   _with_li = '100%';
-                    }else if(li_len == 2){
-                        _with_li = '50%';
-                    }else if (li_len == 3){
-                        _with_li = '33.33%';
-                    }else {
-                        _with_li = '25%';
-                    }
-                }
+                _with_li = '100%';
+                // if(_width < 768){
+                // 	_with_li = '50%';
+                // }else{
+                //     if (li_len == 1) {
+                // 	   _with_li = '100%';
+                //     }else if(li_len == 2){
+                //         _with_li = '50%';
+                //     }else if (li_len == 3){
+                //         _with_li = '33.33%';
+                //     }else {
+                //         _with_li = '25%';
+                //     }
+                // }
                 var e_li,e_span,e_p,e_chkbx;
                 var lst_char = ['A','B','C','D','E','F','G','H','I','K'];
                 for (var i = 0; i < li_len; i++) {
