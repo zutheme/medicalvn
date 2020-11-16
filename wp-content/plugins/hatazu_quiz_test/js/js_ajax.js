@@ -119,6 +119,8 @@ function renderdata(data){
                 for (var i = 0; i < li_len; i++) {
                     eli = document.createElement("li");
                     eli.style.cssText = "width:"+_with_li;
+                    e_div = document.createElement("div");
+                    e_div.setAttribute("class", "area-question");
                     e_span = document.createElement("span");
                     e_span.setAttribute("class", "question");
                     e_span.setAttribute("onclick", "choose(this)");
@@ -139,6 +141,7 @@ function renderdata(data){
                     eli.appendChild(e_chkbx);
                     eli.appendChild(e_p);
                     eli.appendChild(e_hdidpost);
+                    eli.appendChild(e_div);
                     e_ul.appendChild(eli);
                 }
           }

@@ -43,13 +43,24 @@
 	background: #F8AE90;
 }
 
-#quiz-test-show .list-question li {
+/*#quiz-test-show .list-question li {
     display: flex;
     flex-direction: column;
     float: left;
     text-align: center;
     padding: 3px;
     align-items: center;
+    font-size: 16px;
+    height: 100%;
+    margin-top: 15px;
+}*/
+#quiz-test-show .list-question li {
+    display: inline-block;
+    /*flex-direction: column;*/
+    float: left;
+    text-align: left;
+    padding: 3px;
+    /*align-items: center;*/
     font-size: 16px;
     height: 100%;
     margin-top: 15px;
