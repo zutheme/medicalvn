@@ -29,13 +29,30 @@
     background-color: rgba(0,0,0,0.4);*/
 }
 /* Modal Content/Box */
-@media (min-width: 768px){
+/*@media (min-width: 768px){
     .modal-consultant-form .modal-content-consult {
+      text-align: center;
+      margin-top: 15%;
+      padding: 0px 0px;
+      left: -10%;
+      max-width: 450px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      margin-right: auto;
+      margin-left: auto;
+      background: transparent;
+      position: relative;
+      z-index: 90999999;
+  }
+}*/
+@media (min-width: 768px){
+  .modal-consultant-form .modal-content-consult {
       text-align: center;
       /* background-image: url(../images/nen-frm2.jpg); */
       margin-top: 15%;
       padding: 0px 0px;
-      left: -10%;
+      left: auto;
       /* border: 1px solid #888; */
       max-width: 450px;
       -webkit-border-radius: 5px;
