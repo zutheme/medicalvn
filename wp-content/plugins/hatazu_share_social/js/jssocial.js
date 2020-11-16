@@ -14,6 +14,7 @@ var exist_zalo_btn = setInterval(function() {
           x.style.paddingLeft = "3px";
           x.style.marginTop = '3px';
           x.style.width = "120px";
+          console.log(x);
           var ef = x.getElementsByTagName('iframe')[0];
           console.log(ef);
       } 
