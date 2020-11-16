@@ -231,11 +231,13 @@
             //     position: latLng2,
             //     icon: url_icon,
             //     title: "Phòng khám xương khớp Tickmedical"
-            // });
+            // });, 
+            var uluru1 = {lat: 10.789308, lng: 106.720466};
+            var map1 = new google.maps.Map(document.getElementById('map1'), {zoom: 14, center: uluru1});
+            var marker1 = new google.maps.Marker({position: uluru1, map: map1});
             // marker2.setMap(map2);,
             var uluru2 = {lat: 10.776763, lng: 106.679007};
             var map2 = new google.maps.Map(document.getElementById('map2'), {zoom: 14, center: uluru2});
-            // The marker, positioned at Uluru
             var marker2 = new google.maps.Marker({position: uluru2, map: map2});
             // To add the marker to the map, call setMap();
             // marker3.setMap(map3);
