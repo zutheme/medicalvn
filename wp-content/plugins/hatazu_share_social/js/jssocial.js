@@ -7,13 +7,15 @@ var url = document.URL;
 var exist_zalo_btn = setInterval(function() {
   var x = document.getElementsByClassName("zalo-share-button")[0];
    if (x) {
-          console.log(x);
           x.style.display = "none";
           x.style.paddingTop = "0px !important";
           x.style.position = "absolute";
           x.style.display = "inline-block";
           x.style.paddingLeft = "3px";
           x.style.marginTop = '3px';
+          x.style.width = "120px";
+          var ef = x.getElementsByTagName('iframe')[0];
+          console.log(ef);
       } 
       clearInterval(exist_zalo_btn);
    }, 100); 
