@@ -25,6 +25,7 @@ var exist_fb_btn = setInterval(function() {
           e_fb.style.display = "inline-block";
           var ef = e_fb.getElementsByTagName('iframe')[0];
           if(ef){
+              console.log(ef);
               ef.style.width = "145px !important";
               clearInterval(exist_fb_btn);
           }
