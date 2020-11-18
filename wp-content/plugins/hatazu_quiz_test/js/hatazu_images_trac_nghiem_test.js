@@ -179,7 +179,9 @@ function save_list_quiz(element) {
         if(http.readyState == 4 && http.status == 200) {
             var myArr = JSON.parse(this.responseText);
             console.log(myArr);
-            e_load.style.display = "none";
+            if(myArr.result){
+                e_load.style.display = "none";
+            } 
         }
     }
     http.send(params);

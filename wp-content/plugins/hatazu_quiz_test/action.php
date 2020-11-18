@@ -269,11 +269,8 @@ function addquizabc(){
     $input = json_decode(file_get_contents('php://input'),true);
     $post_id = $input['hiddenidpost'];
     $list_quiz = $input['list_quiz'];
-    update_post_meta( $post_id, 'list_quiz', $list_quiz );    
-    //$list = array();
-     //echo $list_image;
-     //wp_die();
-    echo json_encode(array('hiddenidpost'=>$post_id, 'list_quiz'=>$list_quiz));
+    $update = update_post_meta( $post_id, 'list_quiz', $list_quiz );
+    echo json_encode('result'=>$update);
     wp_die();          
 }
 add_action( 'wp_ajax_addquizabc', 'addquizabc' );
