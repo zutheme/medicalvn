@@ -205,9 +205,9 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
                 <?php
                      $list_quiz = get_post_meta( $id, 'list_quiz', true );
                      var_dump($list_quiz);
-                    if( $list_quiz ){
+                    if(isset($list_quiz)){
                         $arr_data = json_decode($list_quiz, true);
-                        if($arr_data){
+                        if(isset($arr_data)){
                              foreach ($arr_data as $key => $value) { 
                                   ?>
                                    <li class="img page_item"><textarea class="txt_quiz" rows="5" cols="100"><?php echo $value; ?></textarea><ul class="actions"><li><a href="javascript:void(0);" onclick="delete_quiz(this)" class="delete">delete</a></li></ul></li>
