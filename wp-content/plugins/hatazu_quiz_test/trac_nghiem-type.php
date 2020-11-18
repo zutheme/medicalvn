@@ -205,7 +205,6 @@ function prfx_field_meta_trac_nghiem_callback( $post ) {
                 <?php
                      $list_quizs = get_post_meta( $id, 'list_quiz', true );
                     if(isset($list_quizs)){
-                        var_dump($list_quizs);
                         $arr_data = json_decode($list_quizs, true);
                         var_dump($arr_data);
                         if(isset($arr_data)){
