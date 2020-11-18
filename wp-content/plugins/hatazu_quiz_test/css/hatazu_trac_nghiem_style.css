@@ -24,21 +24,23 @@
     min-height: 100px; 
 }
 #quiz-test-show .list-question span.question {
-	width: 50px;
-    height: 50px;
+	width: 40px;
+    height: 40px;
     background-color: #FFF;
     border: 2px solid #F8AE90;
     text-align: center;
     line-height: 50px;
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 50%;
     font-weight: 600;
     transition: all 0.5s;
     cursor: pointer;
-    margin-right: auto;
+    margin-right: 15px;
     margin-left: auto;
     position: relative;
     display: inline;
+    padding: 5px 10px;
+    top: 5px;
 }
 #quiz-test-show .list-question span.question:hover{
 	background: #F8AE90;
@@ -60,14 +62,14 @@
     /*flex-direction: column;*/
     /*float: left;*/
     text-align: left;
-    padding: 3px;
+    padding: 0px;
     /*align-items: center;*/
     font-size: 16px;
     height: 100%;
-    margin-top: 15px;
+    margin-top: 0px;
 }
 #quiz-test-show .list-question li .area-question {
-    width: 60%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -86,7 +88,7 @@
 	margin-top: 10px;
 	font-size: 14px;
 	color: #000;
-    display: block;
+    display: inline;
 }
 #quiz-test-show .tip-title {
 	text-align: center;
@@ -107,7 +109,7 @@
     padding: 0 15px;
 }
 #quiz-test-show .btn-area {
-    position: absolute;
+    position: relative;
     text-align: center;
     width: 100%;
     height: 50px;
