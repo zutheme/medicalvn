@@ -270,7 +270,7 @@ function addquizabc(){
     $post_id = $input['hiddenidpost'];
     $list_quiz = $input['list_quiz'];
     $update = update_post_meta( $post_id, 'list_quiz', $list_quiz );
-    echo json_encode('result'=>$update);
+    echo json_encode(array('result'=>$update));
     wp_die();          
 }
 add_action( 'wp_ajax_addquizabc', 'addquizabc' );
