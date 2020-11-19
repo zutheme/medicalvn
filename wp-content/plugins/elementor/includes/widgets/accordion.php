@@ -5,8 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Core\Schemes;
 /**
  * Elementor accordion widget.
  *
@@ -291,8 +290,9 @@ class Widget_Accordion extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-accordion-icon, {{WRAPPER}} .elementor-accordion-title' => 'color: {{VALUE}};',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
+				'scheme' => [
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_1,
 				],
 			]
 		);
@@ -305,8 +305,9 @@ class Widget_Accordion extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-active .elementor-accordion-icon, {{WRAPPER}} .elementor-active .elementor-accordion-title' => 'color: {{VALUE}};',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
+				'scheme' => [
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_4,
 				],
 			]
 		);
@@ -316,9 +317,7 @@ class Widget_Accordion extends Widget_Base {
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-accordion-title',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
+				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -438,8 +437,9 @@ class Widget_Accordion extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'color: {{VALUE}};',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_TEXT,
+				'scheme' => [
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_3,
 				],
 			]
 		);
@@ -449,9 +449,7 @@ class Widget_Accordion extends Widget_Base {
 			[
 				'name' => 'content_typography',
 				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-content',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_TEXT,
-				],
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
 			]
 		);
 

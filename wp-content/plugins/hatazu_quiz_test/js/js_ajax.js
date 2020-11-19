@@ -45,6 +45,7 @@ function nextquest(){
         start++;
     }else{
         //var data = JSON.stringify(str_answ);
+        console.log(str_answ);
         var e_desc = _e_quiz_test.getElementsByClassName('desc-begin')[0];
         var _idpost = e_desc.getElementsByClassName("idtopic")[0].value;
         //MakeOutResult(_idpost,data,RenderResult);   
@@ -134,12 +135,15 @@ function renderdata(data){
                     e_hdidpost.setAttribute("class", "hidden_idpost");
                     e_hdidpost.setAttribute("name", "name_idpost");
                     e_hdidpost.value = hdidpost;
+                    e_div_content = document.createElement("div");
+                    e_div_content.setAttribute("class", "content");
                     e_p = document.createElement("p");
                     e_p.setAttribute("class", "content-answer");
                     e_p.innerHTML = myArr[key][i];
                     e_div.appendChild(e_span);
                     e_div.appendChild(e_chkbx);
-                    e_div.appendChild(e_p);
+                    e_div_content.appendChild(e_p);
+                    e_div.appendChild(e_div_content);
                     e_div.appendChild(e_hdidpost);
                     //e_div.appendChild(e_div);
                     eli.appendChild(e_div);
@@ -153,10 +157,9 @@ function renderdata(data){
 
  }
  function choose(element){
-	 var eparent = element.parentElement;
+	 var eparent = element.parentElement.parentElement;
 	 //console.log(eparent);
 	 var echk = eparent.getElementsByClassName('list-check')[0];
-	 //console.log(echk.checked);
 	 if(echk.checked == true){
 	 	echk.checked = false;
 	 	echk.setAttribute('checked', '');

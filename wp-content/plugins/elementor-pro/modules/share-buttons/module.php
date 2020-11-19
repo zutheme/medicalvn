@@ -2,6 +2,7 @@
 namespace ElementorPro\Modules\ShareButtons;
 
 use ElementorPro\Base\Module_Base;
+use Elementor\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -43,6 +44,9 @@ class Module extends Module_Base {
 		],
 		'tumblr' => [
 			'title' => 'Tumblr',
+		],
+		'delicious' => [
+			'title' => 'Delicious',
 		],
 		'digg' => [
 			'title' => 'Digg',

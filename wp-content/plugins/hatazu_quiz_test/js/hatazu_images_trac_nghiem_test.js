@@ -129,11 +129,12 @@ function addmorequizelement(element){
     var _e_parent = element.parentElement.parentElement;
     var _e_text_question = _e_parent.getElementsByClassName('ask-question')[0];
     var _txt_quiz = _e_text_question.value;
+    var outputstr = _txt_quiz.replace(/['"]+/g, "'");
     var _e_gallery = document.getElementsByClassName('list-ask-question')[0];
     var e_li = document.createElement("li");
     e_li.setAttribute("class", "image page_item");
     var e_img = document.createElement("textarea");
-    e_img.value = _txt_quiz;
+    e_img.value = outputstr;
     e_img.setAttribute("class", "txt_quiz");
     e_img.setAttribute("rows", "5");
     e_img.setAttribute("cols", "100");
@@ -165,7 +166,8 @@ function save_list_quiz(element) {
     var _e_quiz = _e_list_ask_question.getElementsByClassName("txt_quiz");
     var list_quiz = [];
     for (var i = 0; i < _e_quiz.length; i++) {
-        list_quiz.push(_e_quiz[i].value);
+        let _quiz = _e_quiz[i].value.replace(/['"]+/g, "'");
+        list_quiz.push(_quiz);
     }
     _list_quiz = JSON.stringify(list_quiz);
     var http = new XMLHttpRequest();
