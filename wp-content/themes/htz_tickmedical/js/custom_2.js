@@ -698,10 +698,10 @@ $(window).load(function() {
 })(jQuery);
 var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var _height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-var etestscreen = document.getElementsByClassName('fa-clock-o')[0];
-etestscreen.addEventListener("click", function(){
-    alert(_width);
-});
+// var etestscreen = document.getElementsByClassName('fa-clock-o')[0];
+// etestscreen.addEventListener("click", function(){
+//     alert(_width);
+// });
 
 $(document).ready(function(){
 /*Navigation: Hoverable dropdown*/
