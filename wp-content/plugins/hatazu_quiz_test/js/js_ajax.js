@@ -1,12 +1,15 @@
-//console.log(list_question);
 var start = 0;
 var _width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var _height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
 var _e_quiz_test = document.getElementsByClassName("quiz-test-show")[0];
+var _e_btn_start = _e_quiz_test.getElementsByClassName("btn-start")[0];
 var _e_btn_next = _e_quiz_test.getElementsByClassName("btn-next")[0];
+var _e_btn_prev = _e_quiz_test.getElementsByClassName("btn-prev")[0];
 var e_popup_processing = document.getElementsByClassName('htz-popup-processing')[0];
 var _e_desc_begin = _e_quiz_test.getElementsByClassName("desc-begin")[0];
+_e_btn_start.addEventListener("click",nextquest);
 _e_btn_next.addEventListener("click",nextquest);
+_e_btn_prev.addEventListener("click",prevquest);
 var _idpost = 0,order = 1;
 var str_answ = [];
 var e_form_quiz = document.getElementById('form-quiz');
@@ -16,16 +19,55 @@ _e_close.addEventListener('click',function(){
     var _e_body = document.getElementsByTagName('body')[0];
     _e_body.style.display = "block";
 });
+
+function prevquest(){
+    var _idpostback = 0;
+    start = start - 1;
+    if(start > 0) {
+        for (var i = 0; i < str_answ.length; i++) {
+            if(str_answ[i].numquest == start){
+                var _idpost = str_answ[i].idpost;
+                //console.log(str_answ[i].numquest);
+                makeAJAXCall(_idpost,renderdata);
+            }
+        }
+        
+        // let ans = [];
+        //  var elstchk = _e_quiz_test.getElementsByClassName("list-question")[0].getElementsByClassName('list-check');
+        //  var _content_answer = '';
+        //  var hd_id_post = 0, char_ans='';
+        //  var _title = _e_quiz_test.getElementsByClassName("question-title")[0].innerText;
+        //  for (var i = 0; i < elstchk.length; i++) {
+        //     if(elstchk[i].checked == true){
+        //         char_ans = elstchk[i].parentElement.getElementsByClassName('question')[0].innerText;
+        //         _content_answer = elstchk[i].parentElement.getElementsByClassName('content-answer')[0].innerText;
+        //         let _arr_char_ans = {"user_ans":char_ans , "quiz_content":_content_answer}
+        //         ans.push(_arr_char_ans);
+        //         hd_id_post = elstchk[i].parentElement.getElementsByClassName('hidden_idpost')[0].value;
+        //     }
+        //  }
+        //  var _exit = existnumquest(start, ans);
+        //  if(!_exit){
+        //     let obj = {"numquest":start, "title":_title ,"idpost":hd_id_post,"ans":ans};
+        //     str_answ.push(obj);
+        //  }
+        
+    }else {
+        start = 1;
+        _e_btn_prev.style.display = 'none';
+    }
+}
 function nextquest(){
 	if(start==0){
-		_e_desc_begin.style.display = 'none';
-        _e_btn_next.innerHTML = 'Kế tiếp';
+		    _e_desc_begin.style.display = 'none';
+        _e_btn_start.style.display = 'none';
+       
 	}else{
-         let ans = [];
+     let ans = [];
 		 var elstchk = _e_quiz_test.getElementsByClassName("list-question")[0].getElementsByClassName('list-check');
-         var _content_answer = '';
+     var _content_answer = '';
 		 var hd_id_post = 0, char_ans='';
-         var _title = _e_quiz_test.getElementsByClassName("question-title")[0].innerText;
+     var _title = _e_quiz_test.getElementsByClassName("question-title")[0].innerText;
 		 for (var i = 0; i < elstchk.length; i++) {
 		 	if(elstchk[i].checked == true){
                 char_ans = elstchk[i].parentElement.getElementsByClassName('question')[0].innerText;
@@ -35,17 +77,20 @@ function nextquest(){
                 hd_id_post = elstchk[i].parentElement.getElementsByClassName('hidden_idpost')[0].value;
 		 	}
 		 }
-         let obj = {"numquest":start, "title":_title ,"idpost":hd_id_post,"ans":ans};
-         str_answ.push(obj);
+         var _exit = existnumquest(start, ans);
+         if(!_exit){
+            let obj = {"numquest":start, "title":_title ,"idpost":hd_id_post,"ans":ans};
+            str_answ.push(obj);
+         }
+         //console.log(str_answ);
 	}
-    if(list_question.length > 0){
-        _idpost = list_question[0];
+    if(start >= 0 && start < list_question.length){
+        _idpost = list_question[start];
         makeAJAXCall(_idpost,renderdata);
-        list_question.shift();
+        //list_question.shift();
         start++;
-    }else{
+    }else if(start == list_question.length){
         //var data = JSON.stringify(str_answ);
-        console.log(str_answ);
         var e_desc = _e_quiz_test.getElementsByClassName('desc-begin')[0];
         var _idpost = e_desc.getElementsByClassName("idtopic")[0].value;
         //MakeOutResult(_idpost,data,RenderResult);   
@@ -59,8 +104,35 @@ function nextquest(){
         _e_quiz_test.getElementsByClassName('question-content')[0].innerHTML = 'Hệ thống đã tiếp nhận thông tin và phản hồi trong thời gian sớm nhất có thể';
         e_form_quiz.style.display = "block"; 
         _e_btn_next.style.display = "none";
+        _e_btn_prev.style.display = 'none';
     	return false;
     }
+}
+function showanswered(_start){
+    var _e_question =  _e_quiz_test.getElementsByClassName("question");
+    for (var i = 0; i < str_answ.length; i++) {
+        if(str_answ[i].numquest == _start){
+          let _ans = str_answ[i].ans;
+           if(_ans.length > 0){
+              for (var j = 0; j < _ans.length; j++) {
+                for (var t = 0; t < _e_question.length; t++) {
+                  if(_e_question[t].innerHTML === _ans[j].user_ans){
+                      choose(_e_question[t]);
+                  }
+                }
+              }
+           }
+        }
+     }
+}
+function existnumquest(start, _ans){
+     for (var i = 0; i < str_answ.length; i++) {
+        if(str_answ[i].numquest == start){
+           str_answ[i].ans = _ans;
+           return true;
+        }
+     }
+     return false;
 }
 function makeAJAXCall(_idpost,callback){
     var http = new XMLHttpRequest();
@@ -152,6 +224,9 @@ function renderdata(data){
           }
         });
         order++;
+        showanswered(start);
+        _e_btn_next.style.display = 'block';
+        _e_btn_prev.style.display = 'block';
         e_popup_processing.style.display = "none";
     }
 

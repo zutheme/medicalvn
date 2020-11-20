@@ -60,8 +60,12 @@ if ( is_singular() ) :
                 <h3 class="topic"><?php echo get_the_title($id_post); ?></h3> 
                 <p><?php echo $excerpt; ?></p>
         </div>
-        <div class="btn-area">           
-            <button class="btn-next">Bắt đầu</button>
+        <div class="btn-area">
+            <ul class="control">
+              <li class="prev"><button class="btn-prev">Lùi lại</button></li>
+              <li class="next"><button class="btn-next">Kế tiếp</button></li>
+            </ul>           
+            <button class="btn-start">Bắt đầu</button>
         </div>
     </div>
 <?php else : ?>

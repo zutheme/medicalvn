@@ -43,9 +43,9 @@ function ajax_scripts() {
   //css
   $post_type = get_post_type();
   if($post_type!='trac_nghiem') return false;
-  wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.2.3', false);
+  wp_enqueue_style('hatazu_trac_nghiem_test_style', plugin_dir_url(__FILE__) . 'css/hatazu_trac_nghiem_style.css',array(), '0.1.5.3', false);
   //jquery
-  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.3.1.3', true );
+  wp_enqueue_script( 'script-name', plugin_dir_url(__FILE__) . 'js/js_ajax.js', array(), '0.3.3.9', true );
   wp_localize_script( 'script-name', 'MyAjax', array(
     // URL to wp-admin/admin-ajax.php to process data
     'ajaxurl' => admin_url( 'admin-ajax.php' ),
