@@ -48,7 +48,8 @@ function popupform(){
   var e_modal_consult = document.getElementsByClassName('modal-consult')[0];
   e_modal_consult.style.display = "block";
 }
-function popupform_api(){
+function popupform_api(e){
+  e.preventDefault();
   var e_modal_consult_api = document.getElementsByClassName('modal-consult-api')[0];
   e_modal_consult_api.style.display = "block";
 }
@@ -414,4 +415,109 @@ function quick_top_menu(){
         e_top.style.display = "none";
         tooggle_menu = false;
     }
+}
+//btn-elemetor-api
+//register API elemetor
+//button api
+var count_api_elemetor = 60;
+
+//button api
+var count_api_ele = 60;
+var exist_e_reg_api_ele = setInterval(function() {
+  var e_btn_reg_api_ele = document.getElementById('btn-elemetor-api1');
+      if(e_btn_reg_api_ele) {
+        e_btn_reg_api_ele.type ="button";
+        e_btn_reg_api_ele.addEventListener("click",regform_api_elemetor);
+        clearInterval(exist_e_reg_api_ele);
+      }else if(count_api_ele > 0){
+         count_api_ele = count_api_ele -1;
+      }else{
+        clearInterval(exist_e_reg_api_ele);
+      }  
+   }, 100);
+function regform_api_elemetor(){
+  var frm = reachform(this);
+  if(!frm) return false;
+    var ename = frm.getElementsByTagName("input");
+    var _lastname='',_firstname='',_phone='',_email='',_address='';
+    if(ename){
+      for (var i = 0; i < ename.length; i++) {
+        if(ename[i].name == 'form_fields[name1]'){
+          _firstname = ename[i].value;
+          if(!_firstname){
+                ename[i].style.borderColor = "red";
+                //ename[i].innerHTML = "Vui lòng nhập họ tên";
+                return false;
+            }
+        }else if(ename[i].name == 'form_fields[phone1]'){
+            _phone = ename[i].value;
+              var pattern = /[0-9]{10}$/;
+              var _test = pattern.test(_phone);
+              if(!_test) {
+                alert('Số điện thoại không hợp lệ');
+                return false;
+              }
+ 
+          }else if(ename[i].name == 'form_fields[date1]'){
+              _date1 = ename[i].value;
+          }
+      } 
+    }
+
+    var ecomment = frm.getElementsByTagName("textarea");
+    var _comment='';
+    if(ecomment){
+      for (var i = 0; i < ecomment.length; i++) {
+        if(ecomment[i].name == 'form_fields[message1]'){
+            _comment = ecomment[i].value;
+        }
+      }
+    }
+    _url = document.URL;
+    var _host = extractHostname(_url);
+    var _subject = _host + ' sale-page';
+    var _comment_tick = _url + '<br>date:' + _date1 + '<br>Noi dung:<br>' + _comment;
+    var e_popup_processing = document.getElementsByClassName('htz-popup-processing')[0];
+    e_popup_processing.style.display ='block';
+    e_popup_processing.style.zIndex = "99999999999";
+    var xhr = new XMLHttpRequest();
+    var params = JSON.stringify({
+        "ticket": {
+          "ticket_subject":  _subject,
+          "ticket_comment":  _comment_tick,
+          "email":  "",
+          "phone":  _phone,
+          "group_id":  12205,
+          "username":  _firstname,
+          "ticket_priority": "urgent",
+          "custom_fields": [{"id": 3973, "value": "47582"},{"id": 5140, "value": _url}]
+        }
+      });
+    
+    var url = _ajaxurl+'?action=create_ticket_api';
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () { 
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            console.log(data);
+            e_popup_processing.getElementsByClassName('result')[0].style.paddingTop = "25%";
+            e_popup_processing.getElementsByClassName('loading')[0].style.display ="none";
+            e_popup_processing.getElementsByClassName('processing')[0].style.backgroundColor="white"; 
+            //if(data.BrandName=="TICKMEDICAL"){
+                e_popup_processing.getElementsByClassName('result')[0].innerHTML ="Cảm ơn bạn đã đăng ký tư vấn";
+                e_popup_processing.getElementsByClassName('checked-img')[0].style.display ="block";
+            //}else {
+                //e_popup_processing.getElementsByClassName('result')[0].innerHTML = data.desc;
+                //e_popup_processing.getElementsByClassName('checked-img')[0].style.display ="none";
+            //}
+            resetform(frm);
+            setTimeout(function(){
+                e_popup_processing.style.display ='none';
+              },6000);
+          }
+    }
+    xhr.send(params);
 }

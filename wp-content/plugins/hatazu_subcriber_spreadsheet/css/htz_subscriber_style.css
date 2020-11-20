@@ -104,7 +104,8 @@
     border: 1px solid #888;
    -webkit-border-radius: 50%; 
    -moz-border-radius: 50%; 
-   border-radius: 50%;  
+   border-radius: 50%;
+   cursor: pointer;  
 }
 .close {
     float: right;
@@ -145,8 +146,8 @@
   width: 100%;
 }
 .modal-content-consult input,.modal-content-consult select{
-  width:100%;
-  height:40px;
+  width:95%;
+  height:25px;
   border-radius:3px;
   background:#fff;
   border:1px solid #bdbdbd;
@@ -362,3 +363,12 @@
       color: #07A0F3;
   }*/
 }
+#btn-elemetor-api1 {
+    background-color: #22C1E9;
+    color: #ffffff;
+}
+#btn-elemetor-api1:hover {
+    background-color: #116BA2;
+    color: #ffffff;
+}
+
