@@ -41,7 +41,7 @@ function hatazu_share_custom() {
 }
 add_action('wp_enqueue_scripts', 'hatazu_share_custom'); 
 function box_social( $content ) {    
-    if( is_single() || is_page() ) {
+    if( is_single()) {
       // Get current page URL 
           //$url = urlencode(get_permalink());
           //$url = get_permalink();
