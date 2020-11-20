@@ -93,6 +93,12 @@ if( function_exists('acf_add_local_field_group') ) {
 				'name'  		=> 'header_phone2',
 				'type'  		=> 'text',
 			),
+		 array (
+				'key'   		=> 'header_top',
+				'label' 		=> __( 'Dia chi top', 'htz' ),
+				'name'  		=> 'header_top',
+				'type'  		=> 'text',
+			),
 		  array (
 				'key'   		=> 'header_address',
 				'label' 		=> __( 'Dia chi', 'htz' ),

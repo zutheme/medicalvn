@@ -34,7 +34,7 @@ add_action( 'admin_init', 'share_menu_settings' );
 //add_action('admin_enqueue_scripts', 'admin_load_scripts_share');
 function hatazu_share_custom() {
     global $post;
-    if( is_single() || is_page() && !is_page_template(array('page-template.php'))) {
+    if( is_single() && !is_page_template(array('page-template.php'))) {
         wp_enqueue_style( 'hatazu_share_style', plugin_dir_url(__FILE__) . 'css/hatazu_share_style.css',array(), '1.3.3', true);
         wp_enqueue_script( 'jssocial.js', plugin_dir_url(__FILE__) .'js/jssocial.js', array(), '1.5.6', false );
     }

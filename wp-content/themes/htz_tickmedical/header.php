@@ -42,14 +42,14 @@
 
 <body>
   <!-- preloader Start -->
-    <div id="preloader">
-        <div id="status">
-            <img src="<?php bloginfo('template_directory');?>/images/preloader.gif" id="preloader_image" alt="loader">
-        </div>
+<div id="preloader">
+    <div id="status">
+        <img src="<?php bloginfo('template_directory');?>/images/preloader.gif" id="preloader_image" alt="loader">
     </div>
-    <?php if ( is_front_page() || is_home() ) { 
-       get_template_part('layout/header-home');
-      }else { 
-        get_template_part('layout/header-single');
-      } ?>
+</div>
+<?php if ( is_front_page() || is_home() ) { 
+    get_template_part('layout/header-home');
+  }else { 
+    get_template_part('layout/header-single');
+  } ?>
   

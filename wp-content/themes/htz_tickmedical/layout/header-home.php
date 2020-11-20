@@ -5,24 +5,17 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                     <div class="top_header_add">
-                        <ul>
-                           <li><a href="<?php echo get_field('idfacebook','customizer'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo get_field('idyoutube','customizer'); ?>"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo get_field('intagram','customizer'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo get_field('twiter','customizer'); ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        </ul>
+                        <p><?php echo get_field('header_top','customizer'); ?></p>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                     <div class="right_side_main_warpper">
                         <div class="md_right_side_warpper">
                             <ul>
-                                <li><div class="block-search">
-                                <form class="frm-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                        <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="Tìm kiếm"/>
-                                        <button class="bt-search" type="submit"> <i class="fa fa-search"></i></button>
-                                    </form>
-                                </div></li>
+                               <li><a href="<?php echo get_field('idfacebook','customizer'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="<?php echo get_field('idyoutube','customizer'); ?>"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                                <li><a href="<?php echo get_field('intagram','customizer'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="<?php echo get_field('twiter','customizer'); ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                         
@@ -35,42 +28,40 @@
     <div class="middle_header_wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <div class="md_logo hidden-xs hidden-sm">
                         <a href="<?php echo esc_url(home_url('/')); ?>">
                             <img class="logo-head" src="<?php echo $logo['url']; ?>" alt="Logo">
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 hidden-xs">
+                <div class="col-lg-10 col-md-10 hidden-xs">
                     <div class="md_share_info_wrapper">
                         <ul>
                             <li>
                                 <div class="lv_header_icon">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <a class="btn-popup" href="javascript:void(0);"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
                                 </div>
-                                <p><span>Thứ hai-chủ nhật</span>
-                                    <br>08:00-22:00</p>
+                                <p><span>Đăng ký khám ngay</span>
+                                    <br>Cùng chuyên gia</p>
                             </li>
                             <li>
                                 <div class="lv_header_icon">
                                     <img class="icon-header" src="<?php bloginfo('template_directory');?>/images/icon/icon-phone1.png" alt="Icon" title="Icon">
                                     <!-- <i class="fa fa-phone-square"></i> -->
                                 </div>
-                                <p> <span>Liên hệ</span>
+                                <p> <span>Hotline</span>
                                     <br><?php echo get_field('header_phone1','customizer'); ?></p>
                             </li>
+                            <li>
+                                <div class="lv_header_icon">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <p><span>Email</span>
+                                    <br>tickmedical@gmail.com</p>
+                            </li>
+                            
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="appointmnt_wrapper hidden-xs">
-                        <div class="appoint_btn">
-                            <ul>
-                                <li><a class="btn-popup" href="javascript:void(0);"><span class="hidden-xs hidden-sm"><i class="fa fa-calendar"></i>Đặt lịch </span>hẹn</a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
