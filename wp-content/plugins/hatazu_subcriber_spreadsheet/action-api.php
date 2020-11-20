@@ -54,6 +54,7 @@ function sendsmsbrandnameopt($arrMessage)
 function create_ticket_api(){
     wp_verify_nonce('media-form', 'security');
     $input = json_decode(file_get_contents('php://input'),true);
+    $_optsms = $input['optsms'];
     $_ticket = $input['ticket'];
     $_phone = $_ticket['phone'];
     $_username = $_ticket['username'];
@@ -69,7 +70,13 @@ function create_ticket_api(){
             'custom_fields'  => $_ticket['custom_fields']
             ]
     ]);
-    $mgs = esc_attr( get_option('textmessage') );
+    if(!isset($_optsms)|| $_optsms == 0){
+      $mgs = esc_attr( get_option('textmessage'));
+    }else if($_optsms == 1){
+      $mgs = esc_attr( get_option('textmessage1'));
+    }else{
+      $mgs = esc_attr( get_option('textmessage'));
+    }
     $count = null;
     $returnValue = preg_replace('#_ten_khach#', $_username,  $mgs , -1, $count);
     $arrMessage = array(

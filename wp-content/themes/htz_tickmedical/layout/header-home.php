@@ -47,7 +47,9 @@
                             </li>
                             <li>
                                 <div class="lv_header_icon">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <?php $string = get_field('header_phone1','customizer'); ?>
+                                    <?php $phone = preg_replace('/[^0-9\-]/', '', $string); ?>
+                                    <a href="tel:<?php echo $phone; ?>"><i class="fa fa-phone" aria-hidden="true"></i></a>
                                 </div>
                                 <p> <span>Hotline</span>
                                     <br><?php echo get_field('header_phone1','customizer'); ?></p>

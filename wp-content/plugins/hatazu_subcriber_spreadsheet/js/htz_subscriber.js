@@ -31,6 +31,8 @@ function reachform(element){
   //setTimeout(function(){ return frm; },10000);
   return frm;
 }
+var _promotion = "nhận tư vấn";
+var _optsms = 0;
 var e_btn_register_api = document.getElementsByClassName('btn-popup-api');
 if (typeof(e_btn_register_api) != 'undefined' && e_btn_register_api != null){
   for (var i = 0; i < e_btn_register_api.length; i++) {
@@ -50,6 +52,14 @@ function popupform(){
 }
 function popupform_api(e){
   e.preventDefault();
+  var _e_promotion = this.getAttribute("promotion");
+  var _e_optsms = this.getAttribute("optsms");
+  if(_e_promotion){
+    _promotion = _e_promotion;
+  }
+  if(_e_optsms){
+    _optsms = _e_optsms;
+  } 
   var e_modal_consult_api = document.getElementsByClassName('modal-consult-api')[0];
   e_modal_consult_api.style.display = "block";
 }
@@ -352,6 +362,7 @@ function regform_api(){
     }
     _url = document.URL;
     var _host = extractHostname(_url);
+    var _ticket_comment = _url + "<br>Nội dung: "+ _comment +"<br>loại tin nhắn: "+_promotion;
     var e_popup_processing = document.getElementsByClassName('htz-popup-processing')[0];
     e_popup_processing.style.display ='block';
     e_popup_processing.style.zIndex = "99999999999";
@@ -359,9 +370,10 @@ function regform_api(){
     //var url = 'https://api.caresoft.vn/tickfulllife/api/v1/tickets';
     //var params = JSON.stringify({"firstname":_firstname,"lastname":_lastname,"phone":_phone,"email":_email,"comment": _comment,"nation":_sel_nation,"course":_sel_course,"url":_url});
     var params = JSON.stringify({
+        "optsms": _optsms,
         "ticket": {
           "ticket_subject":  _host,
-          "ticket_comment":  _url,
+          "ticket_comment":  _ticket_comment,
           "email":  "",
           "phone":  _phone,
           "group_id":  12205,
@@ -476,12 +488,13 @@ function regform_api_elemetor(){
     _url = document.URL;
     var _host = extractHostname(_url);
     var _subject = _host + ' sale-page';
-    var _comment_tick = _url + '<br>date:' + _date1 + '<br>Noi dung:<br>' + _comment;
+    var _comment_tick = _url + '<br>date:' + _date1 + '<br>Noi dung:<br>' + _comment + '<br>loại tin nhắn '+_promotion;
     var e_popup_processing = document.getElementsByClassName('htz-popup-processing')[0];
     e_popup_processing.style.display ='block';
     e_popup_processing.style.zIndex = "99999999999";
     var xhr = new XMLHttpRequest();
     var params = JSON.stringify({
+        "optsms": _optsms,
         "ticket": {
           "ticket_subject":  _subject,
           "ticket_comment":  _comment_tick,

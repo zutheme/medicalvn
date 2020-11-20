@@ -23,10 +23,16 @@
 		?>
 		<table>
 			<tr valign="top">
+	        <td><p>Noi dung tin nhan sms</p>
+	        	<p><textarea cols="50" rows="10" class="opt form-control" name="textmessage" style="width:100%"><?php echo esc_attr( get_option('textmessage') ); ?></textarea></p></td>
 
-	        <th scope="row">Noi dung tin nhan sms</th>
-
-	        <td><textarea cols="50" rows="10" class="opt form-control" name="textmessage" style="width:100%"><?php echo esc_attr( get_option('textmessage') ); ?></textarea> </td>
+	        </tr>
+		</table>
+		<table>
+			<tr valign="top">
+	        <td>
+	        	<p>Noi dung tin nhan sms ưu đãi</p>
+	        	<p><textarea cols="50" rows="10" class="opt form-control" name="textmessage1" style="width:100%"><?php echo esc_attr( get_option('textmessage1') ); ?></textarea></p></td>
 
 	        </tr>
 		</table>
