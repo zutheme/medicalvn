@@ -40,22 +40,21 @@
                         <ul>
                             <li>
                                 <div class="lv_header_icon">
-                                    <a class="btn-popup" href="javascript:void(0);"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
+                                    <a class="btn-popup" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true"></i></a>
                                 </div>
                                 <p><span>Đăng ký khám ngay</span>
                                     <br>Cùng chuyên gia</p>
                             </li>
                             <li>
                                 <div class="lv_header_icon">
-                                    <img class="icon-header" src="<?php bloginfo('template_directory');?>/images/icon/icon-phone1.png" alt="Icon" title="Icon">
-                                    <!-- <i class="fa fa-phone-square"></i> -->
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
                                 </div>
                                 <p> <span>Hotline</span>
                                     <br><?php echo get_field('header_phone1','customizer'); ?></p>
                             </li>
                             <li>
                                 <div class="lv_header_icon">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </div>
                                 <p><span>Email</span>
                                     <br>tickmedical@gmail.com</p>
