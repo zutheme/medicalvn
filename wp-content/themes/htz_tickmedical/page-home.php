@@ -36,7 +36,7 @@ get_template_part('layout/blog-news');
 //get_template_part('layout/blog-hoidap');
 //get_template_part('layout/portfolio-menu');
 get_template_part('layout/register-form');
-//get_template_part('layout/register-form-gift');
+get_template_part('layout/register-form-gift');
 //get_template_part('layout/partner'); ?>
 
 <?php get_footer(); ?>

@@ -682,8 +682,40 @@ if( function_exists('acf_add_local_field_group') ) {
 					'type'  		=> 'image',
 				 
 				),
-			
-			
+			//uu dai
+			array (
+					'key'   		=> 'gift',
+					'label' 		=> __( 'Nhan qua tang', 'htz' ),
+					'name'  		=> 'gift',
+					'type'  		=> 'tab',
+					'placement' 	=> 'left',
+				),
+				array (
+					'key'   		=> 'gift_header',
+					'label' 		=> __( 'Tieu đề', 'htz' ),
+					'name'  		=> 'gift_header',
+					'type'  		=> 'text',
+				),
+				array (
+					'key'   		=> 'gift_image1',
+					'label' 		=> __( 'anh qua (740 x 440)', 'htz' ),
+					'name'  		=> 'gift_image1',
+					'type'  		=> 'image',
+				 
+				),
+				array (
+					'key'   		=> 'gift_image2',
+					'label' 		=> __( 'anhanh qua (740 x 440)', 'htz' ),
+					'name'  		=> 'gift_image2',
+					'type'  		=> 'image',
+				 
+				),
+				array (
+					'key'   		=> 'gift_action',
+					'label' 		=> __( 'Tieu đề', 'htz' ),
+					'name'  		=> 'gift_action',
+					'type'  		=> 'textarea',
+				),
 			/* footer */
 			array (
 				'key'   		=> 'footer',

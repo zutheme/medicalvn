@@ -293,10 +293,18 @@ function regform(){
 }
 
 //register API
-
+var checkedValue = '';
 function regform_api(){
   var frm = reachform(this);
- 
+  var e_listchk = frm.getElementsByClassName('list-check');
+  for (var i = 0; i < e_listchk.length; i++) {
+       if(e_listchk[i].checked){
+           //e_listchk[i].parentElement.getElementsByClassName('select')[0];
+           checkedValue += e_listchk[i].value+',';
+      }
+  }
+  console.log(checkedValue);
+  return false;
   if(!frm) return false;
     var ename = frm.getElementsByTagName("input");
     var _lastname='',_firstname='',_phone='',_email='',_address='';
