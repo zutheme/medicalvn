@@ -40,7 +40,7 @@
                     $team_query->the_post();  
                     $id = get_the_ID();
                     $link = get_post_meta( $id, 'opt-service-link', true );
-                    $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium', false );
+                    $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full', false );
                     //$fullpath = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full', false );
                     $excerpt = get_the_excerpt();
                     //$title= get_the_title();

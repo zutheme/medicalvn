@@ -5678,3 +5678,100 @@ margin-bottom:0;}
     font-size: 14px;
     margin: 0px;
 }
+/* gift */
+.gift {
+  float: left;
+  width: 100%;
+  background-color: white;
+  padding-top: 50px
+  padding-bottom:50px;
+}
+.gift .head {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+.gift .head h5 {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}
+.gift .frm-reg {
+  position: relative;
+  padding-bottom: 50px;
+}
+.gift .choose ul {
+  width: 100%;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.gift .choose li img{
+    width: 100%;
+    height: auto;
+}
+.gift .choose li .desc {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.gift .form-choose {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.gift .form-choose .head {
+  text-align: center;
+}
+
+.gift .form-choose .contect_form1 ul.choose-gift {
+    list-style: none;
+    padding: 0px
+    margin: 0px;
+    width: 100%;
+}
+.gift .form-choose .contect_form1 ul.choose-gift li{
+  float: left;
+  width: 50%;
+  text-align: left;
+  display: inline;
+  padding: 0px;
+}
+
+.gift .form-choose .contect_form1 ul.choose-gift li:first-child{
+  text-align: right;
+  padding-right: 10px;
+}
+.gift .form-choose .contect_form1 ul.choose-gift li:nth-child(2){
+  text-align: left;
+  padding-left: 10px;
+}
+.gift .form-choose .contect_form1 ul.choose-gift li input.list-check{
+    width: 15px;
+    height: 15px;
+    margin-right:10px; 
+    position: relative;
+    top: 3px;
+}
+.gift .form-choose .contect_form1 ul.choose-gift li label {
+  font-size: 15px;
+  font-weight: 300;
+}
+.gift .form-choose .contect_note {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .gift .choose li {
+    width: 50%;
+    float: left;
+    padding: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .gift .choose li {
+    width: 100%;
+    float: left;
+    padding: 15px;
+  }
+}
