@@ -2,21 +2,23 @@
 <div class="gift">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 head">
-            <h5>Nhận quà tặng</h5>
+            <div class="col-lg-12 col-md-12 get-gift">
+                <div class="gift-back"><h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?>Nhận quà tặng</h5></div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 choose">
                 <ul>
                     <li>
-                        <img src="<?php bloginfo('template_directory');?>/images/gift/gift2-01.jpg">
+                        <?php $img1 = get_field('gift_image1','customizer'); ?>
+                        <img class="image-gift" src="<?php echo $img1['url'] ?>">
                         <!-- <div class="desc">
                             <p>Theo các chuyên gia điều trị xương khớp và dinh dưỡng thì người đang điều trị thoái hóa cột sống nên ăn các thực phẩm giàu vitamin C, canxi, cá</p>
                         </div> -->
                     </li>
                     <li>
-                        <img src="<?php bloginfo('template_directory');?>/images/gift/gift2-02.jpg">
+                        <?php $img2 = get_field('gift_image2','customizer'); ?>
+                        <img class="image-gift" src="<?php echo $img2['url'] ?>">
                         <!-- <div class="desc">
                             <p>Theo các chuyên gia điều trị xương khớp và dinh dưỡng thì người đang điều trị thoái hóa cột sống nên ăn các thực phẩm giàu vitamin C, canxi, cá</p>
                         </div> -->
@@ -28,14 +30,14 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 frm-reg">
                 <form class="form-choose"> 
                      <div class="contect_form1 head">
-                       <label><?php echo get_field('register_header','customizer'); ?></label>
+                       <label><?php echo get_field('gift_action','customizer'); ?></label>
                     </div> 
                     <div class="contect_form1">
                         <ul class="choose-gift">
                             <li>
-                                <input class="list-check" type="checkbox" name="choose[]"><label for="vehicle1">Quà 1</label></li>
+                                <input class="list-check" type="checkbox" name="choose[]" value="quà tặng 1"><label class="select">Quà 1</label></li>
                             <li>
-                                <input class="list-check" type="checkbox" name="choose[]"><label for="vehicle1">Quà 2</label></li>
+                                <input class="list-check" type="checkbox" name="choose[]" value="quà tặng 2"><label class="select">Quà 2</label></li>
                         </ul>
                     </div>    
                     <div class="contect_form1">

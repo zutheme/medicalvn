@@ -3175,7 +3175,7 @@ filter li a:last-child{
 	margin-bottom:10px;
 	color:#000;
 	background:transparent;
-	border:2px solid #e4eaea;
+	border:2px solid #ddd;
 	-webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -3241,7 +3241,7 @@ filter li a:last-child{
 	resize:none;
 }
 .contect_form4 textarea:hover, .contect_form4 textarea:focus{
-	border:2px solid #ffffff;
+	border:2px solid #ccc;
 	-webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -5686,25 +5686,61 @@ margin-bottom:0;}
   padding-top: 50px
   padding-bottom:50px;
 }
-.gift .head {
+.gift .get-gift {
+  padding-top: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
+  margin-top: 100px;
 }
-.gift .head h5 {
+.gift .get-gift h5 {
   color: #000;
   font-size: 18px;
   font-weight: 600;
 }
+.gift .get-gift h5.head-gift::before {
+    /*background-image: url(../images/gift/icon-qua-tang-1.png);
+    background-size: 100% auto;
+    width: 150px;
+    height: 150px;
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: auto;*/
+}
+.gift .get-gift .gift-back::before {
+    background-image: url(../images/gift/icon-qua-tang-1.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    content: "";
+    position: absolute;
+    top: -90px;
+    left: 43%;
+}
+.gift .get-gift .gift-back {
+    height: auto;
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .gift .frm-reg {
   position: relative;
   padding-bottom: 50px;
+  padding: 15px;
+}
+.gift .choose {
+  background: #fff;
 }
 .gift .choose ul {
   width: 100%;
   list-style: none;
   padding: 0px;
   margin: 0px;
+}
+.gift .choose li .image-gift {
+    border-radius: 5px;
 }
 .gift .choose li img{
     width: 100%;
@@ -5718,8 +5754,8 @@ margin-bottom:0;}
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
+  background: #fff;
 }
 .gift .form-choose .head {
   text-align: center;
@@ -5761,6 +5797,10 @@ margin-bottom:0;}
 .gift .form-choose .contect_note {
   text-align: center;
 }
+.gift .contect_btn button:hover {
+    background: #07A0F3;
+    color: #fff;
+}
 @media (min-width: 768px) {
   .gift .choose li {
     width: 50%;
@@ -5773,5 +5813,21 @@ margin-bottom:0;}
     width: 100%;
     float: left;
     padding: 15px;
+  }
+  .gift .get-gift h5 {
+      color: #000;
+      font-size: 16px;
+      font-weight: 600;
+  }
+  .gift .get-gift .gift-back::before {
+    background-image: url(../images/gift/icon-qua-tang-1.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    content: "";
+    position: absolute;
+    top: -90px;
+    left: 32%;
   }
 }
