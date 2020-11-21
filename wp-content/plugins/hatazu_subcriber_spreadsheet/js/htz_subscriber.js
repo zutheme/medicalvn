@@ -303,8 +303,6 @@ function regform_api(){
            checkedValue += e_listchk[i].value+',';
       }
   }
-  console.log(checkedValue);
-  return false;
   if(!frm) return false;
     var ename = frm.getElementsByTagName("input");
     var _lastname='',_firstname='',_phone='',_email='',_address='';
@@ -370,7 +368,7 @@ function regform_api(){
     }
     _url = document.URL;
     var _host = extractHostname(_url);
-    var _ticket_comment = _url + "<br>Nội dung: "+ _comment +"<br>loại tin nhắn: "+_promotion;
+    var _ticket_comment = _url + "<br>Nội dung: "+ _comment +"<br>loại tin nhắn: "+_promotion+"<br>qua tang: "+checkedValue;
     var e_popup_processing = document.getElementsByClassName('htz-popup-processing')[0];
     e_popup_processing.style.display ='block';
     e_popup_processing.style.zIndex = "99999999999";
