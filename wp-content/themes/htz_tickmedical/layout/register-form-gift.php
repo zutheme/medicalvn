@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 get-gift">
-                <div class="gift-back"><h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?>Nhận quà tặng</h5></div>
+                <div class="gift-back"><h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?></h5></div>
             </div>
         </div>
         <div class="row">
