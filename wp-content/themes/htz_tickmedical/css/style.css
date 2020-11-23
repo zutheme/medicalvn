@@ -5995,6 +5995,7 @@ h2.widget-title {
 	z-index:1; position:relative;
 	background-color:#07A0F3;
      margin-right: 20px;
+     padding: 9px 12px;
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
@@ -6004,9 +6005,7 @@ h2.widget-title {
 }
 #return-to-top i {
     color:white;
-	text-align:center;
 	font-size:1.7em;
-	margin:12px; margin-left:13px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
