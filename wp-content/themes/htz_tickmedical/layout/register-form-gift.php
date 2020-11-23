@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="gift-back">
-                    <?php $img_gift = get_field('gift_image_head','customizer'); ?>
-                    <a href="#"><img src="<?php echo $img_gift['url'] ?>"></a>
-                    <h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?></h5>
+                    <?php //$img_gift = get_field('gift_image_head','customizer'); ?>
+                    <a href="#"><img src="<?php //echo $img_gift['url'] ?>"></a>
+                    <h5 class="head-gift"><?php //echo get_field('gift_header','customizer'); ?></h5>
                 </div>
             </div>
         </div>
