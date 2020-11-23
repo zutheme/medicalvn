@@ -35,9 +35,9 @@
                     <div class="contect_form1">
                         <ul class="choose-gift">
                             <li>
-                                <input class="list-check" type="checkbox" name="choose[]" value="quà tặng 1"><label class="select">Viên uống xương khớp gramin</label></li>
+                                <input class="list-check" type="checkbox" name="choose[]" value="Viên uống xương khớp gramin"><label class="select">Viên uống xương khớp gramin</label></li>
                             <li>
-                                <input class="list-check" type="checkbox" name="choose[]" value="quà tặng 2"><label class="select">Điều trị xương khớp công nghệ cao</label></li>
+                                <input class="list-check" type="checkbox" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị xương khớp công nghệ cao</label></li>
                         </ul>
                     </div>    
                     <div class="contect_form1">
