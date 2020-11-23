@@ -2,8 +2,12 @@
 <div class="gift">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 get-gift">
-                <div class="gift-back"><h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?></h5></div>
+            <div class="col-lg-12 col-md-12">
+                <div class="gift-back">
+                    <?php $img_gift = get_field('gift_image_head','customizer'); ?>
+                    <a href="#"><img src="<?php echo $img_gift['url'] ?>"></a>
+                    <h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?></h5>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -35,9 +39,9 @@
                     <div class="contect_form1">
                         <ul class="choose-gift">
                             <li>
-                                <input class="list-check" type="checkbox" name="choose[]" value="Viên uống xương khớp gramin"><label class="select">Viên uống xương khớp gramin</label></li>
+                                <input class="list-check" type="radio" name="choose[]" value="Viên uống xương khớp gramin"><label class="select">Viên uống xương khớp gramin</label></li>
                             <li>
-                                <input class="list-check" type="checkbox" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị xương khớp công nghệ cao</label></li>
+                                <input class="list-check" type="radio" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị xương khớp công nghệ cao</label></li>
                         </ul>
                     </div>    
                     <div class="contect_form1">

@@ -691,6 +691,13 @@ if( function_exists('acf_add_local_field_group') ) {
 					'placement' 	=> 'left',
 				),
 				array (
+					'key'   		=> 'gift_image_head',
+					'label' 		=> __( 'anh qua (150 x 150)', 'htz' ),
+					'name'  		=> 'gift_image_head',
+					'type'  		=> 'image',
+				 
+				),
+				array (
 					'key'   		=> 'gift_header',
 					'label' 		=> __( 'Tieu đề', 'htz' ),
 					'name'  		=> 'gift_header',
