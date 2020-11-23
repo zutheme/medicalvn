@@ -353,7 +353,7 @@ table td img.alignnone {
 @media (max-width: 768px){
 	.menu_wrapper{
 		background-color:#07A0F3;
-		float:left;
+		/*float:left;*/
 		width:100%;
 		position:relative;
 		z-index:5;

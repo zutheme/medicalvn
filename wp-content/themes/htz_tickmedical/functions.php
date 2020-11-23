@@ -182,7 +182,7 @@ function htz_thienkhue_scripts() {
 		//wp_enqueue_script( 'slide_menu_home.', get_template_directory_uri() . '/js/slide_menu_home.js', array(), '0.0.3.3', true );
 	}
 	 if ( !is_front_page() ) {
-		wp_enqueue_style( 'style-single', get_template_directory_uri() . '/css/style.css',array(), '0.1.9.8', false);
+		wp_enqueue_style( 'style-single', get_template_directory_uri() . '/css/style.css',array(), '0.1.9.9', false);
 		wp_enqueue_script( 'htz_single', get_template_directory_uri() . '/js/custom-single.js', array(), '0.1.0.7', true );
 		//wp_enqueue_script( 'slide_menu_single', get_template_directory_uri() . '/js/slide_menu_single.js', array(), '0.0.0.1', true );
 	}
