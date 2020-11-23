@@ -3768,7 +3768,7 @@ filter li a:last-child{
     transition: all 0.5s;
 }
 #return-to-top {
-   width: 46px;
+    width: 46px;
     height: 46px;
     border-radius: 50%;
     float: right;
@@ -3777,6 +3777,7 @@ filter li a:last-child{
     right: 8px;
     z-index: 1;
     position: fixed;
+    padding: 0px 1px;
     background-color: #008FE5;
     margin-right: 20px;
     -webkit-transition: all 0.3s linear;
@@ -3788,9 +3789,7 @@ filter li a:last-child{
 }
 #return-to-top i {
     color: white;
-    text-align: center;
     font-size: 1.7em;
-    margin: 9px 10px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
@@ -3818,6 +3817,7 @@ filter li a:last-child{
     left: auto;
     right: 8px;
     z-index: 1;
+    padding: 0px 1px;
     position: fixed;
     background-color: #008FE5;
     margin-right: 20px;
@@ -3830,10 +3830,7 @@ filter li a:last-child{
 }
 #return-to-top i {
     color: white;
-    text-align: center;
     font-size: 1.0em;
-    margin: 11px auto;
-    margin-left: 14px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;

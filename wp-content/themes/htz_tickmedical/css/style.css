@@ -2380,12 +2380,12 @@ color: #777777;
 
 /***********----------services css start----------**********/
 /*----------title section---------------*/
-.med_tittle_section{
-	/*background:url('../images/service_top_img.jpg') 50% 0 repeat-y;*/
+/*.med_tittle_section{
+	background:url('../images/service_top_img.jpg') 50% 0 repeat-y;
 	width:100%;
 	height:100%;
-	/*background-position:center 0;
-	background-size:cover;*/
+	background-position:center 0;
+	background-size:cover;
 	float:left;
 	position:relative;
 	text-align:center;
@@ -2393,6 +2393,13 @@ color: #777777;
 	padding-bottom:0px;
 	margin-top:-95px;
 	background: #fff;
+}*/
+.med_tittle_section{
+	width:100%;
+	height:100%;
+	float:left;
+	background: #fff;
+	position: relative;
 }
 /*.med_img_overlay{
 	position:absolute;
@@ -6116,8 +6123,8 @@ h2.widget-title {
 		max-width: 150px;
 		height: auto;
 	}
-	.med_tittle_section {
-	    /* background: url(../images/service_top_img.jpg) 50% 0 repeat-y; */
+	/*.med_tittle_section {
+	    background: url(../images/service_top_img.jpg) 50% 0 repeat-y; 
 	    background: #ffffff;
 	    width: 100%;
 	    height: 100%;
@@ -6129,6 +6136,12 @@ h2.widget-title {
 	    padding-top: 150px;
 	    padding-bottom: 5px;
 	    margin-top: -135px;
+	}*/
+	.med_tittle_section {
+	    width: 100%;
+	    height: 100%;
+	    float: left;
+	    position: relative;
 	}
 	.contect_form_blog button {
 	    margin-left: 0px;
