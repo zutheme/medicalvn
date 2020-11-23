@@ -3777,7 +3777,7 @@ filter li a:last-child{
     right: 8px;
     z-index: 1;
     position: fixed;
-    padding: 0px 1px;
+    padding: 9px 12px;;
     background-color: #008FE5;
     margin-right: 20px;
     -webkit-transition: all 0.3s linear;

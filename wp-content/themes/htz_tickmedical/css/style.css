@@ -6138,6 +6138,7 @@ h2.widget-title {
 	    margin-top: -135px;
 	}*/
 	.med_tittle_section {
+		padding-top: 10px;
 	    width: 100%;
 	    height: 100%;
 	    float: left;
