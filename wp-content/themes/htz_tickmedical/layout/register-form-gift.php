@@ -46,7 +46,7 @@
                             <li>
                                 <input class="list-check" type="radio" name="choose[]" value="Viên uống xương khớp gramin"><label class="select">Viên uống xương khớp gramin</label></li>
                             <li>
-                                <input class="list-check" type="radio" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị bằng công nghệ cao</label></li>
+                                <input class="list-check" type="radio" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị xương khớp công nghệ cao</label></li>
                         </ul>
                     </div>    
                     <div class="contect_form1">
