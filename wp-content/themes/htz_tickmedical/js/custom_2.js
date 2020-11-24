@@ -718,7 +718,15 @@ $(document).ready(function(){
 
 var e_bnt_gift = document.getElementById("bnt-gift");
 e_bnt_gift.addEventListener("click", openformgift);
+var toogle = false;
 function openformgift() {
    var e_form_choose = document.getElementById("form-choose");
-   e_form_choose.style.display = "block";
+   if(!toogle){
+      e_form_choose.style.display = "block";
+      toogle = true;
+   }else{
+       e_form_choose.style.display = "none";
+       toogle = false;
+   }
+   
 }
