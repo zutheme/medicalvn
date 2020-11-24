@@ -35,7 +35,7 @@
                 <div class="head">
                        <label><?php echo get_field('gift_action','customizer'); ?></label>
                         <?php $imgbutton = get_field('gift_button','customizer'); ?>
-                       <p><a id="bnt-gift" class="btn-gift" href="javascript(0);"><img src="<?php echo $imgbutton['url']; ?>"></a></p>
+                       <p><a id="bnt-gift" class="btn-gift" href="javascript:void(0);"><img src="<?php echo $imgbutton['url']; ?>"></a></p>
                 </div> 
                 <form id="form-choose" class="form-choose" style="display: none;"> 
                     <!--  <div class="contect_form1 head">
