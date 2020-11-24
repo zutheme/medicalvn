@@ -16,8 +16,8 @@ function request_question(){
                     $id = get_the_ID();
                     $title = get_the_title($idpost);
                     //$content = apply_filters('the_content', get_post_field('post_content', $idpost));
-                    $content = get_the_excerpt_max(300);
-                    //$content = get_the_content($id);
+                    //$content = get_the_excerpt_max(300);
+                    $content = get_the_content($id);
                     $lst_quest = array();
                     $list_quiz = get_post_meta( $id, 'list_quiz', true );
                     if( $list_quiz ){
