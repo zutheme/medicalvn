@@ -5727,7 +5727,9 @@ margin-bottom:0;}
     padding-top: 15px;
 }
 .gift .gift-back .head-gift {
-  color: #000;
+  color: #1E1E1E;
+  font-size: 18px;
+  font-weight: 500;
 }
 .gift .gift-back img {
     width: 100%;
