@@ -70,9 +70,7 @@ function create_ticket_api(){
             'custom_fields'  => $_ticket['custom_fields']
             ]
     ]);
-    if(!isset($_optsms)|| $_optsms == 0){
-      $mgs = esc_attr( get_option('textmessage'));
-    }else if($_optsms == 1){
+    if($_optsms == 1){
       $mgs = esc_attr( get_option('textmessage1'));
     }else if($_optsms == 2){
       $mgs = esc_attr( get_option('textmessage2'));
