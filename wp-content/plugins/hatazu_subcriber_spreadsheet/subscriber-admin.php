@@ -38,6 +38,14 @@
 		</table>
 		<table>
 			<tr valign="top">
+	        <td>
+	        	<p>Noi dung tin nhan nhận quà</p>
+	        	<p><textarea cols="50" rows="10" class="opt form-control" name="textmessage2" style="width:100%"><?php echo esc_attr( get_option('textmessage2') ); ?></textarea></p></td>
+
+	        </tr>
+		</table>
+		<table>
+			<tr valign="top">
 
 	        <th scope="row">HTML</th>
 

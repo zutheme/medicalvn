@@ -12,7 +12,7 @@
   $id_post = get_the_ID();
   $media = wp_get_attachment_image_src( get_post_thumbnail_id($id_post), 'media', false );
   //$media = wp_get_attachment_image_src( get_post_thumbnail_id($id_post), 'media', false );
-  $excerpt = get_the_excerpt_max(200);
+  $excerpt = get_the_excerpt_max(1200);
   if($thumbnail){
      $_thumbnail = $thumbnail[0];
   }else{
@@ -44,7 +44,10 @@ if ( is_singular() ) :
         } ?>
 
     <div id="quiz-test-show" class="quiz-test-show">
-        <div class="tip-title"><span class="question-title"></span></div>
+        <div class="tip-title">
+           <span class="question-title"></span>
+           <p class="note" style="display: none;">(Bạn có thể chọn nhiều đáp án)</p>
+        </div>
         <div class="tip-content"><p class="question-content"></p></div>
         <div class="result">
             <p class="head"></p>
@@ -57,7 +60,7 @@ if ( is_singular() ) :
         </ul>
         <div class="desc-begin">
                 <input class="idtopic" type="hidden" name="idtopic" value="<?php echo $id_post; ?>">
-                <h3 class="topic"><?php echo get_the_title($id_post); ?></h3> 
+                <h3 class="topic"><?php echo get_the_title($id_post); ?></h3>
                 <p><?php echo $excerpt; ?></p>
         </div>
         <div class="btn-area">

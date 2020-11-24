@@ -62,7 +62,7 @@
                        <label>(*Thông tin bảo mật)</label>
                     </div>
                     <div class="contect_btn">
-                       <button type="button" class="submitForm btn-register" form-type="inquiry">Gửi yêu cầu</button>
+                       <button type="button" class="submitForm btn-register" optsms="2">Gửi yêu cầu</button>
                     </div>
                     </form>
             </div>

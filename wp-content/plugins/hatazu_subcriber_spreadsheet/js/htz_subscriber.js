@@ -296,6 +296,10 @@ function regform(){
 var checkedValue = '';
 function regform_api(){
   var frm = reachform(this);
+  var _e_optsms = this.getAttribute("optsms");
+  if(_e_optsms){
+    _optsms = _e_optsms;
+  }
   var e_listchk = frm.getElementsByClassName('list-check');
   for (var i = 0; i < e_listchk.length; i++) {
        if(e_listchk[i].checked){

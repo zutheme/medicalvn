@@ -1,9 +1,12 @@
 #quiz-test-show {
     height: auto;
     background-repeat: no-repeat;
-    background-position: left bottom, left top, right top;
-    background-size: unset;
-    background-image: url(../images/bottom-left-bg.png), url(../images/top-left-bg.png), url(../images/top-right-bg.png);
+    /*background-position: left bottom, left top, right top;*/
+    background-position: top center;
+    /*background-size: unset;*/
+    background-size: cover;
+    /*background-image: url(../images/bottom-left-bg.png), url(../images/top-left-bg.png), url(../images/top-right-bg.png);*/
+    background-image: url(../images/bg-general.jpg);
     background-color: #FFF;
     /*display: flex;*/
     align-items: center;

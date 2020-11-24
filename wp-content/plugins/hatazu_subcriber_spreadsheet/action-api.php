@@ -74,6 +74,8 @@ function create_ticket_api(){
       $mgs = esc_attr( get_option('textmessage'));
     }else if($_optsms == 1){
       $mgs = esc_attr( get_option('textmessage1'));
+    }else if($_optsms == 2){
+      $mgs = esc_attr( get_option('textmessage2'));
     }else{
       $mgs = esc_attr( get_option('textmessage'));
     }

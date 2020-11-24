@@ -40,6 +40,7 @@ function subscriber_menu_settings() {
     register_setting( 'subscriber-settings', 'spreadsheetid' );
     register_setting( 'subscriber-settings', 'textmessage' );
     register_setting( 'subscriber-settings', 'textmessage1' );
+    register_setting( 'subscriber-settings', 'textmessage2' );
     register_setting( 'subscriber-settings', 'html_top' );
 }
 
@@ -50,9 +51,9 @@ add_action( 'admin_init', 'subscriber_menu_settings' );
 //add_action('admin_enqueue_scripts', 'admin_load_scripts_subscriber');
 function hatazu_subscriber_custom() {
     global $post;
-    wp_enqueue_style( 'htz_subscriber_style.css', plugin_dir_url(__FILE__) . 'css/htz_subscriber_style.css',array(), '0.5.7.1', false); 
+    wp_enqueue_style( 'htz_subscriber_style.css', plugin_dir_url(__FILE__) . 'css/htz_subscriber_style.css',array(), '0.5.7.2', false); 
   
-    wp_enqueue_script( 'htz_subscriber.js', plugin_dir_url(__FILE__) .'js/htz_subscriber.js', array(), '0.1.7.8', true );
+    wp_enqueue_script( 'htz_subscriber.js', plugin_dir_url(__FILE__) .'js/htz_subscriber.js', array(), '0.1.8.2', true );
        $data = array(
 	                'upload_url' => admin_url('async-upload.php'),
 	                'ajax_url'   => admin_url('admin-ajax.php'),

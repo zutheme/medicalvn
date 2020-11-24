@@ -19,7 +19,7 @@ _e_close.addEventListener('click',function(){
     var _e_body = document.getElementsByTagName('body')[0];
     _e_body.style.display = "block";
 });
-
+var e_note = _e_quiz_test.getElementsByClassName("note")[0];
 function prevquest(){
     var _idpostback = 0;
     start = start - 1;
@@ -59,7 +59,7 @@ function prevquest(){
 }
 function nextquest(){
 	if(start==0){
-		    _e_desc_begin.style.display = 'none';
+		_e_desc_begin.style.display = 'none';
         _e_btn_start.style.display = 'none';
        
 	}else{
@@ -105,6 +105,7 @@ function nextquest(){
         e_form_quiz.style.display = "block"; 
         _e_btn_next.style.display = "none";
         _e_btn_prev.style.display = 'none';
+        e_note.style.display = "none";
     	return false;
     }
 }
@@ -224,7 +225,8 @@ function renderdata(data){
           }
         });
         order++;
-        showanswered(start);
+        showanswered(start); 
+         e_note.style.display = "block";
         _e_btn_next.style.display = 'block';
         _e_btn_prev.style.display = 'block';
         e_popup_processing.style.display = "none";
