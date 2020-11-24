@@ -151,14 +151,16 @@ function resetform(frm){
         }
         else if(ename[i].name == 'firstname'){
               ename[i].value='';
-          }else if(ename[i].name == 'phone'){
-              ename[i].value='';
-            }
-          else if(ename[i].name == 'email'){
-              ename[i].value='';
-          }else if(ename[i].name == 'address'){
-              ename[i].value='';
+        }else if(ename[i].name == 'name'){
+            ename[i].value='';
+        }else if(ename[i].name == 'phone'){
+            ename[i].value='';
           }
+        else if(ename[i].name == 'email'){
+            ename[i].value='';
+        }else if(ename[i].name == 'address'){
+            ename[i].value='';
+        }
       } 
     }  
     // var eselsevice = frm.getElementsByTagName("select");
@@ -204,6 +206,13 @@ function regform(){
             }
         }
         else if(ename[i].name == 'firstname'){
+          _firstname = ename[i].value;
+          if(!_firstname){
+                ename[i].style.borderColor = "red";
+                //ename[i].innerHTML = "Vui lòng nhập họ tên";
+                return false;
+            }
+        }else if(ename[i].name == 'name'){
           _firstname = ename[i].value;
           if(!_firstname){
                 ename[i].style.borderColor = "red";
@@ -321,6 +330,13 @@ function regform_api(){
             }
         }
         else if(ename[i].name == 'firstname'){
+          _firstname = ename[i].value;
+          if(!_firstname){
+                ename[i].style.borderColor = "red";
+                //ename[i].innerHTML = "Vui lòng nhập họ tên";
+                return false;
+            }
+        }else if(ename[i].name == 'name'){
           _firstname = ename[i].value;
           if(!_firstname){
                 ename[i].style.borderColor = "red";

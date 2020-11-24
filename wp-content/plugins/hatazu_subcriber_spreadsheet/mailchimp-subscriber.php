@@ -53,13 +53,13 @@ function hatazu_subscriber_custom() {
     global $post;
     wp_enqueue_style( 'htz_subscriber_style.css', plugin_dir_url(__FILE__) . 'css/htz_subscriber_style.css',array(), '0.5.7.2', false); 
   
-    wp_enqueue_script( 'htz_subscriber.js', plugin_dir_url(__FILE__) .'js/htz_subscriber.js', array(), '0.1.8.2', true );
+    wp_enqueue_script( 'htz_subscriber.js', plugin_dir_url(__FILE__) .'js/htz_subscriber.js', array(), '0.1.8.3', true );
        $data = array(
 	                'upload_url' => admin_url('async-upload.php'),
 	                'ajax_url'   => admin_url('admin-ajax.php'),
 	                'nonce'      => wp_create_nonce('media-form')
 	            );
-	    wp_localize_script( 'htz_subscriber.js', 'htz_config', $data );
+	wp_localize_script( 'htz_subscriber.js', 'htz_config', $data );
 }
 add_action('init', 'hatazu_subscriber_custom');
 include 'TechAPI/bootstrap.php';  
