@@ -715,3 +715,10 @@ $(document).ready(function(){
   
   
 });
+
+var e_bnt_gift = document.getElementById("bnt-gift");
+e_bnt_gift.addEventListener("click", openformgift);
+function openformgift() {
+   var e_form_choose = document.getElementById("form-choose");
+   e_form_choose.style.display = "block";
+}

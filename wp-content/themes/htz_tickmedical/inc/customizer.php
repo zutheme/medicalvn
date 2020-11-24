@@ -723,6 +723,12 @@ if( function_exists('acf_add_local_field_group') ) {
 					'name'  		=> 'gift_action',
 					'type'  		=> 'textarea',
 				),
+				array (
+					'key'   		=> 'gift_button',
+					'label' 		=> __( 'anh nut', 'htz' ),
+					'name'  		=> 'gift_button',
+					'type'  		=> 'image',
+				),
 			/* footer */
 			array (
 				'key'   		=> 'footer',

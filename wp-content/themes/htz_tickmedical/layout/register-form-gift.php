@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="gift-back">
-                    <?php //$img_gift = get_field('gift_image_head','customizer'); ?>
-                    <a href="#"><img src="<?php //echo $img_gift['url'] ?>"></a>
-                    <h5 class="head-gift"><?php //echo get_field('gift_header','customizer'); ?></h5>
+                    <?php $img_gift = get_field('gift_image_head','customizer'); ?>
+                    <a href="#"><img src="<?php echo $img_gift['url'] ?>"></a>
+                    <h5 class="head-gift"><?php echo get_field('gift_header','customizer'); ?></h5>
                 </div>
             </div>
         </div>
@@ -32,16 +32,21 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 frm-reg">
-                <form class="form-choose"> 
-                     <div class="contect_form1 head">
+                <div class="head">
                        <label><?php echo get_field('gift_action','customizer'); ?></label>
-                    </div> 
+                        <?php $imgbutton = get_field('gift_button','customizer'); ?>
+                       <p><a id="bnt-gift" class="btn-gift" href="javascript(0);"><img src="<?php echo $imgbutton['url']; ?>"></a></p>
+                </div> 
+                <form id="form-choose" class="form-choose" style="display: none;"> 
+                    <!--  <div class="contect_form1 head">
+                       <label><?php //echo get_field('gift_action','customizer'); ?></label>
+                    </div>  -->
                     <div class="contect_form1">
                         <ul class="choose-gift">
                             <li>
                                 <input class="list-check" type="radio" name="choose[]" value="Viên uống xương khớp gramin"><label class="select">Viên uống xương khớp gramin</label></li>
                             <li>
-                                <input class="list-check" type="radio" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị xương khớp công nghệ cao</label></li>
+                                <input class="list-check" type="radio" name="choose[]" value="Điều trị xương khớp công nghệ cao"><label class="select">Điều trị bằng công nghệ cao</label></li>
                         </ul>
                     </div>    
                     <div class="contect_form1">
