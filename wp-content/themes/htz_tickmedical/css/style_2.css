@@ -5726,6 +5726,9 @@ margin-bottom:0;}
     position: relative;
     padding-top: 15px;
 }
+.gift .gift-back .head-gift {
+  color: #000;
+}
 .gift .gift-back img {
     width: 100%;
     height: auto;
