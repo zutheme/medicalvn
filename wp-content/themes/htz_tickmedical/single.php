@@ -59,8 +59,7 @@ get_header();
                                   //comments_template( '/comments-default.php' );
                                   endif; ?>
                             </div>
-                           <div id="fb-root"></div>
-                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0" nonce="8Ah453VG"></script>
+                          
                             <div class="fb-comment-embed" data-href="<?php echo get_permalink(); ?>" data-include-parent="false" data-width=""></div>
                            
                           </div>
