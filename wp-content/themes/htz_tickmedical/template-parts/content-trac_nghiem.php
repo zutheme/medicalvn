@@ -12,8 +12,8 @@
   $id_post = get_the_ID();
   $media = wp_get_attachment_image_src( get_post_thumbnail_id($id_post), 'media', false );
   //$media = wp_get_attachment_image_src( get_post_thumbnail_id($id_post), 'media', false );
-  //$excerpt = get_the_excerpt_max(1200);
-  $excerpt = get_the_content($id_post);
+  $excerpt = get_the_excerpt_max(200);
+  $content_begin = get_the_content($id_post);
   if($thumbnail){
      $_thumbnail = $thumbnail[0];
   }else{
@@ -62,7 +62,7 @@ if ( is_singular() ) :
         <div class="desc-begin">
                 <input class="idtopic" type="hidden" name="idtopic" value="<?php echo $id_post; ?>">
                 <h3 class="topic"><?php echo get_the_title($id_post); ?></h3>
-                <p><?php echo $excerpt; ?></p>
+                <p><?php echo $content_begin; ?></p>
         </div>
         <div class="btn-area">
             <ul class="control">
