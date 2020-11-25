@@ -118,13 +118,13 @@
     </div>
     <!-- dc category section end-->
      <!-- dc category section start-->
-      <div class="contact_us_section address med_toppadder100 med_bottompadder10">
+      <!-- <div class="contact_us_section address med_toppadder100 med_bottompadder10">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="choose_heading_wrapper med_bottompadder30">
                         <h1 class="med_bottompadder20">Chi nhánh 2</h1>
-                        <img src="<?php bloginfo('template_directory');?>/images/line.png" alt="title" class="med_bottompadder20">
+                        <img src="<?php //bloginfo('template_directory');?>/images/line.png" alt="title" class="med_bottompadder20">
                         <p></p>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="cat_about cont_cat_abt">
                         <div class="icon_wrapper dc_icon_section">
-                            <img src="<?php bloginfo('template_directory');?>/images/icon_map.png" alt="img" class="img-responsive">
+                            <img src="<?php //bloginfo('template_directory');?>/images/icon_map.png" alt="img" class="img-responsive">
                         </div>
 
                         <div class="cat_txt cont_cat_txt">
@@ -150,12 +150,12 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="cat_about cont_cat_abt">
                         <div class="icon_wrapper dc_icon_section">
-                            <img src="<?php bloginfo('template_directory');?>/images/icon_call.png" alt="img" class="img-responsive">
+                            <img src="<?php //bloginfo('template_directory');?>/images/icon_call.png" alt="img" class="img-responsive">
                         </div>
 
 
                         <div class="cat_txt cont_cat_txt">
-                            <h1><?php echo get_field('header_phone1','customizer'); ?></h1>
+                            <h1><?php //echo get_field('header_phone1','customizer'); ?></h1>
                             <p>Thứ hai-chủ nhật 8:30am - 9:30pm</p>
 
                         </div>
@@ -164,11 +164,11 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="cat_about cont_cat_abt">
                         <div class="icon_wrapper dc_icon_section">
-                            <img src="<?php bloginfo('template_directory');?>/images/icon_envelope.png" alt="img" class="img-responsive">
+                            <img src="<?php //bloginfo('template_directory');?>/images/icon_envelope.png" alt="img" class="img-responsive">
                         </div>
 
                         <div class="cat_txt cont_cat_txt cont_last_child">
-                            <a href="#"><h1><?php echo get_field('header_email','customizer'); ?></h1></a>
+                            <a href="#"><h1><?php //echo get_field('header_email','customizer'); ?></h1></a>
                             <p>Hỗ trợ online 24/7</p>
 
                         </div>
@@ -179,7 +179,7 @@
         <div class="map_main_wrapper cont_dc_map">
             <div id="map2" style="width:100%; float:left; height:600px;"></div>
         </div>
-    </div>
+    </div> -->
     <!-- dc category section end-->
     
     <script type="text/javascript">
@@ -236,9 +236,9 @@
             var map1 = new google.maps.Map(document.getElementById('map1'), {zoom: 14, center: uluru1});
             var marker1 = new google.maps.Marker({position: uluru1, map: map1});
             // marker2.setMap(map2);,
-            var uluru2 = {lat: 10.776763, lng: 106.679007};
-            var map2 = new google.maps.Map(document.getElementById('map2'), {zoom: 14, center: uluru2});
-            var marker2 = new google.maps.Marker({position: uluru2, map: map2});
+            // var uluru2 = {lat: 10.776763, lng: 106.679007};
+            // var map2 = new google.maps.Map(document.getElementById('map2'), {zoom: 14, center: uluru2});
+            // var marker2 = new google.maps.Marker({position: uluru2, map: map2});
             // To add the marker to the map, call setMap();
             // marker3.setMap(map3);
             // var map3 = new google.maps.Map(document.getElementById("map3"), myOptions3);
