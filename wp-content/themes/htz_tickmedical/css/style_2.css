@@ -3492,6 +3492,7 @@ border-radius: 5px;
     transition: all 0.5s;
 }
 .footer_wrapper{
+  float: left;
 	width:100%;
 	background-color:#07A0F3;
 }
@@ -5331,8 +5332,11 @@ margin-bottom:0;}
   }
 }
 .work-time {
+  float: left;
   position: relative;
-  background: rgba(39 168 225,0.3);
+  background: #28A7DF;
+  z-index: 10000;
+  width: 100%;
 }
 /*.work-time .info_wrapper {
   background: rgba(39 168 225,0.5) !important; 
@@ -5861,4 +5865,65 @@ margin-bottom:0;}
     position: relative;
     padding-top: 15px;
 }
+}
+#banner-quiz {
+    /* background:url('../images/service_bg.jpg') 50% 0 repeat-y; */
+    background: #fff;
+    float:left;
+    width:100%;
+    height:100%;
+    background-position:center 0;
+    background-size:cover;
+    background-repeat:no-repeat;
+    position:relative;
+    padding-top:50px;
+    padding-bottom:80px;
+}
+#banner-quiz .phone-quiz {
+    text-align: center;
+}
+#banner-quiz .doctor-quiz img ,
+#banner-quiz .phone-quiz img{
+    width: 100%;
+    height: auto;
+}
+#banner-quiz .phone-quiz .img-phone {
+   height: 600px;
+   width: auto;
+}
+#banner-quiz .doctor-quiz{
+  text-align: right;
+  position: relative;
+}
+#banner-quiz .doctor-quiz .img-doctor {
+    max-width: 100%;
+    width: auto;
+}
+#banner-quiz .btn-test img {
+  width: 100%;
+  height: auto;
+}
+#banner-quiz .btn-test .img-btn-test {
+   max-width:200px;
+   height: auto; 
+}
+@media (max-width: 768px){
+    #banner-quiz {
+    /* background: url(../images/service_bg.jpg) 50% 0 repeat-y; */
+      background: #fff;
+      float: left;
+      width: 100%;
+      height: 100%;
+      background-position: center 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+      padding-top: 50px;
+      padding-bottom: 20px;
+      margin-bottom: 55px;
+  }
+  #banner-quiz .phone-quiz .img-phone {
+      height: 100%;
+      width: 100%;
+  }
 }

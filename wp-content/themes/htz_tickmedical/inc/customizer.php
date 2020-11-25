@@ -357,6 +357,44 @@ if( function_exists('acf_add_local_field_group') ) {
 				'name'  		=> 'service_background',
 				'type'  		=> 'image',	
 			),
+			/*quiz test*/
+			array (
+				'key'   		=> 'quiztest',
+				'label' 		=> __( 'test nhanh', 'htz' ),
+				'name'  		=> 'quiztest',
+				'type'  		=> 'tab',
+				'placement' 	=> 'left',
+			),
+			array (
+				'key'   		=> 'quiztest_bg',
+				'label' 		=> __( 'anh nen', 'htz' ),
+				'name'  		=> 'quiztest_bg',
+				'type'  		=> 'image',	
+			),
+		    array (
+				'key'   		=> 'quiztest_note',
+				'label' 		=> __( 'form anh', 'htz' ),
+				'name'  		=> 'quiztest_note',
+				'type'  		=> 'image',	
+			),
+			array (
+				'key'   		=> 'quiztest_doctor',
+				'label' 		=> __( 'form anh', 'htz' ),
+				'name'  		=> 'quiztest_doctor',
+				'type'  		=> 'image',	
+			),
+			array (
+				'key'   		=> 'quiztest_btntest',
+				'label' 		=> __( 'anh nut', 'htz' ),
+				'name'  		=> 'quiztest_btntest',
+				'type'  		=> 'image',	
+			),
+			array (
+				'key'   		=> 'quiztest_btntest_link',
+				'label' 		=> __( 'anh nut', 'htz' ),
+				'name'  		=> 'quiztest_btntest_link',
+				'type'  		=> 'text',	
+			),
 			/*Đội ngũ*/
 			array (
 				'key'   		=> 'doctor',

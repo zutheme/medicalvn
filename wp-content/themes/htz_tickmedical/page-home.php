@@ -18,12 +18,14 @@ get_template_part('layout/slider-tick');
 get_template_part('layout/work-time');
 get_template_part('layout/search-block');
 get_template_part('layout/register-form-gift');
-get_template_part('layout/about');
+get_template_part('layout/testquiz');
+//get_template_part('layout/about');
 get_template_part('layout/our-services');
 //get_template_part('layout/portfolio-video');
 get_template_part('layout/slider-video-multi');
 //get_template_part('layout/doctor');
 get_template_part('layout/about1');
+
 get_template_part('layout/chuyen-vien');
 //get_template_part('layout/call-service');
 get_template_part('layout/testimonial');
