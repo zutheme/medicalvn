@@ -12,7 +12,8 @@
   $id_post = get_the_ID();
   $media = wp_get_attachment_image_src( get_post_thumbnail_id($id_post), 'media', false );
   //$media = wp_get_attachment_image_src( get_post_thumbnail_id($id_post), 'media', false );
-  $excerpt = get_the_excerpt_max(1200);
+  //$excerpt = get_the_excerpt_max(1200);
+  $excerpt = get_the_content($id_post);
   if($thumbnail){
      $_thumbnail = $thumbnail[0];
   }else{
