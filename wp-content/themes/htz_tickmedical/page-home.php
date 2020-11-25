@@ -19,7 +19,7 @@ get_template_part('layout/work-time');
 get_template_part('layout/search-block');
 get_template_part('layout/register-form-gift');
 get_template_part('layout/testquiz');
-//get_template_part('layout/about');
+get_template_part('layout/about');
 get_template_part('layout/our-services');
 //get_template_part('layout/portfolio-video');
 get_template_part('layout/slider-video-multi');
